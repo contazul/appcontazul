@@ -1,3 +1,10 @@
 <resources>
-    <string name="app_name">appcontazul</string>
+    <string name="app_name">Contazul</string>
+
+    <string name="activityLogin_textViewFuncionalidade">Autenticação</string>
+    <string name="activityLogin_editTextUsuario">Usuário</string>
+    <string name="activityLogin_editTextSenha">Senha</string>
+    <string name="activityLogin_buttonAcessar">Acessar</string>
+    <string name="activityLogin_textViewOu">Ou acesse:</string>
+    <string name="activityLogin_buttonCadastrar">Cadastrar</string>
 </resources>

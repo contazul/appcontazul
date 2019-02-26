@@ -9,10 +9,75 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/textView_funcionalidade"
+        android:text="@string/activityLogin_textViewFuncionalidade"
+        android:textSize="15sp"
+        app:layout_constraintTop_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="140dp"
+        android:textColor="@color/colorPrimary"
+        />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText_usuario"
+        style="@style/editText"
+        android:width="150dp"
+        android:hint="@string/activityLogin_editTextUsuario"
+        app:layout_constraintTop_toBottomOf="parent"
+        android:layout_marginTop="100dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginStart="110dp"
+        />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText_senha"
+        style="@style/editText"
+        android:width="150dp"
+        android:hint="@string/activityLogin_editTextSenha"
+        app:layout_constraintTop_toBottomOf="@+id/editText_usuario"
+        app:layout_constraintLeft_toLeftOf="@+id/editText_usuario"
+        android:inputType="textPassword"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_acessar"
+        app:layout_constraintTop_toBottomOf="@+id/editText_senha"
+        app:layout_constraintLeft_toLeftOf="@+id/editText_senha"
+        android:layout_marginTop="10dp"
+        android:width="150dp"
+        android:text="@string/activityLogin_buttonAcessar"
+        android:background="@color/colorPrimary"
+        android:textColor="#FFF"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView_ou"
+        app:layout_constraintTop_toBottomOf="@+id/button_acessar"
+        android:layout_marginTop="10dp"
+        app:layout_constraintLeft_toLeftOf="@+id/button_acessar"
+        android:text="@string/activityLogin_textViewOu"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_cadastrar"
+        app:layout_constraintTop_toBottomOf="@+id/textView_ou"
+        app:layout_constraintLeft_toLeftOf="@+id/textView_ou"
+        android:layout_marginTop="10dp"
+        android:width="150dp"
+        android:text="@string/activityLogin_buttonCadastrar"
+        android:background="@color/colorPrimary"
+        android:textColor="#FFF"
+        />
+
 
 </android.support.constraint.ConstraintLayout>
