@@ -44,18 +44,34 @@
         android:inputType="textPassword"
         />
 
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView_RE09_RE07"
+        app:layout_constraintTop_toBottomOf="@+id/editText_senha"
+        android:layout_marginTop="10dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="90sp"
+        android:textColor="#FF0000"
+        android:text=""
+
+/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/button_acessar"
         app:layout_constraintTop_toBottomOf="@+id/editText_senha"
         app:layout_constraintLeft_toLeftOf="@+id/editText_senha"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="30dp"
         android:width="150dp"
         android:text="@string/activityLogin_buttonAcessar"
         android:background="@color/colorPrimary"
         android:textColor="#FFF"
         />
+
+
+
 
     <TextView
         android:layout_width="wrap_content"
@@ -77,6 +93,7 @@
         android:text="@string/activityLogin_buttonCadastrar"
         android:background="@color/colorPrimary"
         android:textColor="#FFF"
+        android:onClick="cadastrar"
         />
 
 
