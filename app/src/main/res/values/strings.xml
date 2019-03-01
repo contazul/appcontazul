@@ -7,10 +7,19 @@
     <string name="activityLogin_buttonAcessar">Acessar</string>
     <string name="activityLogin_textViewOu">Ou acesse:</string>
     <string name="activityLogin_buttonCadastrar">Cadastrar</string>
-    <string name="activityLogin_RE09">Usuário e/ou senha inválido(s), favor informar novamente</string>
+    <string name="activityLogin_RE09">Usuário e/ou senha inválido(s)</string>
     <string name="activityLogin_RE07">O campo senha é obrigatório</string>
+    <string name="activityLogin_RE06">O campo usuário é obrigatório</string>
     <string name="activityCadastro_textViewFuncionalidade">Cadastrar</string>
     <string name="activityCadastro_RE01">Cadastro efetuado com sucesso</string>
     <string name="activityCadastro_tituloSucesso">Sucesso</string>
     <string name="activityCadastro_popupBotaoProsseguir">Prosseguir</string>
+    <string name="activityCadastro_RE02">Usuário já existente no cadastro!</string>
+    <string name="activityCadastro_RE03">Caracteres especiais não são validos</string>
+    <string name="activityCadastro_RE04">As senhas estão diferentes</string>
+    <string name="activityCadastro_RE05">No mínimo 4 caracteres para a senha</string>
+    <string name="activityCadastro_RE06">O campo nome de usuário é obrigatório</string>
+    <string name="activityCadastro_RE07">O campo Senha é obrigatório</string>
+    <string name="activityCadastro_RE08">O campo confirmar senha é obrigatório</string>
+
 </resources>
