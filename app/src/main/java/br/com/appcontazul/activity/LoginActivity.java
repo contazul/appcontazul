@@ -1,6 +1,7 @@
 package br.com.appcontazul.activity;
 
 import android.content.Intent;
+import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -10,10 +11,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import br.com.appcontazul.R;
+import br.com.appcontazul.contentstatic.Excecoes;
+import br.com.appcontazul.contentstatic.ReferenciaUsuario;
+import br.com.appcontazul.rest.Requisicao;
 
 public class LoginActivity extends AppCompatActivity {
-
-
 
     EditText editTextUsuario;
     TextView textViewRE06;
@@ -23,6 +25,10 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
         setContentView(R.layout.activity_login);
 
         editTextUsuario = (EditText) findViewById(R.id.editText_usuario);
@@ -34,7 +40,6 @@ public class LoginActivity extends AppCompatActivity {
         editTextUsuario.addTextChangedListener(new TextWatcher() {
 
             public void afterTextChanged(Editable s) {
-
 
             }
 
@@ -71,9 +76,6 @@ public class LoginActivity extends AppCompatActivity {
                 textViewRE09RE07.setText("");
             }
 
-
-
-
         });
     }
 
@@ -88,46 +90,35 @@ public class LoginActivity extends AppCompatActivity {
         if(validarCampos()) {
 
             // Ai pode acessar
+            ReferenciaUsuario.nomeUsuarioLogado = editTextUsuario.getText().toString();
+            Intent acessar = new Intent(LoginActivity.this, SelecaoContaActivity.class);
+            startActivity(acessar);
         }
-
-        Intent acessar = new Intent(LoginActivity.this, SelecaoContaActivity.class);
-        startActivity(acessar);
-
     }
 
     public boolean validarCampos() {
 
+        Requisicao requisicao = new Requisicao();
         boolean validado = true;
         if(editTextUsuario.getText().toString().equals("")) {
 
-            textViewRE06.setText(R.string.activityLogin_RE06);
+            textViewRE06.setText(R.string.activityCadastro_RE06);
             validado = false;
         }
-
 
         if(editTextSenha.getText().toString().equals("")){
-            textViewRE09RE07.setText(R.string.activityLogin_RE07);
+            textViewRE09RE07.setText(R.string.activityCadastro_RE07);
             validado = false;
         }
-        //else {
+        else if (requisicao.requestEx08(editTextUsuario.getText().toString(),
+                editTextSenha.getText().toString()).equals(Excecoes.EX08)){
 
 
-          //  textViewRE09RE07.setText(R.string.activityLogin_RE09);
-            //validado = false;
+            textViewRE09RE07.setText(R.string.activityLogin_RE09);
+            validado = false;
 
-        //}
-
-
+        }
 
         return validado;
     }
-
-
-
-
-
-
-
-
-
 }

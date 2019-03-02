@@ -1,6 +1,9 @@
 package br.com.appcontazul.activity;
 
 import android.app.ActionBar;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.StrictMode;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +18,10 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 import br.com.appcontazul.R;
+import br.com.appcontazul.contentstatic.Excecoes;
+import br.com.appcontazul.contentstatic.ReferenciaUsuario;
+import br.com.appcontazul.rest.Requisicao;
+import br.com.appcontazul.util.Validacao;
 
 public class CadastroActivity extends AppCompatActivity {
 
@@ -28,6 +35,10 @@ public class CadastroActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
         setContentView(R.layout.activity_cadastro);
         editTextNomeUsu = (EditText) findViewById(R.id.editText_NomeUsu);
         editTextSenhaUsu = (EditText) findViewById(R.id.editText_SenhaUsu);
@@ -98,18 +109,25 @@ public class CadastroActivity extends AppCompatActivity {
 
     public void mostrarSucesso(View v) {
 
-
-
         if(validarcampos1()){
             //Ai pode acessar
-        }
+            Requisicao requisicao = new Requisicao();
+            requisicao.requestInserirUsuario(editTextNomeUsu.getText().toString(),
+                    editTextSenhaUsu.getText().toString());
+            AlertDialog.Builder popup = new AlertDialog.Builder(CadastroActivity.this);
+            popup.setTitle(R.string.activityCadastro_tituloSucesso);
+            popup.setMessage(R.string.activityCadastro_RE01);
+            popup.setPositiveButton(R.string.activityCadastro_popupBotaoProsseguir, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
 
-/*        AlertDialog.Builder popup = new AlertDialog.Builder(CadastroActivity.this);
-        popup.setTitle(R.string.activityCadastro_tituloSucesso);
-        popup.setMessage(R.string.activityCadastro_RE01);
-        popup.setPositiveButton(R.string.activityCadastro_popupBotaoProsseguir, null);
-        popup.create();
-        popup.show();*/
+                    ReferenciaUsuario.nomeUsuarioLogado = editTextNomeUsu.getText().toString();
+                    Intent selecaoActivity = new Intent(CadastroActivity.this, SelecaoContaActivity.class);
+                    startActivity(selecaoActivity);
+                }
+            });
+            popup.create();
+            popup.show();
+        }
     }
 
    /* public void cadastrar (View v){
@@ -120,6 +138,9 @@ public class CadastroActivity extends AppCompatActivity {
     }*/
 
     public boolean validarcampos1 (){
+
+        Requisicao requisicao = new Requisicao();
+        Validacao validacao = new Validacao();
         boolean validar= true;
         if(editTextNomeUsu.getText().toString().equals("")){
 
@@ -127,42 +148,22 @@ public class CadastroActivity extends AppCompatActivity {
             validar = false;
 
         }
-        else {
-            for (int i = 0; i < editTextNomeUsu.getText().toString().length();i++ ){
-                if (!Character.isAlphabetic((editTextNomeUsu.getText().toString().charAt(i)))){
-
-                    boolean isNumero = false;
-                    try {
-
-                        Integer.parseInt("" + editTextNomeUsu.getText().toString().charAt(i));
-                        isNumero = true;
-                    } catch (Exception e) {
-
+        else if(validacao.contemCaracterEspecial(editTextNomeUsu.getText().toString())){
                         textViewRE03RE02RE06.setText(R.string.activityCadastro_RE03);
                         validar= false;
-                        break;
-                    }
 
-                    if(!isNumero) {
-                        textViewRE03RE02RE06.setText(R.string.activityCadastro_RE03);
-                        validar = false;
-                        break;
-                    }
-                }
-            }
-            /*if (){
-                textViewRE03RE02RE06.setText(R.string.activityCadastro_RE02);
-                validar = false;
-            }*/
+        } else if(requisicao.requestEx01(editTextNomeUsu.getText().toString()).equals(Excecoes.EX01)) {
+
+            textViewRE03RE02RE06.setText(R.string.activityCadastro_RE02);
+            validar= false;
         }
-
 
         if(editTextSenhaUsu.getText().toString().equals("")){
 
             textViewRE05RE07.setText(R.string.activityLogin_RE07);
             validar = false;
         }
-        else if(textViewRE05RE07.getText().toString().length() < 4){
+        else if(editTextSenhaUsu.getText().toString().length() < 4){
 
             textViewRE05RE07.setText(R.string.activityCadastro_RE05);
             validar = false;
@@ -185,11 +186,7 @@ public class CadastroActivity extends AppCompatActivity {
             validar = false;
         }
 
-
-
-
         return validar;
-
     }
 
 

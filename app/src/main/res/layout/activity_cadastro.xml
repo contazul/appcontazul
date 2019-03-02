@@ -46,7 +46,8 @@
         android:layout_marginTop="5sp"
         app:layout_constraintLeft_toLeftOf="@+id/editText_NomeUsu"
         android:textColor="#FF0000"
-        android:text="" />
+        android:text=""
+        android:textSize="10sp"/>
 
 
     <EditText
@@ -60,6 +61,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginTop="160dp"
+        android:inputType="textPassword"
         />
 
     <TextView
@@ -71,10 +73,7 @@
         app:layout_constraintLeft_toLeftOf="@+id/editText_SenhaUsu"
         android:textColor="#FF0000"
         android:text=""
-
-
-
-
+        android:textSize="10sp"
         />
 
     <EditText
@@ -88,6 +87,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginTop="220dp"
+        android:inputType="textPassword"
          />
 
     <TextView
@@ -99,6 +99,7 @@
         app:layout_constraintLeft_toLeftOf="@+id/editText_ConfSenha"
         android:textColor="#FF0000"
         android:text=""
+        android:textSize="10sp"
         />
 
 
@@ -116,7 +117,5 @@
         android:onClick="mostrarSucesso"
         android:layout_marginBottom="50dp"
         />
-
-
 </android.support.constraint.ConstraintLayout>
 </ScrollView>

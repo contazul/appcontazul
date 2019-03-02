@@ -46,6 +46,7 @@
         app:layout_constraintLeft_toLeftOf="@+id/editText_usuario"
         android:layout_marginTop="5dp"
         android:textColor="#FF0000"
+        android:textSize="10sp"
         />
 
     <EditText
@@ -71,6 +72,7 @@
         app:layout_constraintLeft_toLeftOf="@+id/editText_senha"
         android:textColor="#FF0000"
         android:text=""
+        android:textSize="10sp"
 
 />
     <Button
