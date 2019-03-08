@@ -6,4 +6,80 @@
     android:layout_height="match_parent"
     tools:context=".activity.PerfilContaActivity">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView_funcionalidade3"
+        android:text="@string/activityPerfilConta_funcionalidade"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:textSize="15sp"
+        android:layout_marginTop="10dp"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_definir"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginBottom="25dp"
+        android:layout_marginRight="25dp"
+        android:width="150dp"
+        android:text="Definir"
+        android:background="@color/colorPrimary"
+        android:textColor="#FFF"
+        />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/lista_status_conta"
+        app:layout_constraintTop_toTopOf="@+id/textView_funcionalidade3"
+        android:layout_marginTop="30dp"
+        ></ListView>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText_DescricaoConta"
+        android:text=""
+        style="@style/editText"
+        android:width="250dp"
+        android:hint="Descrição da Conta"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="250dp"
+        android:layout_marginLeft="5dp"
+        />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText_ValorIdeal"
+        android:text=""
+        style="@style/editText"
+        android:width="250dp"
+        android:hint="Valor ideal para economizar"
+        app:layout_constraintTop_toTopOf="@+id/editText_DescricaoConta"
+        app:layout_constraintLeft_toLeftOf="@+id/editText_DescricaoConta"
+        android:layout_marginTop="50dp"
+        android:inputType="numberDecimal"
+        />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </android.support.constraint.ConstraintLayout>

@@ -6,4 +6,42 @@
     android:layout_height="match_parent"
     tools:context=".activity.SelecaoContaActivity">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView_funcionalidade2"
+        android:text="Criar conta"
+        android:textSize="15sp"
+        app:layout_constraintTop_toBottomOf="parent"
+        app:layout_constraintRight_toLeftOf="parent"
+        app:layout_constraintLeft_toRightOf="parent"
+        android:layout_marginTop="10sp"
+        android:textColor="@color/colorPrimary"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/bottom_criarconta"
+        app:layout_constraintTop_toBottomOf="@+id/textView_funcionalidade2"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="20dp"
+        android:width="150dp"
+        android:text="Criar Contazul"
+        android:background="@color/colorPrimary"
+        android:textColor="#FFF"
+        android:layout_marginLeft="120dp"
+        android:onClick="criarContazul"/>
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/listaContas"
+        app:layout_constraintTop_toBottomOf="@id/bottom_criarconta"
+
+        ></ListView>
+
+
+
 </android.support.constraint.ConstraintLayout>
+
+

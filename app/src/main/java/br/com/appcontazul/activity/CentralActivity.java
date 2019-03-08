@@ -2,6 +2,7 @@ package br.com.appcontazul.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import br.com.appcontazul.R;
 
 public class CentralActivity extends AppCompatActivity {
 
@@ -9,5 +10,7 @@ public class CentralActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_central);
+
+
     }
 }
