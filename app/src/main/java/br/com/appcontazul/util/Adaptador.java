@@ -6,7 +6,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import br.com.appcontazul.R;
@@ -59,7 +58,7 @@ public class Adaptador extends BaseAdapter {
 
             textViewNumeroContazul.setText("" + listaContazul.getNumeroContazul());
             textViewDescricaoConta.setText(view.getResources().getString(R.string.activitySelacaoConta_listaItemDescricao) + " " + listaContazul.getDescricao());
-            textViewPerfilComum.setText(view.getResources().getString(R.string.activitySelacaoConta_listaItemPerfil) + " " + listaContazul.getPerfilConta());
+            textViewPerfilComum.setText(view.getResources().getString(R.string.activitySelacaoConta_listaItemPerfil) + " " + listaContazul.getPerfil());
         }
 
         return view;

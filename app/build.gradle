@@ -45,6 +45,6 @@ dependencies {
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.8'
     compile 'com.android.support:appcompat-v7:26.+'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile 'org.springframework.android:spring-android-rest-template:1.0.1.RELEASE'
+    compile group: 'org.springframework.android', name: 'spring-android-rest-template', version: '2.0.0.M3'
     testCompile 'junit:junit:4.12'
 }

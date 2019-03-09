@@ -1,15 +1,22 @@
 package br.com.appcontazul.rest.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ListaContazul {
 
     private long numeroContazul;
     private String descricao;
-    private String perfilConta;
+    private String perfil;
 
-    public ListaContazul(long numeroContazul, String descricao, String perfilConta) {
+    public ListaContazul(long numeroContazul, String descricao, String perfil) {
         this.numeroContazul = numeroContazul;
         this.descricao = descricao;
-        this.perfilConta = perfilConta;
+        this.perfil = perfil;
+    }
+
+    public ListaContazul() {
+
     }
 
     public long getNumeroContazul() {
@@ -28,11 +35,11 @@ public class ListaContazul {
         this.descricao = descricao;
     }
 
-    public String getPerfilConta() {
-        return perfilConta;
+    public String getPerfil() {
+        return perfil;
     }
 
-    public void setPerfilConta(String perfilConta) {
-        this.perfilConta = perfilConta;
+    public void setPerfil(String perfil) {
+        this.perfil = perfil;
     }
 }
