@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView_funcionalidade2"
-        android:text="Criar conta"
+        android:text="@string/activitySelecaoConta_funcionalidade"
         android:textSize="15sp"
         app:layout_constraintTop_toBottomOf="parent"
         app:layout_constraintRight_toLeftOf="parent"
@@ -21,25 +21,34 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/bottom_criarconta"
-        app:layout_constraintTop_toBottomOf="@+id/textView_funcionalidade2"
+        android:id="@+id/button_criarconta"
+        app:layout_constraintTop_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginTop="20dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView_funcionalidade2"
+        android:layout_marginTop="30dp"
         android:width="150dp"
         android:text="Criar Contazul"
         android:background="@color/colorPrimary"
         android:textColor="#FFF"
-        android:layout_marginLeft="120dp"
         android:onClick="criarContazul"/>
 
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/listaContas"
-        app:layout_constraintTop_toBottomOf="@id/bottom_criarconta"
-
-        ></ListView>
-
+        app:layout_constraintTop_toBottomOf="@id/button_criarconta"
+        app:layout_constraintTop_toTopOf="@+id/textView_rodape"
+        android:layout_marginTop="110dp"
+        />
+    
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView_rodape"
+        app:layout_constraintBottom_toBottomOf="@+id/listaContas"
+        android:text=""
+        />
 
 
 </android.support.constraint.ConstraintLayout>

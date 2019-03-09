@@ -1,77 +1,53 @@
 package br.com.appcontazul.activity;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
+import android.widget.AdapterView;
+import android.widget.BaseAdapter;
 import android.widget.ListView;
 
-import java.util.ArrayList;
-
 import br.com.appcontazul.R;
+import br.com.appcontazul.contentstatic.ReferenciaUsuario;
+import br.com.appcontazul.rest.model.ListaContazul;
+import br.com.appcontazul.rest.teste.ListaContazulRepository;
 import br.com.appcontazul.util.Adaptador;
 
 public class SelecaoContaActivity extends AppCompatActivity {
 
-    ListView listView;
+    ListView listaContas;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selecao_conta);
-        listView = (ListView) findViewById(R.id.listaContas);
+        listaContas = (ListView) findViewById(R.id.listaContas);
 
-        ArrayList<String> valores = new ArrayList<>();
+        ListaContazulRepository lcrepository = new ListaContazulRepository();
+        final Adaptador adaptador = new Adaptador(lcrepository.getContas(), this);
+        listaContas.setAdapter(adaptador);
 
-        valores.add("bruno");
-        valores.add("bruno");
-        valores.add("bruno");
-        valores.add("bruno");
-        valores.add("bruno");
-        valores.add("bruno");
-        valores.add("bruno");
-        valores.add("bruno");
-        valores.add("bruno");
-        valores.add("bruno");
-        valores.add("bruno");
-        valores.add("bruno");
-        valores.add("bruno");
-        valores.add("bruno");
-        valores.add("bruno");
-        valores.add("bruno");
-        valores.add("bruno");
-        valores.add("igor");
+        listaContas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
-/*        String[] dados = new String[]{
-                "bruno","igor","nilo","trouxa1",
-                "trouxa2","trouxa3","trouxa4","trouxa5",
-                "trouxa6","trouxa7","trouxa8","trouxa9",
-                "trouxa10"
-        };*/
+            public void onItemClick(AdapterView<?> adapter, View view,
+                                    int posicao, long id) {
 
-        // ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, dados);
-        // listView.setAdapter(adapter);
-
-        Adaptador adaptador = new Adaptador(this, android.R.layout.simple_list_item_1, valores);
-        listView.setAdapter(adaptador);
+                ListaContazul listaContazul = adaptador.getItem(posicao);
+                ReferenciaUsuario.numeroContazul = listaContazul.getNumeroContazul();
+                Intent centralActivity = new Intent(SelecaoContaActivity.this, CentralActivity.class);
+                startActivity(centralActivity);
+            }
+        });
     }
 
     public void criarContazul (View v) {
         AlertDialog.Builder popup = new AlertDialog.Builder(SelecaoContaActivity.this);
-        popup.setTitle(R.string.activityCadastro_tituloSucesso);
+        popup.setTitle(R.string.activitySelacaoConta_tituloSucesso);
         popup.setMessage(R.string.activitySelacaoConta_RE_10);
-        popup.setPositiveButton(R.string.activitySelacaoConta_popupBotaoProsseguir, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-
-
-                Intent selecaoActivity = new Intent(SelecaoContaActivity.this, CentralActivity.class);
-                startActivity(selecaoActivity);
-            }
-        });
+        popup.setPositiveButton(R.string.activitySelacaoConta_popupBotaoProsseguir,null);
         popup.create();
         popup.show();
     }

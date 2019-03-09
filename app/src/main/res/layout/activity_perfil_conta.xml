@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView_funcionalidade3"
-        android:text="@string/activityPerfilConta_funcionalidade"
+        android:text="MUDAR"
         android:textColor="@color/colorPrimary"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"

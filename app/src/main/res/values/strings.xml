@@ -10,6 +10,7 @@
     <string name="activityLogin_RE09">Usuário e/ou senha inválido(s)</string>
     <string name="activityLogin_RE07">O campo senha é obrigatório</string>
     <string name="activityLogin_RE06">O campo usuário é obrigatório</string>
+
     <string name="activityCadastro_textViewFuncionalidade">Cadastrar</string>
     <string name="activityCadastro_RE01">Cadastro efetuado com sucesso</string>
     <string name="activityCadastro_tituloSucesso">Sucesso</string>
@@ -21,8 +22,13 @@
     <string name="activityCadastro_RE06">O campo nome de usuário é obrigatório</string>
     <string name="activityCadastro_RE07">O campo Senha é obrigatório</string>
     <string name="activityCadastro_RE08">O campo confirmar senha é obrigatório</string>
-    <string name="activitySelacaoConta_RE_10">Contazul cadastrada com sucesso</string>
-    <string name="activitySelacaoConta_popupBotaoProsseguir">Prosseguir</string>
-    <string name="activityPerfilConta_funcionalidade">Perfil da conta</string>
 
+    <string name="activitySelecaoConta_funcionalidade">Seleção de conta</string>
+    <string name="activitySelacaoConta_popupBotaoProsseguir">Prosseguir</string>
+    <string name="activitySelacaoConta_RE_10">Contazul cadastrada com sucesso</string>
+    <string name="activitySelacaoConta_tituloSucesso">Sucesso</string>
+    <string name="activitySelacaoConta_listaItemDescricao">Descrição:</string>
+    <string name="activitySelacaoConta_listaItemPerfil">Perfil:</string>
+
+    <string name="activityPerfilConta_funcionalidade">Perfil da conta</string>
 </resources>
