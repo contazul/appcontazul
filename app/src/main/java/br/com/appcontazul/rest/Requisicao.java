@@ -1,16 +1,11 @@
 package br.com.appcontazul.rest;
 
-import org.springframework.http.HttpEntity;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Arrays;
-
-import br.com.appcontazul.contentstatic.CredenciaisWsContazul;
 
 public class Requisicao {
 

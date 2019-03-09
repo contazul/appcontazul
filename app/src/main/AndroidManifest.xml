@@ -26,7 +26,8 @@
         <activity android:name=".activity.CadastroActivity" />
         <activity android:name=".activity.SelecaoContaActivity" />
         <activity android:name=".activity.CentralActivity" />
-        <activity android:name=".activity.PerfilContaActivity"></activity>
+        <activity android:name=".activity.PerfilContaActivity" />
+        <activity android:name=".activity.MenuActivity"></activity>
     </application>
 
 </manifest>

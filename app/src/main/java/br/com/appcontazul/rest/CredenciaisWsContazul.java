@@ -1,4 +1,4 @@
-package br.com.appcontazul.contentstatic;
+package br.com.appcontazul.rest;
 
 public class CredenciaisWsContazul {
 

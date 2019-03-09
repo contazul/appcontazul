@@ -42,7 +42,6 @@ public class ListaContazulRepository {
         this.contas.add(new ListaContazul(8032019212702L, "8032019212723", "Comum"));
         this.contas.add(new ListaContazul(8032019212702L, "8032019212724", "Comum"));
         this.contas.add(new ListaContazul(8032019212702L, "8032019212725", "Comum"));
-        this.contas.add(new ListaContazul(0L, "", ""));
         return contas;
     }
 }
