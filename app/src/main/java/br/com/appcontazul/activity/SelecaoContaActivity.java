@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -18,13 +17,13 @@ import br.com.appcontazul.R;
 import br.com.appcontazul.contentstatic.ReferenciaUsuario;
 import br.com.appcontazul.rest.Requisicao;
 import br.com.appcontazul.rest.model.ListaContazul;
-import br.com.appcontazul.rest.teste.ListaContazulRepository;
 import br.com.appcontazul.util.Adaptador;
 
 public class SelecaoContaActivity extends AppCompatActivity {
 
-    ListView listaContas;
-    TextView textViewRE20;
+    private ListView listaContas;
+    private TextView textViewRE20;
+    private Adaptador adaptador;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +43,9 @@ public class SelecaoContaActivity extends AppCompatActivity {
         if(listaContazul != null && listaContazul.size() != 0) {
 
             this.textViewRE20.setVisibility(View.GONE);
-            final Adaptador adaptador = new Adaptador(listaContazul, this);
+            if(adaptador == null) {
+                adaptador = new Adaptador(listaContazul, this);
+            }
             listaContas.setAdapter(adaptador);
 
             listaContas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -73,7 +74,7 @@ public class SelecaoContaActivity extends AppCompatActivity {
 
                 textViewRE20.setVisibility(View.GONE);
                 Requisicao requisicao = new Requisicao();
-                final Adaptador adaptador = new Adaptador(requisicao.requestListaContazul(), SelecaoContaActivity.this);
+                adaptador = new Adaptador(requisicao.requestListaContazul(), SelecaoContaActivity.this);
                 listaContas.setAdapter(adaptador);
             }
         });
