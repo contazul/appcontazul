@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.LucroMensalActivity">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView_funcionalidade4"
+        android:text="@string/activityLucroMensal_textViewFuncionalidade4"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="10sp"
+        android:textSize="15sp"
+        android:textColor="@color/colorPrimary"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_menu"
+        app:layout_constraintTop_toBottomOf="@+id/textView_funcionalidade4"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/activityCentral_buttonMenu"
+        android:background="@color/colorPrimary"
+        android:textColor="#FFF"
+        android:onClick="contralMostrarMenu"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText_DescricaoDoBeneficio"
+        android:width="280dp"
+        style="@style/editText"
+        android:hint="@string/activityLucroMensal_editTextDecricaoDoBeneficio"
+        app:layout_constraintTop_toTopOf="@+id/button_menu"
+        app:layout_constraintBottom_toBottomOf="@id/button_menu"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="5dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView_RE30"
+        android:text=""
+        app:layout_constraintTop_toTopOf="@+id/editText_DescricaoDoBeneficio"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="40sp"
+        android:layout_marginLeft="10sp"
+        android:textSize="15sp"
+        android:textColor="#FF0000"
+        />
+
+    <EditText
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText_ValorDoLucro"
+        style="@style/editText"
+        android:hint="@string/activityLucroMensal_editTextValorDoLucromensal"
+        app:layout_constraintTop_toTopOf="@+id/textView_RE30"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="5dp"
+        android:inputType="number"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView_ValorFormatado"
+        android:text="@string/activityLucroMensal_textViewValorFormatado"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintTop_toTopOf="@+id/editText_DescricaoDoBeneficio"
+        app:layout_constraintBottom_toBottomOf="@+id/editText_DescricaoDoBeneficio"
+        app:layout_constraintLeft_toLeftOf="@+id/editText_ValorDoLucro"
+        android:layout_marginTop="140sp"
+        android:layout_marginStart="250sp"
+        android:textSize="20sp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView_RE31"
+        android:text=""
+        app:layout_constraintTop_toTopOf="@+id/editText_ValorDoLucro"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="40sp"
+        android:layout_marginLeft="10sp"
+        android:textSize="15sp"
+        android:textColor="#FF0000"
+        />
+    
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_Incluir"
+        android:text="@string/activityLucroMensal_buttonIncluir"
+        app:layout_constraintTop_toTopOf="@id/textView_RE31"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="10dp"
+        android:textColor="#FFF"
+        android:background="@color/colorPrimary"
+        android:paddingRight="5dp"
+        android:paddingLeft="5dp"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="@+id/button_Incluir"
+        android:layout_marginTop="320dp"
+        >
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/listaLucroMensal"
+            />
+
+    </LinearLayout>
+
+
+
+
+
+
+
+</android.support.constraint.ConstraintLayout>

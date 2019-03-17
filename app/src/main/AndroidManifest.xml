@@ -27,7 +27,10 @@
         <activity android:name=".activity.SelecaoContaActivity" />
         <activity android:name=".activity.CentralActivity" />
         <activity android:name=".activity.PerfilContaActivity" />
-        <activity android:name=".activity.MenuActivity"></activity>
+        <activity android:name=".activity.MenuActivity" />
+        <activity android:name=".activity.SomaDeSaldoActivity" />
+        <activity android:name=".activity.SubtracaoDeSaldoActivity" />
+        <activity android:name=".activity.LucroMensalActivity"></activity>
     </application>
 
 </manifest>

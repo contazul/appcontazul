@@ -49,18 +49,9 @@ public class Adaptador extends BaseAdapter {
         TextView textViewDescricaoConta = (TextView) view.findViewById(R.id.textView_descricaoConta);
         TextView textViewPerfilComum = (TextView) view.findViewById(R.id.textView_perfilComum);
 
-        if(listaContazul.getNumeroContazul() == 0L) {
-
-            textViewNumeroContazul.setVisibility(View.GONE);
-            textViewDescricaoConta.setVisibility(View.GONE);
-            textViewPerfilComum.setVisibility(View.GONE);
-        } else {
-
-            textViewNumeroContazul.setText("" + listaContazul.getNumeroContazul());
-            textViewDescricaoConta.setText(view.getResources().getString(R.string.activitySelacaoConta_listaItemDescricao) + " " + listaContazul.getDescricao());
-            textViewPerfilComum.setText(view.getResources().getString(R.string.activitySelacaoConta_listaItemPerfil) + " " + listaContazul.getPerfil());
-        }
-
+        textViewNumeroContazul.setText("" + listaContazul.getNumeroContazul());
+        textViewDescricaoConta.setText(view.getResources().getString(R.string.activitySelacaoConta_listaItemDescricao) + " " + listaContazul.getDescricao());
+        textViewPerfilComum.setText(view.getResources().getString(R.string.activitySelacaoConta_listaItemPerfil) + " " + listaContazul.getPerfil());
         return view;
     }
 }

@@ -43,23 +43,21 @@ public class SelecaoContaActivity extends AppCompatActivity {
         if(listaContazul != null && listaContazul.size() != 0) {
 
             this.textViewRE20.setVisibility(View.GONE);
-            if(adaptador == null) {
-                adaptador = new Adaptador(listaContazul, this);
-            }
+            adaptador = new Adaptador(listaContazul, this);
             listaContas.setAdapter(adaptador);
-
-            listaContas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-                public void onItemClick(AdapterView<?> adapter, View view,
-                                        int posicao, long id) {
-
-                    ListaContazul listaContazul = adaptador.getItem(posicao);
-                    ReferenciaUsuario.numeroContazul = listaContazul.getNumeroContazul();
-                    Intent centralActivity = new Intent(SelecaoContaActivity.this, CentralActivity.class);
-                    startActivity(centralActivity);
-                }
-            });
         }
+
+        listaContas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            public void onItemClick(AdapterView<?> adapter, View view,
+                                    int posicao, long id) {
+
+                ListaContazul listaContazul = adaptador.getItem(posicao);
+                ReferenciaUsuario.numeroContazul = listaContazul.getNumeroContazul();
+                Intent centralActivity = new Intent(SelecaoContaActivity.this, CentralActivity.class);
+                startActivity(centralActivity);
+            }
+        });
     }
 
     public void criarContazul (View v) {

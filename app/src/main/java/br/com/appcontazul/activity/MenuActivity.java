@@ -11,8 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.appcontazul.R;
-import br.com.appcontazul.contentstatic.ReferenciaUsuario;
-import br.com.appcontazul.rest.model.ListaContazul;
 import br.com.appcontazul.util.Adaptador02;
 
 public class MenuActivity extends AppCompatActivity {
@@ -63,6 +61,24 @@ public class MenuActivity extends AppCompatActivity {
 
                         Intent activityPerfilDaConta = new Intent(MenuActivity.this, PerfilContaActivity.class);
                         startActivity(activityPerfilDaConta);
+                        break;
+
+                    case "Soma de saldo":
+
+                        Intent activitySomaDeSaldo = new Intent(MenuActivity.this, SomaDeSaldoActivity.class);
+                        startActivity(activitySomaDeSaldo);
+                        break;
+
+                    case  "Subtração de saldo":
+
+                        Intent activitySubtracaoDeSaldo = new Intent(MenuActivity.this, SubtracaoDeSaldoActivity.class);
+                        startActivity(activitySubtracaoDeSaldo);
+                        break;
+
+                    case "Lucro mensal":
+
+                        Intent activityLucroMensal = new Intent(MenuActivity.this, LucroMensalActivity.class);
+                        startActivity(activityLucroMensal);
                         break;
 
                     case "Seleção de conta":

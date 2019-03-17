@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView_descricaoBeneficio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="20sp"
+            android:layout_marginLeft="10sp"
+            android:textColor="@color/colorPrimary"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView_valorBeneficio"
+            android:text=""
+            android:textSize="20sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginLeft="10sp"
+            android:textColor="@color/colorPrimary"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView_Data"
+            android:text=""
+            android:textSize="20sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginLeft="10sp"
+            android:textColor="@color/colorPrimary"
+            />
+
+        <Button
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/button_receber"
+            android:background="@color/colorPrimary"
+            android:text="@string/activityLucroMensal_buttonReceber"
+            android:textColor="#FFF"
+            />
+
+        <Button
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/button_Excluir"
+            android:text="@string/activityLucroMensal_buttonExcluir"
+            android:background="#FF0000"
+            android:textColor="#fff"
+            />
+    </LinearLayout>
+
+
+
+
+</LinearLayout>
