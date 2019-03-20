@@ -1,7 +1,6 @@
 package br.com.appcontazul.activity;
 
 import android.content.Intent;
-import android.os.StrictMode;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,19 +10,12 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import br.com.appcontazul.R;
-import br.com.appcontazul.contentstatic.ReferenciaUsuario;
 import br.com.appcontazul.rest.Requisicao;
-import br.com.appcontazul.rest.model.ListaSomaSaldo;
-import br.com.appcontazul.rest.teste.ListaSubtracaoSaldoRepository;
-import br.com.appcontazul.util.Adaptador03;
 import br.com.appcontazul.util.Adaptador04;
 import br.com.appcontazul.util.Formatacao;
-
-import static br.com.appcontazul.R.id.button_Alta;
 
 public class SubtracaoDeSaldoActivity extends AppCompatActivity {
 
@@ -57,7 +49,7 @@ public class SubtracaoDeSaldoActivity extends AppCompatActivity {
         this.editTextValorDaMovimentacao = (EditText) findViewById(R.id.editText_ValorDaMovimentacao);
         this.textViewSaldoConta = (TextView) findViewById(R.id.textView_SaldodaConta);
         this.editTextDescricaoDaMovimentacao = (EditText) findViewById(R.id.editText_DescricaoMovimentacao);
-        this.textViewValorFormatado = (TextView) findViewById(R.id.textView_valorFormatado);
+        this.textViewValorFormatado = (TextView) findViewById(R.id.activityPerfilConta_textViewValorFormatado);
         this.textViewRE28 = (TextView) findViewById(R.id.textView_RE28);
         this.textViewRE29 = (TextView) findViewById(R.id.textView_RE29);
         this.buttonAlta = (RadioButton) findViewById(R.id.button_Alta);

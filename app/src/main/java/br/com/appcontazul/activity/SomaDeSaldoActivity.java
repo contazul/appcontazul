@@ -1,6 +1,5 @@
 package br.com.appcontazul.activity;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.StrictMode;
 import android.support.v7.app.AlertDialog;
@@ -14,10 +13,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import br.com.appcontazul.R;
-import br.com.appcontazul.contentstatic.ReferenciaUsuario;
 import br.com.appcontazul.rest.Requisicao;
-import br.com.appcontazul.rest.model.ListaSomaSaldo;
-import br.com.appcontazul.rest.teste.ListaSomaSaldoRepository;
 import br.com.appcontazul.util.Adaptador03;
 import br.com.appcontazul.util.Formatacao;
 
@@ -54,7 +50,7 @@ public class SomaDeSaldoActivity extends AppCompatActivity {
         this.editTextValorDaMovimentacao = (EditText) findViewById(R.id.editText_ValorDaMovimentacao);
         this.textViewSaldoConta = (TextView) findViewById(R.id.textView_SaldodaConta);
         this.editTextDescricaoDaMovimentacao = (EditText) findViewById(R.id.editText_DescricaoMovimentacao);
-        this.textViewValorFormatado = (TextView) findViewById(R.id.textView_valorFormatado);
+        this.textViewValorFormatado = (TextView) findViewById(R.id.activityPerfilConta_textViewValorFormatado);
         this.textViewRE28 = (TextView) findViewById(R.id.textView_RE28);
         this.textViewRE29 = (TextView) findViewById(R.id.textView_RE29);
     }

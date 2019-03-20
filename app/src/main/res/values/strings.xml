@@ -41,11 +41,17 @@
     <string name="activityPerfilConta_numeroContazul">Numero contazul:</string>
     <string name="activityPerfilConta_status">Status:</string>
     <string name="activityPerfilConta_editTextDescricaoConta">Descrição da conta</string>
-    <string name="activityPerfilConta_editTextValorIdeal">Valor ideal para economizar</string>
+    <string name="activityPerfilConta_editTextValorIdeal">Valor</string>
     <string name="activityPerfilConta_buttonDefinir">Definir</string>
     <string name="activityPerfilConta_buttonPopupOk">OK</string>
     <string name="activityPerfilConta_RE25">Dados definidos com sucesso</string>
     <string name="activityPerfilConta_sucesso">Sucesso</string>
+    <string name="activityPerfilConta_textViewValorIdeal">Qual o valor ideal para economizar por mês?</string>
+    <string name="activityPerfilConta_textViewValorValorFormatado">R$0,00</string>
+    <string name="activityPerfilConta_textViewValidacaoValorZero">Informe um valor maior que zero</string>
+    <string name="activityPerfilConta_atencao">Atenção</string>
+    <string name="activityPerfilConta_mensagemPopup">Dados não definidos, é necessário informar ao menos um dos campos</string>
+    <string name="activityPerfilConta_OK">OK</string>
 
     <string name="activityMenu_funcionalidade">Menu</string>
     <string name="activityMenu_buttonFecharMenu">Fechar menu</string>

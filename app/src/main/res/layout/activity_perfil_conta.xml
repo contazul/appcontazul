@@ -5,121 +5,167 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true">
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".activity.PerfilContaActivity">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView_funcionalidade"
-        android:text="@string/activityPerfilConta_funcionalidade"
-        android:textColor="@color/colorPrimary"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:textSize="15sp"
-        android:layout_marginTop="10dp"
-        />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/button_menu"
-        app:layout_constraintTop_toBottomOf="@+id/textView_funcionalidade"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="10dp"
-        android:text="@string/activityCentral_buttonMenu"
-        android:background="@color/colorPrimary"
-        android:textColor="#FFF"
-        android:onClick="perfilDaContaMostrarMenu"
-        />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView_perfilConta"
-        android:text="@string/activityPerfilConta_perfilDaConta"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintBottom_toBottomOf="@+id/button_menu"
-        app:layout_constraintTop_toTopOf="@+id/button_menu"
-        android:textSize="15sp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="100dp"
-        />
-
-    <TextView
-        android:layout_width="368dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView_numeroContazul"
-        android:text="@string/activityPerfilConta_numeroContazul"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintBottom_toBottomOf="@+id/textView_perfilConta"
-        app:layout_constraintTop_toTopOf="@+id/textView_perfilConta"
-        android:textSize="15sp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="60dp"
-        />
-
-    <TextView
-        android:layout_width="368dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView_status"
-        android:text="@string/activityPerfilConta_status"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView_perfilConta"
-        android:textSize="15sp"
-        android:layout_marginTop="60dp"
-        android:layout_marginStart="5dp" />
-
-    <EditText
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/editText_DescricaoConta"
-        android:text=""
-        style="@style/editText"
-        android:hint="@string/activityPerfilConta_editTextDescricaoConta"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="200dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
-        />
+        android:layout_height="match_parent"
+        tools:context=".activity.PerfilContaActivity">
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/editText_ValorIdeal"
-        android:text=""
-        style="@style/editText"
-        android:hint="@string/activityPerfilConta_editTextValorIdeal"
-        app:layout_constraintTop_toTopOf="@+id/editText_DescricaoConta"
-        android:layout_marginTop="50dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
-        android:inputType="numberDecimal"
-         />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView_funcionalidade"
+            android:text="@string/activityPerfilConta_funcionalidade"
+            android:textColor="@color/colorPrimary"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:textSize="15sp"
+            android:layout_marginTop="10dp"
+            />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/button_definir"
-        android:text="@string/activityPerfilConta_buttonDefinir"
-        app:layout_constraintBottom_toBottomOf="@+id/editText_ValorIdeal"
-        app:layout_constraintTop_toTopOf="@+id/editText_ValorIdeal"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginTop="110dp"
-        android:layout_marginStart="5dp"
-        android:background="@color/colorPrimary"
-        android:textColor="#FFF"
-        android:width="150dp"
-        android:onClick="definir"
-    />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button_menu"
+            app:layout_constraintTop_toBottomOf="@+id/textView_funcionalidade"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/activityCentral_buttonMenu"
+            android:background="@color/colorPrimary"
+            android:textColor="#FFF"
+            android:onClick="perfilDaContaMostrarMenu"
+            />
 
-</android.support.constraint.ConstraintLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView_perfilConta"
+            android:text="@string/activityPerfilConta_perfilDaConta"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/button_menu"
+            app:layout_constraintTop_toTopOf="@+id/button_menu"
+            android:textSize="15sp"
+            android:layout_marginStart="5sp"
+            android:layout_marginTop="100sp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView_numeroContazul"
+            android:text="@string/activityPerfilConta_numeroContazul"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/textView_perfilConta"
+            app:layout_constraintTop_toTopOf="@+id/textView_perfilConta"
+            android:textSize="15sp"
+            android:layout_marginStart="5sp"
+            android:layout_marginTop="60sp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView_status"
+            android:text="@string/activityPerfilConta_status"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView_perfilConta"
+            android:textSize="15sp"
+            android:layout_marginTop="60sp"
+            android:layout_marginStart="5sp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText_DescricaoConta"
+            android:text=""
+            style="@style/editText"
+            android:hint="@string/activityPerfilConta_editTextDescricaoConta"
+            app:layout_constraintBottom_toBottomOf="@+id/textView_status"
+            app:layout_constraintTop_toTopOf="@+id/textView_status"
+            android:layout_marginTop="80dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView_valorIdeal"
+            android:text="@string/activityPerfilConta_textViewValorIdeal"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="@+id/editText_DescricaoConta"
+            app:layout_constraintTop_toTopOf="@+id/editText_DescricaoConta"
+            android:layout_marginTop="80sp"
+            android:layout_marginStart="5sp"
+            android:layout_marginEnd="5sp"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText_ValorIdeal"
+            android:text=""
+            style="@style/editText"
+            android:hint="@string/activityPerfilConta_editTextValorIdeal"
+            android:inputType="numberDecimal"
+            app:layout_constraintBottom_toBottomOf="@+id/textView_valorIdeal"
+            app:layout_constraintTop_toTopOf="@+id/textView_valorIdeal"
+            android:layout_marginTop="50dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="200dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/activityPerfilConta_textViewValorFormatado"
+            android:text="@string/activityPerfilConta_textViewValorValorFormatado"
+            android:textColor="@color/colorPrimary"
+            app:layout_constraintBottom_toBottomOf="@+id/textView_valorIdeal"
+            app:layout_constraintTop_toBottomOf="@+id/textView_valorIdeal"
+            app:layout_constraintTop_toTopOf="@+id/textView_valorIdeal"
+            app:layout_constraintLeft_toRightOf="@+id/editText_ValorIdeal"
+            android:layout_marginStart="5sp"
+            android:layout_marginTop="50sp"
+            android:textSize="20sp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView_validacaoValor0"
+            android:text="@string/activityPerfilConta_textViewValidacaoValorZero"
+            android:textSize="15sp"
+            android:textColor="#FF0000"
+            app:layout_constraintBottom_toBottomOf="@+id/editText_ValorIdeal"
+            app:layout_constraintTop_toTopOf="@+id/editText_ValorIdeal"
+            android:layout_marginTop="60sp"
+            android:layout_marginStart="5sp"
+            android:layout_marginEnd="5sp"
+            android:visibility="invisible"
+            />
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button_definir"
+            android:text="@string/activityPerfilConta_buttonDefinir"
+            android:background="@color/colorPrimary"
+            android:textColor="#FFF"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:onClick="definir"
+            app:layout_constraintBottom_toBottomOf="@+id/textView_validacaoValor0"
+            app:layout_constraintTop_toTopOf="@+id/textView_validacaoValor0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginTop="70dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            />
+
+    </android.support.constraint.ConstraintLayout>
 </ScrollView>
