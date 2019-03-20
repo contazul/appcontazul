@@ -17,6 +17,7 @@ public class ListaLucroMensalRepository {
     public List<ListaLucroMensal> getListaLucroMensal(){
 
 
+        /*this.listaLucroMensal.add(new ListaLucroMensal("00000000", 1.55, "10/08/2019"));
         this.listaLucroMensal.add(new ListaLucroMensal("00000000", 1.55, "10/08/2019"));
         this.listaLucroMensal.add(new ListaLucroMensal("00000000", 1.55, "10/08/2019"));
         this.listaLucroMensal.add(new ListaLucroMensal("00000000", 1.55, "10/08/2019"));
@@ -36,8 +37,7 @@ public class ListaLucroMensalRepository {
         this.listaLucroMensal.add(new ListaLucroMensal("00000000", 1.55, "10/08/2019"));
         this.listaLucroMensal.add(new ListaLucroMensal("00000000", 1.55, "10/08/2019"));
         this.listaLucroMensal.add(new ListaLucroMensal("00000000", 1.55, "10/08/2019"));
-        this.listaLucroMensal.add(new ListaLucroMensal("00000000", 1.55, "10/08/2019"));
-        this.listaLucroMensal.add(new ListaLucroMensal("00000000", 1.55, "10/08/2019"));
+        this.listaLucroMensal.add(new ListaLucroMensal("00000000", 1.55, "10/08/2019"));*/
 
         return listaLucroMensal;
     }

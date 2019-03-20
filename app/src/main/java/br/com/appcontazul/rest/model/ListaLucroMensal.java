@@ -1,66 +1,53 @@
 package br.com.appcontazul.rest.model;
 
-import android.widget.Button;
-
 public class ListaLucroMensal {
 
-    private String descricaoBeneficio;
-    private double valorBeneficio;
-    private String data;
-    private Button buttonReceber;
-    private Button buttonExcluir;
+    private long id;
+    private String descricao;
+    private double valor;
+    private String ultimaDataRecebimento;
 
-    public ListaLucroMensal (String descricaoBeneficio, double valorBeneficio, String data, Button buttonReceber, Button buttonExcluir ){
-
-        this.descricaoBeneficio = descricaoBeneficio;
-        this.valorBeneficio = valorBeneficio;
-        this.data = data;
-        this.buttonReceber = buttonReceber;
-        this.buttonExcluir = buttonExcluir;
+    public ListaLucroMensal() {
 
     }
 
-    public ListaLucroMensal(String s, double v, String s1){
+    public ListaLucroMensal(long id, String descricao, double valor, String ultimaDataRecebimento) {
 
+        this.id = id;
+        this.descricao = descricao;
+        this.valor = valor;
+        this.ultimaDataRecebimento = ultimaDataRecebimento;
     }
 
-    public String getDescricaoBeneficio() {
-        return descricaoBeneficio;
+    public long getId() {
+        return id;
     }
 
-    public void setDescricaoBeneficio(String descricaoBeneficio) {
-        this.descricaoBeneficio = descricaoBeneficio;
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public double getValorBeneficio() {
-        return valorBeneficio;
+    public String getDescricao() {
+        return descricao;
     }
 
-    public void setValorBeneficio(double valorBeneficio) {
-        this.valorBeneficio = valorBeneficio;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
-    public String getData() {
-        return data;
+    public double getValor() {
+        return valor;
     }
 
-    public void setData(String data) {
-        this.data = data;
+    public void setValor(double valor) {
+        this.valor = valor;
     }
 
-    public Button getButtonReceber() {
-        return buttonReceber;
+    public String getUltimaDataRecebimento() {
+        return ultimaDataRecebimento;
     }
 
-    public void setButtonReceber(Button buttonReceber) {
-        this.buttonReceber = buttonReceber;
-    }
-
-    public Button getButtonExcluir() {
-        return buttonExcluir;
-    }
-
-    public void setButtonExcluir(Button buttonExcluir) {
-        this.buttonExcluir = buttonExcluir;
+    public void setUltimaDataRecebimento(String ultimaDataRecebimento) {
+        this.ultimaDataRecebimento = ultimaDataRecebimento;
     }
 }

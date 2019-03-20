@@ -1,21 +1,23 @@
 package br.com.appcontazul.rest.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ListaSubtracaoSaldo {
 
     private String descricao;
-    private double valorMovimentacao;
+    private double valor;
     private String prioridade;
-
-
-    public ListaSubtracaoSaldo(String descricao, double valorMovimentacao,String prioridade){
-        this.descricao = descricao;
-        this.valorMovimentacao = valorMovimentacao;
-        this.prioridade = prioridade;
-
-    }
 
     public ListaSubtracaoSaldo(){
 
+    }
+
+    public ListaSubtracaoSaldo(String descricao, double valor, String prioridade){
+
+        this.descricao = descricao;
+        this.valor = valor;
+        this.prioridade = prioridade;
     }
 
     public String getDescricao() {
@@ -24,12 +26,12 @@ public class ListaSubtracaoSaldo {
 
     public void setDescricao(String descricao) {this.descricao = descricao;    }
 
-    public double getValorMovimentacao() {
-        return valorMovimentacao;
+    public double getValor() {
+        return valor;
     }
 
-    public void setValorMovimentacao(double valorMovimentacao) {
-        this.valorMovimentacao = valorMovimentacao;
+    public void setValor(double valor) {
+        this.valor = valor;
     }
 
     public String getPrioridade() {

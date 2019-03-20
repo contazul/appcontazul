@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import br.com.appcontazul.R;
 import br.com.appcontazul.contentstatic.ReferenciaUsuario;
+import br.com.appcontazul.rest.Requisicao;
 import br.com.appcontazul.rest.model.ListaSomaSaldo;
 import br.com.appcontazul.rest.teste.ListaSubtracaoSaldoRepository;
 import br.com.appcontazul.util.Adaptador03;
@@ -26,29 +27,33 @@ import static br.com.appcontazul.R.id.button_Alta;
 
 public class SubtracaoDeSaldoActivity extends AppCompatActivity {
 
-    String prioridadeSelecionada;
-    private static final double saldoAtual = 500;
+    private String prioridadeSelecionada;
+    private double saldoAtual;
     private ListView listaSubtracaoSaldo;
     private Adaptador04 adaptador04;
     private TextView textViewValorFormatado;
-    EditText editTextValorDaMovimentacao;
-    TextView textViewSaldoConta;
-    EditText editTextDescricaoDaMovimentacao;
-    TextView textViewRE28;
-    TextView textViewRE29;
-    RadioButton buttonAlta;
-    RadioButton buttonBaixa;
-
+    private EditText editTextValorDaMovimentacao;
+    private TextView textViewSaldoConta;
+    private EditText editTextDescricaoDaMovimentacao;
+    private TextView textViewRE28;
+    private TextView textViewRE29;
+    private RadioButton buttonAlta;
+    private RadioButton buttonBaixa;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_subtracao_de_saldo);
 
-        this.listaSubtracaoSaldo = (ListView) findViewById(R.id.listaSaldoConta);
-        ListaSubtracaoSaldoRepository listaSubtracao = new ListaSubtracaoSaldoRepository();
-        this.adaptador04 = new Adaptador04(listaSubtracao.getListaSubtracaoSaldo(),this);
-        this.listaSubtracaoSaldo.setAdapter(this.adaptador04);
+        this.criarElementos();
+        this.formatarSaldo();
+        this.carregarListaSubtracaoSaldo();
+        this.inicializarComportamentoEditTextDescricaoDaMovimentacao();
+        this.inicializarComportamentoEditTextValorDaMovimentacao();
+    }
+
+    public void criarElementos() {
+
         this.editTextValorDaMovimentacao = (EditText) findViewById(R.id.editText_ValorDaMovimentacao);
         this.textViewSaldoConta = (TextView) findViewById(R.id.textView_SaldodaConta);
         this.editTextDescricaoDaMovimentacao = (EditText) findViewById(R.id.editText_DescricaoMovimentacao);
@@ -57,16 +62,30 @@ public class SubtracaoDeSaldoActivity extends AppCompatActivity {
         this.textViewRE29 = (TextView) findViewById(R.id.textView_RE29);
         this.buttonAlta = (RadioButton) findViewById(R.id.button_Alta);
         this.buttonBaixa = (RadioButton) findViewById(R.id.button_Baixa);
-        this.prioridadeSelecionada = "alta";
+        this.prioridadeSelecionada = "Alta";
         buttonAlta.setChecked(true);
         buttonAlta.setSelected(true);
+    }
 
+    public void formatarSaldo() {
+
+        Requisicao requisicao = new Requisicao();
         Formatacao formatacao = new Formatacao();
+        this.saldoAtual = requisicao.requestSaldo().getSaldo();
+        this.textViewSaldoConta.setText(getResources().getString(R.string.activitySubtracaodeSaldoSaldoAtual) + " " + formatacao.formatarValorMonetario("" + saldoAtual));
+    }
 
-        this.textViewSaldoConta.setText(getResources().getString(
-                R.string.activitySomadeSaldo_saldoAtual) + " " + formatacao.formatarValorMonetario("" + saldoAtual));
+    public void carregarListaSubtracaoSaldo() {
 
-        editTextDescricaoDaMovimentacao.addTextChangedListener(new TextWatcher() {
+        Requisicao requisicao = new Requisicao();
+        this.listaSubtracaoSaldo = (ListView) findViewById(R.id.listaSaldoConta);
+        this.adaptador04 = new Adaptador04(requisicao.requestListaSubtracaoSaldo(),this);
+        this.listaSubtracaoSaldo.setAdapter(this.adaptador04);
+    }
+
+    public void inicializarComportamentoEditTextDescricaoDaMovimentacao() {
+
+        this.editTextDescricaoDaMovimentacao.addTextChangedListener(new TextWatcher() {
 
             public void afterTextChanged(Editable s) {
 
@@ -85,26 +104,11 @@ public class SubtracaoDeSaldoActivity extends AppCompatActivity {
             }
         });
 
-        editTextValorDaMovimentacao.addTextChangedListener(new TextWatcher() {
+    }
 
-            public void afterTextChanged(Editable s) {
+    public void inicializarComportamentoEditTextValorDaMovimentacao() {
 
-
-            }
-
-            public void beforeTextChanged(CharSequence s, int start, int count,
-                                          int after) {
-
-            }
-
-            public void onTextChanged(CharSequence s, int start, int before,
-                                      int count) {
-
-                textViewRE29.setText("");
-            }
-        });
-
-       editTextValorDaMovimentacao.addTextChangedListener(new TextWatcher() {
+        this.editTextValorDaMovimentacao.addTextChangedListener(new TextWatcher() {
 
             public void afterTextChanged(Editable s) {
 
@@ -119,19 +123,20 @@ public class SubtracaoDeSaldoActivity extends AppCompatActivity {
 
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
+                textViewRE29.setText("");
                 String sequencia = s.toString();
                 Formatacao formatacao = new Formatacao();
                 if(!sequencia.isEmpty()) {
 
                     String formatado = formatacao.formatarValorMonetario(s.toString());
                     double saldoSubtracao = saldoAtual - Double.parseDouble(s.toString());
-                    textViewSaldoConta.setText(getResources().getString(
-                            R.string.activitySomadeSaldo_saldoAtual) + " " + formatacao.formatarValorMonetario("" + saldoSubtracao));
+                    textViewSaldoConta.setText(getResources().getString(R.string.activitySubtracaodeSaldoSaldoAtual) + " " +
+                            formatacao.formatarValorMonetario("" + saldoSubtracao));
                     textViewValorFormatado.setText(formatado);
                 } else {
 
-                    textViewSaldoConta.setText(getResources().getString(
-                            R.string.activitySomadeSaldo_saldoAtual) + " " + formatacao.formatarValorMonetario("" + saldoAtual));
+                    textViewSaldoConta.setText(getResources().getString(R.string.activitySubtracaodeSaldoSaldoAtual) + " " +
+                            formatacao.formatarValorMonetario("" + saldoAtual));
                     textViewValorFormatado.setText("R$0,00");
                 }
             }
@@ -146,18 +151,17 @@ public class SubtracaoDeSaldoActivity extends AppCompatActivity {
             case R.id.button_Alta:
                 if (checked)
 
-                    this.prioridadeSelecionada = "alta";
+                    this.prioridadeSelecionada = "Alta";
 
                     break;
             case R.id.button_Baixa:
                 if (checked)
 
-                    this.prioridadeSelecionada = "baixa";
+                    this.prioridadeSelecionada = "Baixa";
 
                     break;
         }
     }
-
 
     public void contralMostrarMenu(View v) {
 
@@ -168,6 +172,12 @@ public class SubtracaoDeSaldoActivity extends AppCompatActivity {
     public void buttonInserirMovimentacao(View v){
 
         if (validarCampo()){
+
+            Requisicao requisicao = new Requisicao();
+            requisicao.requestInserirSubtracaoSaldo(editTextValorDaMovimentacao.getText().toString(),
+                    editTextDescricaoDaMovimentacao.getText().toString(), prioridadeSelecionada);
+            this.formatarSaldo();
+            this.carregarListaSubtracaoSaldo();
             AlertDialog.Builder popup = new AlertDialog.Builder(SubtracaoDeSaldoActivity.this);
             popup.setTitle(R.string.activitySelacaoConta_tituloSucesso);
             popup.setMessage(R.string.activitySomadeSaldo_RE27);
@@ -177,9 +187,6 @@ public class SubtracaoDeSaldoActivity extends AppCompatActivity {
             editTextDescricaoDaMovimentacao.setText("");
             editTextValorDaMovimentacao.setText("");
         }
-
-
-
     }
 
     public boolean validarCampo(){
@@ -197,12 +204,17 @@ public class SubtracaoDeSaldoActivity extends AppCompatActivity {
 
             textViewRE29.setText(R.string.activitySomadeSaldo_textViewRE29);
             validar = false;
+        } else {
+
+            double valor = Double.parseDouble(editTextValorDaMovimentacao.getText().toString());
+
+            if (valor == 0) {
+
+                textViewRE29.setText(R.string.activitySomaSaldoMensagem);
+                validar = false;
+            }
         }
 
         return validar;
-
-
     }
-
-
 }

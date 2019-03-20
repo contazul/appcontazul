@@ -15,8 +15,8 @@
             android:id="@+id/textView_descricaoMovimentacao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text=""
-            android:textSize="20sp"
+            android:text="@string/listaSubtracaoSaldo_descricao"
+            android:textSize="15sp"
             android:layout_marginLeft="10sp"
             android:textColor="@color/colorPrimary"
             />
@@ -25,28 +25,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView_valorMovimentacao"
-            android:text=""
-            android:textSize="20sp"
+            android:text="@string/listaSubtracaoSaldo_valor"
+            android:textSize="15sp"
             app:layout_constraintLeft_toLeftOf="parent"
             android:layout_marginLeft="10sp"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/colorAccent"
             />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView_Prioridade"
-            android:text=""
-            android:textSize="20sp"
+            android:text="@string/listaSubtracaoSaldo_prioridade"
+            android:textSize="15sp"
             app:layout_constraintLeft_toLeftOf="parent"
             android:layout_marginLeft="10sp"
             android:textColor="@color/colorPrimary"
             />
     </LinearLayout>
-
-
-
-
-
-
 </LinearLayout>

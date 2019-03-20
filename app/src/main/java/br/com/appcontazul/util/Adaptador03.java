@@ -9,7 +9,6 @@ import android.widget.TextView;
 import java.util.List;
 
 import br.com.appcontazul.R;
-import br.com.appcontazul.rest.model.ListaContazul;
 import br.com.appcontazul.rest.model.ListaSomaSaldo;
 
 public class Adaptador03 extends BaseAdapter {
@@ -50,7 +49,8 @@ public class Adaptador03 extends BaseAdapter {
         TextView textView_valorMovimentacao = (TextView) view.findViewById(R.id.textView_valorMovimentacao);
 
         textView_descricaoMovimentacao.setText(view.getResources().getString(R.string.activitySelacaoConta_listaItemDescricao) + " " + listaSomaSaldo.getDescricao());
-        textView_valorMovimentacao.setText(view.getResources().getString(R.string.activitySomaSaldolistaItemValorMovimentacao) + " " + listaSomaSaldo.getValorMovimentacao());
+        Formatacao formatacao = new Formatacao();
+        textView_valorMovimentacao.setText(view.getResources().getString(R.string.activitySomaSaldolistaItemValorMovimentacao) + " " + formatacao.formatarValorMonetario("" + listaSomaSaldo.getValor()));
         return view;
     }
 }

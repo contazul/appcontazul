@@ -10,7 +10,6 @@ import android.widget.TextView;
 import java.util.List;
 
 import br.com.appcontazul.R;
-import br.com.appcontazul.rest.model.ListaContazul;
 import br.com.appcontazul.rest.model.ListaSubtracaoSaldo;
 
 
@@ -52,9 +51,15 @@ public class Adaptador04 extends BaseAdapter{
         TextView textView_valorMovimentacao = (TextView) view.findViewById(R.id.textView_valorMovimentacao);
         TextView textView_prioridade = (TextView) view.findViewById(R.id.textView_Prioridade);
 
-        textView_descricaoMovimentacao.setText(view.getResources().getString(R.string.activitySelacaoConta_listaItemDescricao) + " " + listaSubtracaoSaldo.getDescricao());
-        textView_valorMovimentacao.setText(view.getResources().getString(R.string.activitySubtracaodeSaldoListaItemValorMovimentacao) + " " + listaSubtracaoSaldo.getValorMovimentacao());
-        textView_prioridade.setText(view.getResources().getString(R.string.activitySubtracaodeSaldoListaItemPrioridadeDeMovimentacao) +" " + listaSubtracaoSaldo.getPrioridade());
+        textView_descricaoMovimentacao.setText(view.getResources().getString(R.string.listaSubtracaoSaldo_descricao)
+                + " " + listaSubtracaoSaldo.getDescricao());
+
+        Formatacao formatacao = new Formatacao();
+
+        textView_valorMovimentacao.setText(view.getResources().getString(R.string.listaSubtracaoSaldo_valor)
+                + " " + formatacao.formatarValorMonetario("" + listaSubtracaoSaldo.getValor()));
+        textView_prioridade.setText(view.getResources().getString(R.string.listaSubtracaoSaldo_prioridade)
+                + " " + listaSubtracaoSaldo.getPrioridade());
         return view;
     }
 

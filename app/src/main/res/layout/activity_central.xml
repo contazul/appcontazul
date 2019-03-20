@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -31,6 +37,396 @@
         android:background="@color/colorPrimary"
         android:textColor="#FFF"
         android:onClick="contralMostrarMenu"
-        />
+        android:layout_marginStart="5dp" />
 
+    <LinearLayout
+
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/layout_statusConta"
+        android:orientation="vertical"
+        android:background="#CDC5BF"
+        app:layout_constraintTop_toBottomOf="@+id/button_menu"
+        android:layout_marginTop="10dp"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView_central_status"
+            android:text="@string/activityCentral_status"
+            android:layout_marginStart="5sp"
+            android:layout_marginEnd="5sp"
+            android:textSize="20sp"
+            android:textColor="#FFF"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10sp"
+            android:text="@string/activityCentral_aviso01"
+            android:layout_marginStart="5sp"
+            android:layout_marginEnd="5sp"
+            android:textColor="#FFF"
+            android:textSize="15sp"
+            />
+    </LinearLayout>
+    <LinearLayout
+
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/layout_economia"
+        android:orientation="vertical"
+        android:background="#CDC5BF"
+        app:layout_constraintTop_toBottomOf="@+id/layout_statusConta"
+        android:layout_marginTop="10dp"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Valor economizado por mês:"
+            android:textSize="15sp"
+            android:textColor="#FFF"
+            android:layout_marginStart="5sp"
+            android:layout_marginEnd="5sp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="EM DES"
+            android:textSize="25sp"
+            android:textColor="#FFF"
+            android:layout_marginStart="5sp"
+            android:layout_marginEnd="5sp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Percentual economizado:"
+            android:textSize="15sp"
+            android:textColor="#FFF"
+            android:layout_marginStart="5sp"
+            android:layout_marginEnd="5sp"
+            android:layout_marginTop="10sp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="EM DES"
+            android:textSize="25sp"
+            android:textColor="#FFF"
+            android:layout_marginStart="5sp"
+            android:layout_marginEnd="5sp"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/layout_saldo"
+        android:orientation="vertical"
+        android:background="#CDC5BF"
+        app:layout_constraintTop_toBottomOf="@+id/layout_economia"
+        android:layout_marginTop="10dp"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Saldo atual:"
+            android:textSize="15sp"
+            android:textColor="#FFF"
+            android:layout_marginStart="5sp"
+            android:layout_marginEnd="5sp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView_central_saldo"
+            android:text=""
+            android:textSize="25sp"
+            android:textColor="@color/colorPrimary"
+            android:layout_marginStart="5sp"
+            android:layout_marginEnd="5sp"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/layout_contasPagar"
+        android:orientation="vertical"
+        android:background="#8B8989"
+        app:layout_constraintTop_toBottomOf="@+id/layout_saldo"
+        android:layout_marginTop="10dp"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Total em dívidas de baixa prioridade:"
+            android:textSize="15sp"
+            android:textColor="#FFF"
+            android:layout_marginStart="5sp"
+            android:layout_marginEnd="5sp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView_central_totalDividasBaixaPrioridade"
+            android:text="EM DES"
+            android:textSize="25sp"
+            android:textColor="@color/colorAccent"
+            android:layout_marginStart="5sp"
+            android:layout_marginEnd="5sp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Total geral:"
+            android:textSize="15sp"
+            android:textColor="#FFF"
+            android:layout_marginStart="5sp"
+            android:layout_marginEnd="5sp"
+            android:layout_marginTop="10dp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView_central_totalDividasGeral"
+            android:text="EM DES"
+            android:textSize="25sp"
+            android:textColor="#FFF"
+            android:layout_marginStart="5sp"
+            android:layout_marginEnd="5sp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Acesse contas á pagar para uma nova inclusão ou visualizar a lista atual"
+            android:textSize="15sp"
+            android:textColor="#FFF"
+            android:layout_marginStart="5sp"
+            android:layout_marginEnd="5sp"
+            android:layout_marginTop="10dp"
+            />
+
+    </LinearLayout>
+    <LinearLayout
+
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/layout_subtracaoSaldo"
+        android:orientation="vertical"
+        android:background="#8B8989"
+        app:layout_constraintTop_toBottomOf="@+id/layout_contasPagar"
+        android:layout_marginTop="10dp"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Total em subtração de saldo de baixa prioridade referente ao mês atual:"
+            android:textSize="15sp"
+            android:textColor="#FFF"
+            android:layout_marginStart="5sp"
+            android:layout_marginEnd="5sp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView_central_totalSubtracaoSaldoBaixaPrioridade"
+            android:text=""
+            android:textSize="25sp"
+            android:textColor="@color/colorAccent"
+            android:layout_marginStart="5sp"
+            android:layout_marginEnd="5sp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Total geral:"
+            android:textSize="15sp"
+            android:textColor="#FFF"
+            android:layout_marginStart="5sp"
+            android:layout_marginEnd="5sp"
+            android:layout_marginTop="10dp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView_central_totalSubtracaoSaldoGeral"
+            android:text=""
+            android:textSize="25sp"
+            android:textColor="#FFF"
+            android:layout_marginStart="5sp"
+            android:layout_marginEnd="5sp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Acesse subtração de saldo para uma nova inclusão ou visualizar a lista atual"
+            android:textSize="15sp"
+            android:textColor="#FFF"
+            android:layout_marginStart="5sp"
+            android:layout_marginEnd="5sp"
+            android:layout_marginTop="10dp"
+            />
+
+    </LinearLayout>
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/layout_beneficioMensal"
+        android:orientation="vertical"
+        android:background="#CDC5BF"
+        app:layout_constraintTop_toBottomOf="@+id/layout_subtracaoSaldo"
+        android:layout_marginTop="10dp"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Total em benefício mensal"
+            android:layout_marginStart="5sp"
+            android:layout_marginEnd="5sp"
+            android:textColor="#FFF"
+            android:textSize="15sp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView_central_totalBeneficioMensal"
+            android:text=""
+            android:textSize="25sp"
+            android:textColor="#FFF"
+            android:layout_marginStart="5sp"
+            android:layout_marginEnd="5sp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Acesse lucro mensal para uma nova inclusão ou visualizar a lista atual"
+            android:layout_marginTop="10sp"
+            android:layout_marginStart="5sp"
+            android:layout_marginEnd="5sp"
+            android:textColor="#FFF"
+            android:textSize="15sp"
+            />
+        </LinearLayout>
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/layout_somaSaldo"
+        android:orientation="vertical"
+        android:background="#CDC5BF"
+        app:layout_constraintTop_toBottomOf="@+id/layout_beneficioMensal"
+        android:layout_marginTop="10dp"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Total em soma de saldo referente ao mês atual:"
+            android:layout_marginStart="5sp"
+            android:layout_marginEnd="5sp"
+            android:textColor="#FFF"
+            android:textSize="15sp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView_central_totalSomaSaldo"
+            android:text=""
+            android:textSize="25sp"
+            android:textColor="#FFF"
+            android:layout_marginStart="5sp"
+            android:layout_marginEnd="5sp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Acesse soma de saldo para uma nova inclusão ou visualizar a lista atual"
+            android:layout_marginTop="10sp"
+            android:layout_marginStart="5sp"
+            android:layout_marginEnd="5sp"
+            android:textColor="#FFF"
+            android:textSize="15sp"
+            />
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>
+</ScrollView>

@@ -43,19 +43,26 @@ public class Adaptador05 extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = act01.getLayoutInflater()
-                .inflate(R.layout.lista_subtracao_de_saldo, parent, false);
+                .inflate(R.layout.lista_lucro_mensal, parent, false);
         ListaLucroMensal listaLucroMensal = this.listaLucroMensal.get(position);
 
 
         TextView textView_descricaoBeneficio = (TextView) view.findViewById(R.id.textView_descricaoBeneficio);
         TextView textView_valorBeneficio = (TextView) view.findViewById(R.id.textView_valorBeneficio);
         TextView textView_data = (TextView) view.findViewById(R.id.textView_Data);
-       // Button button_receber = (Button) view.findViewById(R.id.button_receber);
-        //Button button_excluir = (Button) view.findViewById(R.id.button_Excluir);
+        Button buttonReceber = (Button) view.findViewById(R.id.button_receber);
+        buttonReceber.setId(position);
+        Button buttonExcluir = (Button) view.findViewById(R.id.button_Excluir);
+        buttonExcluir.setId(position);
 
-        textView_descricaoBeneficio.setText(view.getResources().getString(R.string.activitySelacaoConta_listaItemDescricao) + " " + listaLucroMensal.getDescricaoBeneficio());
-        textView_valorBeneficio.setText(view.getResources().getString(R.string.activityLucroMensalListaItemValorBeneficio) + " " + listaLucroMensal.getValorBeneficio());
-        textView_data.setText(view.getResources().getString(R.string.activityLucroMensalListaItemDataBeneficio) +" " + listaLucroMensal.getData());
+        textView_descricaoBeneficio.setText(view.getResources().getString(R.string.activitySelacaoConta_listaItemDescricao) + " " + listaLucroMensal.getDescricao());
+        textView_valorBeneficio.setText(view.getResources().getString(R.string.activityLucroMensalListaItemValorBeneficio) + " " + listaLucroMensal.getValor());
+        if(listaLucroMensal.getUltimaDataRecebimento() != null) {
+            textView_data.setText(view.getResources().getString(R.string.activityLucroMensalListaItemDataBeneficio) + " " + listaLucroMensal.getUltimaDataRecebimento());
+        } else {
+
+            textView_data.setText(view.getResources().getString(R.string.activityLucroMensalListaItemSemData));
+        }
         //button_receber.setText(view.getResources().getString(R.string.activityLucroMensalItemButtonReceber) +" " + listaLucroMensal.getButtonReceber());
         //button_excluir.setText(view.getResources().getString(R.string.activityLucroMensalItemButtonExcluir) +" " + listaLucroMensal.getButtonExcluir());
         return view;

@@ -8,15 +8,18 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/linearLayout01"
+        android:paddingBottom="5dp"
+        >
 
         <TextView
             android:id="@+id/textView_descricaoBeneficio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text=""
-            android:textSize="20sp"
+            android:text="teste"
+            android:textSize="15sp"
             android:layout_marginLeft="10sp"
             android:textColor="@color/colorPrimary"
             />
@@ -25,44 +28,52 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView_valorBeneficio"
-            android:text=""
-            android:textSize="20sp"
+            android:text="teste"
+            android:textSize="15sp"
             app:layout_constraintLeft_toLeftOf="parent"
             android:layout_marginLeft="10sp"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/colorAccent"
             />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView_Data"
-            android:text=""
-            android:textSize="20sp"
+            android:text="teste"
+            android:textSize="15sp"
             app:layout_constraintLeft_toLeftOf="parent"
             android:layout_marginLeft="10sp"
             android:textColor="@color/colorPrimary"
             />
-
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
         <Button
             android:layout_width="80dp"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:id="@+id/button_receber"
             android:background="@color/colorPrimary"
             android:text="@string/activityLucroMensal_buttonReceber"
             android:textColor="#FFF"
+            android:layout_marginStart="10dp"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="10dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:onClick="buttonReceber"
             />
-
         <Button
             android:layout_width="80dp"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:id="@+id/button_Excluir"
             android:text="@string/activityLucroMensal_buttonExcluir"
-            android:background="#FF0000"
-            android:textColor="#fff"
+            android:background="@color/colorAccent"
+            android:textColor="#FFF"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="10dp"
+            android:onClick="buttonExcluir"
             />
+        </android.support.constraint.ConstraintLayout>
     </LinearLayout>
-
-
-
-
 </LinearLayout>

@@ -67,42 +67,61 @@
 
     <string name="activitySomaDeSaldo_funcionalidade">Soma de saldo</string>
     <string name="activitySomaDeSaldo_editText_DescricaoMovimentacao">Descrição da movimentação</string>
-    <string name="activitySomaDeSaldo_editText_ValorDaMovimentacao">Valor da movimentação</string>
-    <string name="activitySomadeSaldo_button">Inserir Movimentação</string>
+    <string name="activitySomaDeSaldo_editText_ValorDaMovimentacao">Valor</string>
+    <string name="activitySomadeSaldo_button">Inserir</string>
     <string name="activitySomadeSaldo_textValorFormatado">R$0,00</string>
     <string name="activitySomadeSaldo_saldoAtual">Saldo atual:</string>
-    <string name="activitySomadeSaldo_textViewRE28">O campo descrição de movimentação é obrigatório</string>
-    <string name="activitySomadeSaldo_textViewRE29">O campo valor a ser movimentado é obrigatório</string>
+    <string name="activitySomadeSaldo_textViewRE28">Descrição é obrigatória</string>
+    <string name="activitySomadeSaldo_textViewRE29">Valor é obrigatório</string>
     <string name="activitySomadeSaldo_textSucesso">Sucesso</string>
     <string name="activitySomadeSaldo_RE27">Movimento realizado com sucesso</string>
     <string name="activitySomadeSaldobutton_ok">Ok</string>
     <string name="activitySomaSaldolistaItemValorMovimentacao">Valor:</string>
+    <string name="activitySomaSaldoMensagem">Informe um valor maior que zero</string>
+
+    <string name="listaSubtracaoSaldo_descricao">Descricao:</string>
+    <string name="listaSubtracaoSaldo_valor">Valor:</string>
+    <string name="listaSubtracaoSaldo_prioridade">Prioridade:</string>
 
     <string name="activitySubtracaodeSaldo_funcionalidade">Subtração de Saldo</string>
     <string name="activitySubtracaodeSaldo_editText_DescricaoMovimentacao">Descrição da movimentação</string>
-    <string name="activitySubtracaodeSaldo_textViewRE28">O campo descrição de movimentação é obrigatório</string>
-    <string name="activitySubtracaodeSaldo_editText_ValorDaMovimentacao">Valor da movimentação</string>
-    <string name="activitySubtracaodeSaldo_textViewRE29">O campo valor a ser movimentado</string>
+    <string name="activitySubtracaodeSaldo_textViewRE28">Descrição é obrigatória</string>
+    <string name="activitySubtracaodeSaldo_editText_ValorDaMovimentacao">Valor</string>
+    <string name="activitySubtracaodeSaldo_textViewRE29">Valor é obrigatório</string>
     <string name="activitySubtracaodeSaldo_textValorFormatado">R$0,00</string>
     <string name="activitySubtracaodeSaldo_textView_Prioridade">Prioridade:</string>
-    <string name="activitySubtracaodeSaldo_button">Inserir Movimentação</string>
+    <string name="activitySubtracaodeSaldo_button">Inserir</string>
     <string name="activitySubtracaodeSaldoListaItemValorMovimentacao">Valor</string>
     <string name="activitySubtracaodeSaldoListaItemPrioridadeDeMovimentacao">Prioridade</string>
+    <string name="activitySubtracaodeSaldoSaldoAtual">Saldo atual:</string>
 
     <string name="activityLucroMensal_textViewFuncionalidade4">Lucro Mensal</string>
     <string name="activityLucroMensal_editTextDecricaoDoBeneficio">Descrição do benefício</string>
-    <string name="activityLucroMensal_textViewRE30">O campo Descrição de benefício é obrigatório</string>
-    <string name="activityLucroMensal_editTextValorDoLucromensal">Valor do Lucro Mensal</string>
+    <string name="activityLucroMensal_textViewRE30">Descrição obrigatória</string>
+    <string name="activityLucroMensal_editTextValorDoLucromensal">Valor</string>
     <string name="activityLucroMensal_textViewValorFormatado">R$0,00</string>
-    <string name="activityLucroMensal_textViewRE31">O campo Valor do Lucro Mensal é obrigatório</string>
-    <string name="activityLucroMensal_buttonIncluir">Incluir Lucro</string>
+    <string name="activityLucroMensal_textViewRE31">Valor é obrigatório</string>
+    <string name="activityLucroMensal_buttonIncluir">Inserir</string>
     <string name="activityLucroMensal_buttonReceber">Receber</string>
     <string name="activityLucroMensal_buttonExcluir">Excluir</string>
-    <string name="activityLucroMensalListaItemValorBeneficio">Valor</string>
-    <string name="activityLucroMensalListaItemDataBeneficio">Data</string>
+    <string name="activityLucroMensalListaItemValorBeneficio">Valor:</string>
+    <string name="activityLucroMensalListaItemDataBeneficio">Última data de recebimento:</string>
+    <string name="activityLucroMensalListaItemSemData">Sem recebimento</string>
     <string name="activityLucroMensalItemButtonReceber">Receber</string>
     <string name="activityLucroMensalItemButtonExcluir">Excluir</string>
+    <string name="activityLucroMensal_Sucesso">Sucesso</string>
+    <string name="activityLucroMensal_REXX">Benefício incluído com sucesso</string>
+    <string name="activityLucroMensal_OK">OK</string>
+    <string name="activityLucroMensal_RE35">Confirma o recebimento para atualizar o saldo?</string>
+    <string name="activityLucroMensal_RE36">Saldo atualizado com sucesso</string>
+    <string name="activityLucroMensal_RE33">Confirma exclusão deste lucro mensal?</string>
+    <string name="activityLucroMensal_RE34">Exclusão efetuada com sucesso</string>
+    <string name="activityLucroMensal_Atencao">Atenção</string>
+    <string name="activityLucroMensal_ButtonSim">Sim</string>
+    <string name="activityLucroMensal_ButtonNao">Nao</string>
 
+    <string name="activityCentral_status">Status da conta:</string>
+    <string name="activityCentral_aviso01">Acesse perfil da conta para definir o valor ideal para economizar por mês</string>
 </resources>
 
 
