@@ -374,7 +374,7 @@
         style="@style/editText">
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Total em benefício mensal"
             android:layout_marginStart="10sp"
@@ -382,6 +382,7 @@
             android:layout_marginTop="30sp"
             android:textSize="20sp"
             android:textColor="#696969"
+            android:layout_gravity="center"
             />
 
         <TextView
@@ -422,7 +423,7 @@
         >
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Total em soma de saldo referente ao mês atual:"
             android:layout_marginStart="10sp"
@@ -430,6 +431,7 @@
             android:layout_marginTop="30sp"
             android:textSize="20sp"
             android:textColor="#696969"
+            android:layout_gravity="center"
             />
 
         <TextView

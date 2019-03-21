@@ -1,6 +1,7 @@
 package br.com.appcontazul.activity;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.StrictMode;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +11,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import br.com.appcontazul.R;
@@ -28,6 +30,10 @@ public class SomaDeSaldoActivity extends AppCompatActivity {
     private EditText editTextDescricaoDaMovimentacao;
     private TextView textViewRE28;
     private TextView textViewRE29;
+    ProgressBar pbHeaderProgress;
+    boolean campoDescricaoObrigatorio;
+    boolean campoValorObrigatorio;
+    boolean campoValorZerado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +45,7 @@ public class SomaDeSaldoActivity extends AppCompatActivity {
 
         this.criarElementos();
         this.formatarSaldo();
+        this.atualizarListaSomaSaldo();
         this.carregarListaSomaSaldo();
         this.inicializarComportamentoEditTextDescricaoDaMovimentacao();
         this.inicializarComportamentoEditTextValorDaMovimentacao();
@@ -53,13 +60,21 @@ public class SomaDeSaldoActivity extends AppCompatActivity {
         this.textViewValorFormatado = (TextView) findViewById(R.id.activityPerfilConta_textViewValorFormatado);
         this.textViewRE28 = (TextView) findViewById(R.id.textView_RE28);
         this.textViewRE29 = (TextView) findViewById(R.id.textView_RE29);
+        this.pbHeaderProgress = (ProgressBar) findViewById(R.id.pbHeaderProgress);
+        this.campoDescricaoObrigatorio = false;
+        this.campoValorObrigatorio = false;
+        this.campoValorZerado = false;
     }
 
     public void carregarListaSomaSaldo() {
 
+        this.listaSomaSaldo.setAdapter(this.adaptador03);
+    }
+
+    public void atualizarListaSomaSaldo() {
+
         Requisicao requisicao = new Requisicao();
         this.adaptador03 = new Adaptador03(requisicao.requestListaSomaSaldo(),this);
-        this.listaSomaSaldo.setAdapter(this.adaptador03);
     }
 
     public void formatarSaldo() {
@@ -132,22 +147,29 @@ public class SomaDeSaldoActivity extends AppCompatActivity {
 
     public void buttonInserirMovimentacao(View v){
 
-        if (validarCampos()){
+        LongOperation longOperation = new LongOperation();
+        longOperation.execute();
+    }
 
-            Requisicao requisicao = new Requisicao();
-            requisicao.requestInserirSomaSaldo(editTextDescricaoDaMovimentacao.getText().toString(),
-                    editTextValorDaMovimentacao.getText().toString());
-            this.saldoAtual = requisicao.requestSaldo().getSaldo();
-            this.carregarListaSomaSaldo();
-            AlertDialog.Builder popup = new AlertDialog.Builder(SomaDeSaldoActivity.this);
-            popup.setTitle(R.string.activitySelacaoConta_tituloSucesso);
-            popup.setMessage(R.string.activitySomadeSaldo_RE27);
-            popup.setPositiveButton(R.string.activitySomadeSaldobutton_ok, null);
-            popup.create();
-            popup.show();
-            editTextDescricaoDaMovimentacao.setText("");
-            editTextValorDaMovimentacao.setText("");
-        }
+    public void mostrarPopupSucesso() {
+
+        AlertDialog.Builder popup = new AlertDialog.Builder(SomaDeSaldoActivity.this);
+        popup.setTitle(R.string.activitySelacaoConta_tituloSucesso);
+        popup.setMessage(R.string.activitySomadeSaldo_RE27);
+        popup.setPositiveButton(R.string.activitySomadeSaldobutton_ok, null);
+        popup.create();
+        popup.show();
+        editTextDescricaoDaMovimentacao.setText("");
+        editTextValorDaMovimentacao.setText("");
+    }
+
+    public void incluirSomaSaldo() {
+
+        Requisicao requisicao = new Requisicao();
+        requisicao.requestInserirSomaSaldo(editTextDescricaoDaMovimentacao.getText().toString(),
+                editTextValorDaMovimentacao.getText().toString());
+        this.saldoAtual = requisicao.requestSaldo().getSaldo();
+        this.atualizarListaSomaSaldo();
     }
 
     public boolean validarCampos(){
@@ -156,14 +178,14 @@ public class SomaDeSaldoActivity extends AppCompatActivity {
 
         if(editTextDescricaoDaMovimentacao.getText().toString().equals("")){
 
-            textViewRE28.setText(R.string.activitySomadeSaldo_textViewRE28);
+            this.campoDescricaoObrigatorio = true;
             validar = false;
 
         }
 
         if (editTextValorDaMovimentacao.getText().toString().equals("")) {
 
-            textViewRE29.setText(R.string.activitySomadeSaldo_textViewRE29);
+            this.campoValorObrigatorio = true;
             validar = false;
         } else {
 
@@ -171,7 +193,7 @@ public class SomaDeSaldoActivity extends AppCompatActivity {
 
             if (valor == 0) {
 
-                textViewRE29.setText(R.string.activitySomaSaldoMensagem);
+                this.campoValorZerado = true;
                 validar = false;
             }
 
@@ -181,9 +203,83 @@ public class SomaDeSaldoActivity extends AppCompatActivity {
 
     }
 
+    public void checarValidacoes() {
+
+        if(this.campoDescricaoObrigatorio) {
+
+            textViewRE28.setText(R.string.activitySomadeSaldo_textViewRE28);
+        }
+
+        if(this.campoValorObrigatorio) {
+
+            textViewRE29.setText(R.string.activitySomadeSaldo_textViewRE29);
+        }
+
+        if(this.campoValorZerado) {
+
+            textViewRE29.setText(R.string.activitySomaSaldoMensagem);
+        }
+
+        this.campoDescricaoObrigatorio = false;
+        this.campoValorObrigatorio = false;
+        this.campoValorZerado = false;
+    }
+
     public void contralMostrarMenu(View v) {
 
         Intent menuActivity = new Intent(SomaDeSaldoActivity.this, MenuActivity.class);
         startActivity(menuActivity);
     }
+
+    private class LongOperation extends AsyncTask<Void, Void, Boolean> {
+
+
+        @Override
+        protected Boolean doInBackground(Void... voids) {
+
+            if(!validarCampos()) {
+
+                return false;
+            }
+
+            incluirSomaSaldo();
+            return true;
+        }
+
+        @Override
+        protected void onPreExecute() {
+
+            pbHeaderProgress.setVisibility(View.VISIBLE);
+        }
+
+        @Override
+        protected void onPostExecute(Boolean aBoolean) {
+
+            if(aBoolean) {
+
+                pbHeaderProgress.setVisibility(View.GONE);
+                carregarListaSomaSaldo();
+                mostrarPopupSucesso();
+            }
+
+            pbHeaderProgress.setVisibility(View.GONE);
+            checarValidacoes();
+        }
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

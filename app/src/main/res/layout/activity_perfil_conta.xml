@@ -52,7 +52,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/textView_perfilConta"
             android:text="@string/activityPerfilConta_perfilDaConta"
-            android:textSize="20sp"
+            android:textSize="15sp"
             android:layout_marginStart="15sp"
             android:layout_marginEnd="5sp"
             android:layout_marginTop="30sp"
@@ -64,7 +64,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/textView_numeroContazul"
             android:text="@string/activityPerfilConta_numeroContazul"
-            android:textSize="20sp"
+            android:textSize="15sp"
             android:layout_marginStart="15sp"
             android:layout_marginEnd="5sp"
             android:layout_marginTop="10sp"
@@ -76,7 +76,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/textView_status"
             android:text="@string/activityPerfilConta_status"
-            android:textSize="20sp"
+            android:textSize="15sp"
             android:layout_marginStart="15sp"
             android:layout_marginEnd="5sp"
             android:layout_marginTop="10sp"
@@ -96,7 +96,7 @@
             />
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textView_valorIdeal"
             android:text="@string/activityPerfilConta_textViewValorIdeal"
@@ -104,7 +104,9 @@
             android:layout_marginTop="20sp"
             android:layout_marginStart="5sp"
             android:layout_marginEnd="5sp"
-            android:textColor="@color/colorAccent"
+            android:textColor="#696969"
+            android:textStyle="bold"
+            android:layout_gravity="center"
             />
 
         <TextView
