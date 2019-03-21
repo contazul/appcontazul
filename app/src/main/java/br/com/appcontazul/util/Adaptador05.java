@@ -56,7 +56,8 @@ public class Adaptador05 extends BaseAdapter {
         buttonExcluir.setId(position);
 
         textView_descricaoBeneficio.setText(view.getResources().getString(R.string.activitySelacaoConta_listaItemDescricao) + " " + listaLucroMensal.getDescricao());
-        textView_valorBeneficio.setText(view.getResources().getString(R.string.activityLucroMensalListaItemValorBeneficio) + " " + listaLucroMensal.getValor());
+        Formatacao formatacao = new Formatacao();
+        textView_valorBeneficio.setText(view.getResources().getString(R.string.activityLucroMensalListaItemValorBeneficio) + " " + formatacao.formatarValorMonetario("" + listaLucroMensal.getValor()));
         if(listaLucroMensal.getUltimaDataRecebimento() != null) {
             textView_data.setText(view.getResources().getString(R.string.activityLucroMensalListaItemDataBeneficio) + " " + listaLucroMensal.getUltimaDataRecebimento());
         } else {
