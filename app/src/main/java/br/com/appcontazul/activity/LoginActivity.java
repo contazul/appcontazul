@@ -1,6 +1,7 @@
 package br.com.appcontazul.activity;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import br.com.appcontazul.R;
@@ -21,6 +23,10 @@ public class LoginActivity extends AppCompatActivity {
     TextView textViewRE06;
     EditText editTextSenha;
     TextView textViewRE09RE07;
+    ProgressBar pbHeaderProgress;
+    boolean campoUsuarioVazio;
+    boolean campoSenhaObrigatorio;
+    boolean nomeUsuarioExiste;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +41,10 @@ public class LoginActivity extends AppCompatActivity {
         textViewRE06 = (TextView) findViewById(R.id.textView_RE06);
         editTextSenha = (EditText) findViewById(R.id.editText_senha);
         textViewRE09RE07 = (TextView)  findViewById(R.id.textView_RE09_RE07);
-
+        pbHeaderProgress = (ProgressBar) findViewById(R.id.pbHeaderProgress);
+        campoUsuarioVazio = false;
+        campoSenhaObrigatorio = false;
+        nomeUsuarioExiste = false;
 
         editTextUsuario.addTextChangedListener(new TextWatcher() {
 
@@ -87,13 +96,31 @@ public class LoginActivity extends AppCompatActivity {
 
     public void acessar(View v) {
 
-        if(validarCampos()) {
+        LongOperation longOperation = new LongOperation();
+        longOperation.execute();
+    }
 
-            // Ai pode acessar
-            ReferenciaUsuario.nomeUsuarioLogado = editTextUsuario.getText().toString();
-            Intent acessar = new Intent(LoginActivity.this, SelecaoContaActivity.class);
-            startActivity(acessar);
-        }
+    public void checarValidacoes() {
+
+        if(campoUsuarioVazio)
+            textViewRE06.setText(R.string.activityCadastro_RE06);
+
+        if(campoSenhaObrigatorio)
+            textViewRE09RE07.setText(R.string.activityCadastro_RE07);
+
+        if(nomeUsuarioExiste)
+            textViewRE09RE07.setText(R.string.activityLogin_RE09);
+
+        campoUsuarioVazio = false;
+        campoSenhaObrigatorio = false;
+        nomeUsuarioExiste = false;
+    }
+
+    public void acessar() {
+
+        ReferenciaUsuario.nomeUsuarioLogado = editTextUsuario.getText().toString();
+        Intent acessar = new Intent(LoginActivity.this, SelecaoContaActivity.class);
+        startActivity(acessar);
     }
 
     public boolean validarCampos() {
@@ -102,23 +129,52 @@ public class LoginActivity extends AppCompatActivity {
         boolean validado = true;
         if(editTextUsuario.getText().toString().equals("")) {
 
-            textViewRE06.setText(R.string.activityCadastro_RE06);
+            campoUsuarioVazio = true;
             validado = false;
         }
 
         if(editTextSenha.getText().toString().equals("")){
-            textViewRE09RE07.setText(R.string.activityCadastro_RE07);
+
+            campoSenhaObrigatorio = true;
             validado = false;
         }
         else if (requisicao.requestEx08(editTextUsuario.getText().toString(),
                 editTextSenha.getText().toString()).equals(Excecoes.EX08)){
 
-
-            textViewRE09RE07.setText(R.string.activityLogin_RE09);
+            nomeUsuarioExiste = true;
             validado = false;
 
         }
 
         return validado;
+    }
+
+    private class LongOperation extends AsyncTask<Void, Void, Boolean> {
+
+
+        @Override
+        protected Boolean doInBackground(Void... voids) {
+
+            return validarCampos();
+        }
+
+        @Override
+        protected void onPreExecute() {
+
+            pbHeaderProgress.setVisibility(View.VISIBLE);
+        }
+
+        @Override
+        protected void onPostExecute(Boolean aBoolean) {
+
+            if(aBoolean) {
+
+                acessar();
+                pbHeaderProgress.setVisibility(View.GONE);
+            }
+
+            pbHeaderProgress.setVisibility(View.GONE);
+            checarValidacoes();
+        }
     }
 }

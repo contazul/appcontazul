@@ -50,7 +50,7 @@ public class CentralActivity extends AppCompatActivity {
         Requisicao requisicao = new Requisicao();
         Formatacao formatacao = new Formatacao();
         Central central = requisicao.requestInformacoesCentral();
-        this.textViewCentralStatus.setText(getResources().getString(R.string.activityCentral_status) + " " + central.getStatus());
+        this.textViewCentralStatus.setText(central.getStatus());
         this.textViewCentralSaldo.setText(formatacao.formatarValorMonetario("" + central.getSaldo()));
         this.textViewCentralTotalSubtracaoSaldoBaixaPrioridade.setText(formatacao.formatarValorMonetario("" + central.getTotalSubtracaoSaldoBaixaPrioridade()));
         this.textViewCentralTotalSubtracaoSaldoGeral.setText(formatacao.formatarValorMonetario("" + central.getTotalSubtracaoSaldoGeral()));

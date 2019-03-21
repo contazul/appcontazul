@@ -2,6 +2,7 @@ package br.com.appcontazul.activity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.StrictMode;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.List;
@@ -24,6 +26,7 @@ public class SelecaoContaActivity extends AppCompatActivity {
     private ListView listaContas;
     private TextView textViewRE20;
     private Adaptador adaptador;
+    ProgressBar pbHeaderProgress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +38,7 @@ public class SelecaoContaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_selecao_conta);
         this.listaContas = (ListView) findViewById(R.id.listaContas);
         this.textViewRE20 = (TextView) findViewById(R.id.textView_RE20);
+        this.pbHeaderProgress = (ProgressBar) findViewById(R.id.pbHeaderProgress);
 
         Requisicao requisicao = new Requisicao();
 
@@ -62,8 +66,18 @@ public class SelecaoContaActivity extends AppCompatActivity {
 
     public void criarContazul (View v) {
 
+        LongOperation longOperation = new LongOperation();
+        longOperation.execute();
+    }
+
+    public void criarContazul() {
+
         Requisicao requisicao = new Requisicao();
         requisicao.requestInserirContazul();
+    }
+
+    public void mostrarPopup() {
+
         AlertDialog.Builder popup = new AlertDialog.Builder(SelecaoContaActivity.this);
         popup.setTitle(R.string.activitySelacaoConta_tituloSucesso);
         popup.setMessage(R.string.activitySelacaoConta_RE_10);
@@ -78,5 +92,29 @@ public class SelecaoContaActivity extends AppCompatActivity {
         });
         popup.create();
         popup.show();
+    }
+
+    private class LongOperation extends AsyncTask<Void, Void, Boolean> {
+
+
+        @Override
+        protected Boolean doInBackground(Void... voids) {
+
+            criarContazul();
+            return true;
+        }
+
+        @Override
+        protected void onPreExecute() {
+
+            pbHeaderProgress.setVisibility(View.VISIBLE);
+        }
+
+        @Override
+        protected void onPostExecute(Boolean aBoolean) {
+
+            pbHeaderProgress.setVisibility(View.GONE);
+            mostrarPopup();
+        }
     }
 }

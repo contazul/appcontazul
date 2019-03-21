@@ -5,11 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true">
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="br.com.appcontazul.activity.LoginActivity">
 
     <TextView
@@ -18,24 +19,31 @@
         android:id="@+id/textView_funcionalidade"
         android:text="@string/activityLogin_textViewFuncionalidade"
         android:textSize="15sp"
-        app:layout_constraintTop_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         android:layout_marginTop="10dp"
         android:textColor="@color/colorPrimary"
+        android:layout_gravity="center"
         />
 
-    <EditText
+    <ProgressBar
+        android:id="@+id/pbHeaderProgress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:visibility="gone"
+        >
+    </ProgressBar>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/editText_usuario"
-        style="@style/editText"
-        android:width="150dp"
         android:hint="@string/activityLogin_editTextUsuario"
-        app:layout_constraintTop_toBottomOf="parent"
         android:layout_marginTop="100dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:textColor="@color/colorPrimary"
+        style="@style/StyledTilEditTextTheme"
         />
 
     <TextView
@@ -47,19 +55,21 @@
         android:layout_marginTop="5dp"
         android:textColor="#FF0000"
         android:textSize="10sp"
+        android:layout_marginStart="5sp"
+        android:layout_marginEnd="5sp"
         />
 
     <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/editText_senha"
-        style="@style/editText"
-        android:width="150dp"
+        style="@style/StyledTilEditTextTheme"
         android:hint="@string/activityLogin_editTextSenha"
-        app:layout_constraintTop_toBottomOf="@+id/textView_RE06"
-        app:layout_constraintLeft_toLeftOf="@+id/editText_usuario"
+        android:textColor="@color/colorPrimary"
         android:layout_marginTop="10dp"
         android:inputType="textPassword"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
         />
 
 
@@ -73,10 +83,12 @@
         android:textColor="#FF0000"
         android:text=""
         android:textSize="10sp"
+        android:layout_marginStart="5sp"
+        android:layout_marginEnd="5sp"
+        />
 
-/>
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/button_acessar"
         app:layout_constraintTop_toBottomOf="@+id/editText_senha"
@@ -87,6 +99,8 @@
         android:background="@color/colorPrimary"
         android:textColor="#FFF"
         android:onClick="acessar"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
         />
 
     <TextView
@@ -96,10 +110,14 @@
         app:layout_constraintTop_toBottomOf="@+id/button_acessar"
         android:layout_marginTop="10dp"
         app:layout_constraintLeft_toLeftOf="@+id/button_acessar"
-        android:text="@string/activityLogin_textViewOu"/>
+        android:text="@string/activityLogin_textViewOu"
+        android:textColor="#696969"
+        android:layout_marginStart="5sp"
+        android:layout_marginEnd="5sp"
+        />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/button_cadastrar"
         app:layout_constraintTop_toBottomOf="@+id/textView_ou"
@@ -111,7 +129,9 @@
         android:textColor="#FFF"
         android:onClick="cadastrar"
         android:layout_marginBottom="50dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
         />
 
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>
 </ScrollView>
