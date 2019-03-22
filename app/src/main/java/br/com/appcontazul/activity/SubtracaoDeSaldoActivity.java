@@ -71,6 +71,7 @@ public class SubtracaoDeSaldoActivity extends AppCompatActivity {
 
         Requisicao requisicao = new Requisicao();
         this.listaSubtracaoSaldo = (ListView) findViewById(R.id.listaSaldoConta);
+        this.listaSubtracaoSaldo.setScrollbarFadingEnabled(false);
         this.adaptador04 = new Adaptador04(requisicao.requestListaSubtracaoSaldo(),this);
         this.listaSubtracaoSaldo.setAdapter(this.adaptador04);
     }
@@ -92,7 +93,7 @@ public class SubtracaoDeSaldoActivity extends AppCompatActivity {
             public void onTextChanged(CharSequence s, int start, int before,
                                       int count) {
 
-                textViewRE28.setText("");
+                textViewRE28.setVisibility(View.GONE);
             }
         });
 
@@ -115,7 +116,7 @@ public class SubtracaoDeSaldoActivity extends AppCompatActivity {
 
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                textViewRE29.setText("");
+                textViewRE29.setVisibility(View.GONE);
                 String sequencia = s.toString();
                 Formatacao formatacao = new Formatacao();
                 if(!sequencia.isEmpty()) {
@@ -187,6 +188,7 @@ public class SubtracaoDeSaldoActivity extends AppCompatActivity {
 
         if(editTextDescricaoDaMovimentacao.getText().toString().equals("")){
 
+            textViewRE28.setVisibility(View.VISIBLE);
             textViewRE28.setText(R.string.activitySomadeSaldo_textViewRE28);
             validar = false;
 
@@ -194,6 +196,7 @@ public class SubtracaoDeSaldoActivity extends AppCompatActivity {
 
         if (editTextValorDaMovimentacao.getText().toString().equals("")) {
 
+            textViewRE29.setVisibility(View.VISIBLE);
             textViewRE29.setText(R.string.activitySomadeSaldo_textViewRE29);
             validar = false;
         } else {
@@ -202,6 +205,7 @@ public class SubtracaoDeSaldoActivity extends AppCompatActivity {
 
             if (valor == 0) {
 
+                textViewRE29.setVisibility(View.VISIBLE);
                 textViewRE29.setText(R.string.activitySomaSaldoMensagem);
                 validar = false;
             }
