@@ -2,6 +2,7 @@ package br.com.appcontazul.activity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.StrictMode;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -9,8 +10,11 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import br.com.appcontazul.R;
@@ -28,6 +32,14 @@ public class LucroMensalActivity extends AppCompatActivity {
     private TextView textViewValorFormatado;
     private TextView textViewRE30;
     private TextView textViewRE31;
+    private boolean campoDescricaoVazio;
+    private boolean campoValorVazio;
+    private boolean valorZero;
+    private ProgressBar pbHeaderProgress;
+    private boolean mostrandoLista;
+    private Button buttonLucroMensal;
+    private LinearLayout layoutListarLucroMensal;
+    private LinearLayout layoutIncluirLucroMensal;
 
     public View v;
 
@@ -41,6 +53,7 @@ public class LucroMensalActivity extends AppCompatActivity {
 
         this.criarElementos();
         this.carregarLista();
+        this.setLista();
         this.inicializarComportamentoEditTextValorDoLucro();
         this.inicializarComportamentoEditTextDescricaoDoBeneficio();
     }
@@ -52,6 +65,14 @@ public class LucroMensalActivity extends AppCompatActivity {
         this.textViewValorFormatado = (TextView) findViewById(R.id.textView_ValorFormatado);
         this.textViewRE30 = (TextView) findViewById(R.id.textView_RE30);
         this.textViewRE31 = (TextView) findViewById(R.id.textView_RE31);
+        this.campoDescricaoVazio = false;
+        this.campoValorVazio = false;
+        this.valorZero = false;
+        this.pbHeaderProgress = (ProgressBar) findViewById(R.id.pbHeaderProgress);
+        this.mostrandoLista = true;
+        this.buttonLucroMensal = (Button) findViewById(R.id.button_lucroMensal);
+        this.layoutListarLucroMensal = (LinearLayout) findViewById(R.id.layout_listaLucroMensal);
+        this.layoutIncluirLucroMensal = (LinearLayout) findViewById(R.id.layout_InserirLucroMensal);
     }
 
     public void carregarLista() {
@@ -59,6 +80,10 @@ public class LucroMensalActivity extends AppCompatActivity {
         this.listaLucroMensal = (ListView) findViewById(R.id.listaLucroMensal);
         Requisicao requisicao = new Requisicao();
         this.adaptador05 = new Adaptador05(requisicao.requestListaLucroMensal(), this);
+    }
+
+    public void setLista() {
+
         this.listaLucroMensal.setAdapter(adaptador05);
     }
 
@@ -115,6 +140,25 @@ public class LucroMensalActivity extends AppCompatActivity {
         });
     }
 
+    public void lucroMensalTrocarTela(View v) {
+
+        if(mostrandoLista) {
+
+            this.mostrandoLista = false;
+            this.buttonLucroMensal.setText(getResources().getString(R.string.activityLucroMensal_ListarLucroMensal));
+            this.layoutListarLucroMensal.setVisibility(View.GONE);
+            this.layoutIncluirLucroMensal.setVisibility(View.VISIBLE);
+        } else {
+
+            this.mostrandoLista = true;
+            this.textViewRE30.setText("");
+            this.textViewRE31.setText("");
+            this.buttonLucroMensal.setText(getResources().getString(R.string.activityLucroMensal_IncluirLucroMensal));
+            this.layoutIncluirLucroMensal.setVisibility(View.GONE);
+            this.layoutListarLucroMensal.setVisibility(View.VISIBLE);
+        }
+    }
+
     public void contralMostrarMenu(View v) {
 
         Intent menuActivity = new Intent(LucroMensalActivity.this, MenuActivity.class);
@@ -123,21 +167,27 @@ public class LucroMensalActivity extends AppCompatActivity {
 
     public void buttonIncluirLucro(View v) {
 
-        if(validarCampos()) {
+        LongOperation longOperation = new LongOperation();
+        longOperation.execute();
+    }
 
-            Requisicao requisicao = new Requisicao();
-            requisicao.requestInserirLucroMensal(this.editTextDescricaoDoBeneficio.getText().toString(),
-                    this.editTextValorDoLucro.getText().toString());
-            this.carregarLista();
-            AlertDialog.Builder popup = new AlertDialog.Builder(LucroMensalActivity.this);
-            popup.setTitle(R.string.activityLucroMensal_Sucesso);
-            popup.setMessage(R.string.activityLucroMensal_REXX);
-            popup.setPositiveButton(R.string.activityLucroMensal_OK, null);
-            popup.create();
-            popup.show();
-            this.editTextDescricaoDoBeneficio.setText("");
-            this.editTextValorDoLucro.setText("");
-        }
+    public void incluirLucroMensal() {
+
+        Requisicao requisicao = new Requisicao();
+        requisicao.requestInserirLucroMensal(this.editTextDescricaoDoBeneficio.getText().toString(),
+                this.editTextValorDoLucro.getText().toString());
+    }
+
+    public void mostrarSucesso() {
+
+        AlertDialog.Builder popup = new AlertDialog.Builder(LucroMensalActivity.this);
+        popup.setTitle(R.string.activityLucroMensal_Sucesso);
+        popup.setMessage(R.string.activityLucroMensal_REXX);
+        popup.setPositiveButton(R.string.activityLucroMensal_OK, null);
+        popup.create();
+        popup.show();
+        this.editTextDescricaoDoBeneficio.setText("");
+        this.editTextValorDoLucro.setText("");
     }
 
     public boolean validarCampos() {
@@ -146,25 +196,46 @@ public class LucroMensalActivity extends AppCompatActivity {
 
         if(this.editTextDescricaoDoBeneficio.getText().toString().equals("")) {
 
-            this.textViewRE30.setText(getResources().getString(R.string.activityLucroMensal_textViewRE30));
+            this.campoDescricaoVazio = true;
             validar = false;
         }
 
         if(this.editTextValorDoLucro.getText().toString().equals("")) {
 
-            this.textViewRE31.setText(getResources().getString(R.string.activityLucroMensal_textViewRE31));
+            this.campoValorVazio = true;
             validar = false;
         } else {
 
             double valor = Double.parseDouble(this.editTextValorDoLucro.getText().toString());
             if(valor <= 0) {
 
-                this.textViewRE31.setText(getResources().getString(R.string.activitySomaSaldoMensagem));
+                this.valorZero = true;
                 validar = false;
             }
         }
 
         return validar;
+    }
+
+    public void checarValidacoes() {
+
+        if(this.campoDescricaoVazio) {
+
+            this.textViewRE30.setText(getResources().getString(R.string.activityLucroMensal_textViewRE30));
+        }
+
+        if(this.campoValorVazio) {
+
+            this.textViewRE31.setText(getResources().getString(R.string.activityLucroMensal_textViewRE31));
+
+        } else if(this.valorZero) {
+
+            this.textViewRE31.setText(getResources().getString(R.string.activitySomaSaldoMensagem));
+        }
+
+        this.campoDescricaoVazio = false;
+        this.campoValorVazio = false;
+        this.valorZero = false;
     }
 
     public void buttonReceber(View v2) {
@@ -176,16 +247,8 @@ public class LucroMensalActivity extends AppCompatActivity {
         popup.setPositiveButton(R.string.activityLucroMensal_ButtonSim, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
 
-            Requisicao requisicao = new Requisicao();
-            requisicao.requestReceber("" + adaptador05.getItem(v.getId()).getId());
-            carregarLista();
-            AlertDialog.Builder popup = new AlertDialog.Builder(LucroMensalActivity.this);
-            popup.setTitle(R.string.activityLucroMensal_Sucesso);
-            popup.setMessage(R.string.activityLucroMensal_RE36);
-            popup.setPositiveButton(R.string.activityLucroMensal_OK, null);
-            popup.create();
-            popup.show();
-
+                LongOperation03 longOperation03 = new LongOperation03();
+                longOperation03.execute();
             }
         });
         popup.setNegativeButton(R.string.activityLucroMensal_ButtonNao, null);
@@ -202,20 +265,134 @@ public class LucroMensalActivity extends AppCompatActivity {
         popup.setPositiveButton(R.string.activityLucroMensal_ButtonSim, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
 
-                Requisicao requisicao = new Requisicao();
-                requisicao.requestExcluirLucroMensal("" + adaptador05.getItem(v.getId()).getId());
-                carregarLista();
-                AlertDialog.Builder popup = new AlertDialog.Builder(LucroMensalActivity.this);
-                popup.setTitle(R.string.activityLucroMensal_Sucesso);
-                popup.setMessage(R.string.activityLucroMensal_RE34);
-                popup.setPositiveButton(R.string.activityLucroMensal_OK, null);
-                popup.create();
-                popup.show();
+                LongOperation02 longOperation02 = new LongOperation02();
+                longOperation02.execute();
 
             }
         });
         popup.setNegativeButton(R.string.activityLucroMensal_ButtonNao, null);
         popup.create();
         popup.show();
+    }
+
+    public void excluir() {
+
+        Requisicao requisicao = new Requisicao();
+        requisicao.requestExcluirLucroMensal("" + adaptador05.getItem(v.getId()).getId());
+        carregarLista();
+    }
+
+    public void mostrarSucessoExclusao() {
+
+        AlertDialog.Builder popup = new AlertDialog.Builder(LucroMensalActivity.this);
+        popup.setTitle(R.string.activityLucroMensal_Sucesso);
+        popup.setMessage(R.string.activityLucroMensal_RE34);
+        popup.setPositiveButton(R.string.activityLucroMensal_OK, null);
+        popup.create();
+        popup.show();
+    }
+
+    public void receber() {
+
+        Requisicao requisicao = new Requisicao();
+        requisicao.requestReceber("" + adaptador05.getItem(v.getId()).getId());
+        carregarLista();
+    }
+
+    public void mostrarSucessoInclusao() {
+
+        AlertDialog.Builder popup = new AlertDialog.Builder(LucroMensalActivity.this);
+        popup.setTitle(R.string.activityLucroMensal_Sucesso);
+        popup.setMessage(R.string.activityLucroMensal_RE36);
+        popup.setPositiveButton(R.string.activityLucroMensal_OK, null);
+        popup.create();
+        popup.show();
+    }
+
+    private class LongOperation extends AsyncTask<Void, Void, Boolean> {
+
+
+        @Override
+        protected Boolean doInBackground(Void... voids) {
+
+            if(!validarCampos()) {
+
+                return false;
+            }
+
+            incluirLucroMensal();
+            carregarLista();
+            return true;
+        }
+
+        @Override
+        protected void onPreExecute() {
+
+            pbHeaderProgress.setVisibility(View.VISIBLE);
+        }
+
+        @Override
+        protected void onPostExecute(Boolean aBoolean) {
+
+            if(aBoolean) {
+
+                pbHeaderProgress.setVisibility(View.GONE);
+                setLista();
+                mostrarSucesso();
+            }
+
+            pbHeaderProgress.setVisibility(View.GONE);
+            checarValidacoes();
+        }
+    }
+
+    private class LongOperation02 extends AsyncTask<Void, Void, Boolean> {
+
+
+        @Override
+        protected Boolean doInBackground(Void... voids) {
+
+            excluir();
+            return true;
+        }
+
+        @Override
+        protected void onPreExecute() {
+
+            pbHeaderProgress.setVisibility(View.VISIBLE);
+        }
+
+        @Override
+        protected void onPostExecute(Boolean aBoolean) {
+
+            pbHeaderProgress.setVisibility(View.GONE);
+            setLista();
+            mostrarSucessoExclusao();
+        }
+    }
+
+    private class LongOperation03 extends AsyncTask<Void, Void, Boolean> {
+
+
+        @Override
+        protected Boolean doInBackground(Void... voids) {
+
+            receber();
+            return true;
+        }
+
+        @Override
+        protected void onPreExecute() {
+
+            pbHeaderProgress.setVisibility(View.VISIBLE);
+        }
+
+        @Override
+        protected void onPostExecute(Boolean aBoolean) {
+
+            pbHeaderProgress.setVisibility(View.GONE);
+            setLista();
+            mostrarSucessoInclusao();
+        }
     }
 }

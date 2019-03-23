@@ -9,7 +9,9 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -34,6 +36,10 @@ public class SomaDeSaldoActivity extends AppCompatActivity {
     boolean campoDescricaoObrigatorio;
     boolean campoValorObrigatorio;
     boolean campoValorZerado;
+    boolean layoutListaSomaSaldoMostrando;
+    private LinearLayout layoutListaSomaDeSaldo;
+    private Button buttonSomadesaldo;
+    private LinearLayout layoutIncluirSomaDeSaldo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +70,10 @@ public class SomaDeSaldoActivity extends AppCompatActivity {
         this.campoDescricaoObrigatorio = false;
         this.campoValorObrigatorio = false;
         this.campoValorZerado = false;
+        this.layoutListaSomaSaldoMostrando = true;
+        this.layoutListaSomaDeSaldo = (LinearLayout) findViewById(R.id.layout_lista_soma_de_saldo);
+        this.buttonSomadesaldo = (Button) findViewById(R.id.button_somadesaldo);
+        this.layoutIncluirSomaDeSaldo = (LinearLayout) findViewById(R.id.layout_incluir_soma_de_saldo);
     }
 
     public void carregarListaSomaSaldo() {
@@ -143,6 +153,25 @@ public class SomaDeSaldoActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    public void trocarTela(View v) {
+
+        if(layoutListaSomaSaldoMostrando) {
+
+            layoutListaSomaSaldoMostrando = false;
+            this.buttonSomadesaldo.setText(getResources().getString(R.string.activitySomaSaldoOpcaoListarSomaDeSaldo));
+            this.layoutListaSomaDeSaldo.setVisibility(View.GONE);
+            this.layoutIncluirSomaDeSaldo.setVisibility(View.VISIBLE);
+        } else {
+
+            layoutListaSomaSaldoMostrando = true;
+            this.buttonSomadesaldo.setText(getResources().getString(R.string.activitySomaSaldoOpcaoIncluirSomaDeSaldo));
+            this.textViewRE28.setText("");
+            this.textViewRE29.setText("");
+            this.layoutIncluirSomaDeSaldo.setVisibility(View.GONE);
+            this.layoutListaSomaDeSaldo.setVisibility(View.VISIBLE);
+        }
     }
 
     public void buttonInserirMovimentacao(View v){

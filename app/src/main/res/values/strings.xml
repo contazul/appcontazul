@@ -35,6 +35,7 @@
     <string name="activitySelacaoConta_listaItemDescricao">Descrição:</string>
     <string name="activitySelacaoConta_listaItemPerfil">Perfil:</string>
     <string name="activitySelacaoConta_RE_20">Não há contas sendo gerenciada no momento, crie uma “Contazul”</string>
+    <string name="activitySelacaoConta_selecionarConta">Selecione a Contazul:</string>
 
     <string name="activityPerfilConta_funcionalidade">Perfil da conta</string>
     <string name="activityPerfilConta_perfilDaConta">Perfil da conta:</string>
@@ -84,6 +85,8 @@
     <string name="activitySomadeSaldobutton_ok">Ok</string>
     <string name="activitySomaSaldolistaItemValorMovimentacao">Valor:</string>
     <string name="activitySomaSaldoMensagem">Informe um valor maior que zero</string>
+    <string name="activitySomaSaldoOpcaoIncluirSomaDeSaldo">Incluir soma de saldo</string>
+    <string name="activitySomaSaldoOpcaoListarSomaDeSaldo">Listar soma de saldo</string>
 
     <string name="listaSubtracaoSaldo_descricao">Descricao:</string>
     <string name="listaSubtracaoSaldo_valor">Valor:</string>
@@ -100,6 +103,8 @@
     <string name="activitySubtracaodeSaldoListaItemValorMovimentacao">Valor</string>
     <string name="activitySubtracaodeSaldoListaItemPrioridadeDeMovimentacao">Prioridade</string>
     <string name="activitySubtracaodeSaldoSaldoAtual">Saldo atual:</string>
+    <string name="activitySubtracaodeSaldoIncluirSubtracaoSaldo">Incluir subtração de saldo</string>
+    <string name="activitySubtracaodeSaldoListarSubtracaoSaldo">Listar subtração de saldo</string>
 
     <string name="activityLucroMensal_textViewFuncionalidade4">Lucro Mensal</string>
     <string name="activityLucroMensal_editTextDecricaoDoBeneficio">Descrição do benefício</string>
@@ -125,6 +130,8 @@
     <string name="activityLucroMensal_Atencao">Atenção</string>
     <string name="activityLucroMensal_ButtonSim">Sim</string>
     <string name="activityLucroMensal_ButtonNao">Nao</string>
+    <string name="activityLucroMensal_ListarLucroMensal">Listar lucro mensal</string>
+    <string name="activityLucroMensal_IncluirLucroMensal">Incluir lucro mensal</string>
 
     <string name="activityCentral_status">Status da conta:</string>
     <string name="activityCentral_aviso01">Acesse perfil da conta para definir o valor ideal para economizar por mês</string>

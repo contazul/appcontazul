@@ -17,6 +17,16 @@
             android:textColor="@color/colorPrimary"
             android:textSize="15sp" />
 
+    <ProgressBar
+        android:id="@+id/pbHeaderProgress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:visibility="gone"
+        >
+    </ProgressBar>
+
         <Button
             android:id="@+id/button_menu"
             android:layout_width="match_parent"
@@ -29,6 +39,40 @@
             android:text="@string/activityCentral_buttonMenu"
             android:textColor="#FFF" />
 
+    <Button
+        android:id="@+id/button_subtracaoSaldo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="5dp"
+        android:background="@color/colorPrimary"
+        android:onClick="subtracaoSaldoTrocarTela"
+        android:text="@string/activitySubtracaodeSaldoIncluirSubtracaoSaldo"
+        android:textColor="#FFF" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/layout_lista_subtracao_saldo"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        >
+        <ListView
+            android:id="@+id/listaSaldoConta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/layout_incluir_subtracao_de_saldo"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        android:visibility="gone"
+        >
         <TextView
             android:id="@+id/textView_SaldodaConta"
             android:layout_width="wrap_content"
@@ -47,7 +91,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="5dp"
             android:hint="@string/activitySubtracaodeSaldo_editText_DescricaoMovimentacao"
             android:textColor="@color/colorPrimary" />
@@ -68,7 +112,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5sp"
-            android:layout_marginTop="5sp"
+            android:layout_marginTop="15sp"
             android:text="@string/activitySomadeSaldo_textValorFormatado"
             android:textColor="@color/colorPrimary"
             android:textSize="20sp" />
@@ -147,17 +191,5 @@
                 android:textColor="#FFF"
                 app:layout_constraintTop_toTopOf="@+id/radioGroup_prioridade" />
         </android.support.constraint.ConstraintLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="vertical"
-            >
-            <ListView
-                android:id="@+id/listaSaldoConta"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                />
         </LinearLayout>
 </LinearLayout>

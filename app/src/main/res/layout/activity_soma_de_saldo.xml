@@ -41,6 +41,40 @@
         android:layout_marginEnd="5dp"
         />
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_somadesaldo"
+        android:layout_marginTop="10dp"
+        android:text="@string/activitySomaSaldoOpcaoIncluirSomaDeSaldo"
+        android:background="@color/colorPrimary"
+        android:textColor="#FFF"
+        android:onClick="trocarTela"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/layout_lista_soma_de_saldo"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp"
+        >
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/listaSaldoConta"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/layout_incluir_soma_de_saldo"
+        android:orientation="vertical"
+        android:visibility="gone"
+        >
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -97,7 +131,7 @@
         android:inputType="number"
         style="@style/StyledTilEditTextTheme"
         android:textColor="@color/colorPrimary"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:layout_marginStart="5dp"
         android:layout_marginEnd="5dp"
         />
@@ -124,19 +158,6 @@
         android:layout_marginStart="5dp"
         android:layout_marginEnd="5dp"
         android:layout_marginTop="10dp"
-        />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@+id/button_InserirMovimentacao"
-        android:layout_marginTop="10dp"
-        >
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/listaSaldoConta"
         />
     </LinearLayout>
 

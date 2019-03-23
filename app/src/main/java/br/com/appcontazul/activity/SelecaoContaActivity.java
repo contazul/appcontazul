@@ -46,7 +46,7 @@ public class SelecaoContaActivity extends AppCompatActivity {
 
         if(listaContazul != null && listaContazul.size() != 0) {
 
-            this.textViewRE20.setVisibility(View.GONE);
+            this.textViewRE20.setText(getResources().getString(R.string.activitySelacaoConta_selecionarConta));
             adaptador = new Adaptador(listaContazul, this);
             listaContas.setAdapter(adaptador);
         }
@@ -83,11 +83,11 @@ public class SelecaoContaActivity extends AppCompatActivity {
         popup.setMessage(R.string.activitySelacaoConta_RE_10);
         popup.setPositiveButton(R.string.activitySelacaoConta_popupBotaoProsseguir,new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-
-                textViewRE20.setVisibility(View.GONE);
+                
                 Requisicao requisicao = new Requisicao();
                 adaptador = new Adaptador(requisicao.requestListaContazul(), SelecaoContaActivity.this);
                 listaContas.setAdapter(adaptador);
+                textViewRE20.setText(getResources().getString(R.string.activitySelacaoConta_selecionarConta));
             }
         });
         popup.create();

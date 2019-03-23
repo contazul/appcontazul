@@ -1,14 +1,18 @@
 package br.com.appcontazul.activity;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
@@ -30,7 +34,15 @@ public class SubtracaoDeSaldoActivity extends AppCompatActivity {
     private TextView textViewRE28;
     private TextView textViewRE29;
     private RadioButton buttonAlta;
-    private RadioButton buttonBaixa;
+    private ProgressBar pbHeaderProgress;
+    private boolean campoDescricaoVazio;
+    private boolean campoValorVazio;
+    private boolean valorZero;
+    private Button buttonSubtracaoSaldo;
+    private LinearLayout layoutListaSubtracaoSaldo;
+    private LinearLayout layoutIncluirSubtracaoDeSaldo;
+    private boolean mostrandoLista;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,10 +65,17 @@ public class SubtracaoDeSaldoActivity extends AppCompatActivity {
         this.textViewRE28 = (TextView) findViewById(R.id.textView_RE28);
         this.textViewRE29 = (TextView) findViewById(R.id.textView_RE29);
         this.buttonAlta = (RadioButton) findViewById(R.id.button_Alta);
-        this.buttonBaixa = (RadioButton) findViewById(R.id.button_Baixa);
         this.prioridadeSelecionada = "Alta";
         buttonAlta.setChecked(true);
         buttonAlta.setSelected(true);
+        this.pbHeaderProgress = (ProgressBar) findViewById(R.id.pbHeaderProgress);
+        this.campoDescricaoVazio = false;
+        this.campoValorVazio = false;
+        this.valorZero = false;
+        this.buttonSubtracaoSaldo = (Button) findViewById(R.id.button_subtracaoSaldo);
+        this.layoutListaSubtracaoSaldo = (LinearLayout) findViewById(R.id.layout_lista_subtracao_saldo);
+        this.layoutIncluirSubtracaoDeSaldo = (LinearLayout) findViewById(R.id.layout_incluir_subtracao_de_saldo);
+        this.mostrandoLista = true;
     }
 
     public void formatarSaldo() {
@@ -162,24 +181,50 @@ public class SubtracaoDeSaldoActivity extends AppCompatActivity {
         startActivity(menuActivity);
     }
 
+    public void subtracaoSaldoTrocarTela(View v) {
+
+        if(mostrandoLista) {
+
+            this.mostrandoLista = false;
+            this.buttonSubtracaoSaldo.setText(getResources().getString(R.string.activitySubtracaodeSaldoListarSubtracaoSaldo));
+            this.layoutListaSubtracaoSaldo.setVisibility(View.GONE);
+            this.layoutIncluirSubtracaoDeSaldo.setVisibility(View.VISIBLE);
+        } else {
+
+            this.mostrandoLista = true;
+            textViewRE28.setVisibility(View.GONE);
+            textViewRE29.setVisibility(View.GONE);
+            this.buttonSubtracaoSaldo.setText(getResources().getString(R.string.activitySubtracaodeSaldoIncluirSubtracaoSaldo));
+            this.layoutIncluirSubtracaoDeSaldo.setVisibility(View.GONE);
+            this.layoutListaSubtracaoSaldo.setVisibility(View.VISIBLE);
+        }
+    }
+
     public void buttonInserirMovimentacao(View v){
 
-        if (validarCampo()){
+        LongOperation longOperation = new LongOperation();
+        longOperation.execute();
+    }
 
-            Requisicao requisicao = new Requisicao();
-            requisicao.requestInserirSubtracaoSaldo(editTextValorDaMovimentacao.getText().toString(),
-                    editTextDescricaoDaMovimentacao.getText().toString(), prioridadeSelecionada);
-            this.formatarSaldo();
-            this.carregarListaSubtracaoSaldo();
-            AlertDialog.Builder popup = new AlertDialog.Builder(SubtracaoDeSaldoActivity.this);
-            popup.setTitle(R.string.activitySelacaoConta_tituloSucesso);
-            popup.setMessage(R.string.activitySomadeSaldo_RE27);
-            popup.setPositiveButton(R.string.activitySomadeSaldobutton_ok, null);
-            popup.create();
-            popup.show();
-            editTextDescricaoDaMovimentacao.setText("");
-            editTextValorDaMovimentacao.setText("");
-        }
+    public void inserirSubtracaoSaldo() {
+
+        Requisicao requisicao = new Requisicao();
+        requisicao.requestInserirSubtracaoSaldo(editTextValorDaMovimentacao.getText().toString(),
+                editTextDescricaoDaMovimentacao.getText().toString(), prioridadeSelecionada);
+    }
+
+    public void mostrarSucesso() {
+
+        this.formatarSaldo();
+        this.carregarListaSubtracaoSaldo();
+        AlertDialog.Builder popup = new AlertDialog.Builder(SubtracaoDeSaldoActivity.this);
+        popup.setTitle(R.string.activitySelacaoConta_tituloSucesso);
+        popup.setMessage(R.string.activitySomadeSaldo_RE27);
+        popup.setPositiveButton(R.string.activitySomadeSaldobutton_ok, null);
+        popup.create();
+        popup.show();
+        editTextDescricaoDaMovimentacao.setText("");
+        editTextValorDaMovimentacao.setText("");
     }
 
     public boolean validarCampo(){
@@ -188,16 +233,14 @@ public class SubtracaoDeSaldoActivity extends AppCompatActivity {
 
         if(editTextDescricaoDaMovimentacao.getText().toString().equals("")){
 
-            textViewRE28.setVisibility(View.VISIBLE);
-            textViewRE28.setText(R.string.activitySomadeSaldo_textViewRE28);
+            this.campoDescricaoVazio = true;
             validar = false;
 
         }
 
         if (editTextValorDaMovimentacao.getText().toString().equals("")) {
 
-            textViewRE29.setVisibility(View.VISIBLE);
-            textViewRE29.setText(R.string.activitySomadeSaldo_textViewRE29);
+            this.campoValorVazio = true;
             validar = false;
         } else {
 
@@ -205,12 +248,69 @@ public class SubtracaoDeSaldoActivity extends AppCompatActivity {
 
             if (valor == 0) {
 
-                textViewRE29.setVisibility(View.VISIBLE);
-                textViewRE29.setText(R.string.activitySomaSaldoMensagem);
+                this.valorZero = true;
                 validar = false;
             }
         }
 
         return validar;
+    }
+
+    public void checarValidacoes() {
+
+        if(this.campoDescricaoVazio) {
+
+            textViewRE28.setVisibility(View.VISIBLE);
+            textViewRE28.setText(R.string.activitySomadeSaldo_textViewRE28);
+        }
+
+        if(this.campoValorVazio) {
+
+            textViewRE29.setVisibility(View.VISIBLE);
+            textViewRE29.setText(R.string.activitySomadeSaldo_textViewRE29);
+        } else if(this.valorZero) {
+
+            textViewRE29.setVisibility(View.VISIBLE);
+            textViewRE29.setText(R.string.activitySomaSaldoMensagem);
+        }
+
+        this.campoDescricaoVazio = false;
+        this.campoValorVazio = false;
+        this.valorZero = false;
+    }
+
+    private class LongOperation extends AsyncTask<Void, Void, Boolean> {
+
+
+        @Override
+        protected Boolean doInBackground(Void... voids) {
+
+            if(!validarCampo()) {
+
+                return false;
+            }
+
+            inserirSubtracaoSaldo();
+            return true;
+        }
+
+        @Override
+        protected void onPreExecute() {
+
+            pbHeaderProgress.setVisibility(View.VISIBLE);
+        }
+
+        @Override
+        protected void onPostExecute(Boolean aBoolean) {
+
+            if(aBoolean) {
+
+                pbHeaderProgress.setVisibility(View.GONE);
+                mostrarSucesso();
+            }
+
+            pbHeaderProgress.setVisibility(View.GONE);
+            checarValidacoes();
+        }
     }
 }
