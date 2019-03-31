@@ -1,0 +1,53 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/action_central"
+        android:title="@string/activityMenu_funcionalidade01"
+        app:showAsAction="never"
+        ></item>
+
+    <item android:id="@+id/action_perfilDaConta"
+        android:title="@string/activityMenu_funcionalidade02"
+        app:showAsAction="never"
+        ></item>
+
+    <item android:id="@+id/action_somaSaldo"
+        android:title="@string/activityMenu_funcionalidade03"
+        app:showAsAction="never"></item>
+
+    <item android:id="@+id/action_subtracaoSaldo"
+        android:title="@string/activityMenu_funcionalidade04"
+        app:showAsAction="never"></item>
+
+    <item android:id="@+id/action_lucroMensal"
+        android:title="@string/activityMenu_funcionalidade05"
+        app:showAsAction="never"></item>
+
+    <item android:id="@+id/action_contasPagar"
+        android:title="@string/activityMenu_funcionalidade06"
+        app:showAsAction="never"></item>
+
+    <item android:id="@+id/action_simulador"
+        android:title="@string/activityMenu_funcionalidade07"
+        app:showAsAction="never"></item>
+
+    <item android:id="@+id/action_meta"
+        android:title="@string/activityMenu_funcionalidade08"
+        app:showAsAction="never"></item>
+
+    <item android:id="@+id/action_relatorio"
+        android:title="@string/activityMenu_funcionalidade09"
+        app:showAsAction="never"></item>
+
+    <item android:id="@+id/action_centralizacao"
+        android:title="@string/activityMenu_funcionalidade10"
+        app:showAsAction="never"></item>
+
+    <item android:id="@+id/action_selecaoConta"
+        android:title="@string/activityMenu_funcionalidade11"
+        app:showAsAction="never"></item>
+
+    <item android:id="@+id/action_sair"
+        android:title="@string/activityMenu_funcionalidade12"
+        app:showAsAction="never"></item>
+</menu>

@@ -29,8 +29,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/button_criarconta"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginEnd="80dp"
         android:layout_marginTop="30dp"
         android:text="@string/activitySelecaoConta_buttonCriarContazul"
         android:background="@color/colorPrimary"
@@ -42,25 +42,33 @@
         android:layout_height="wrap_content"
         android:id="@+id/textView_RE20"
         android:text="@string/activitySelacaoConta_RE_20"
-        android:textSize="20sp"
-        android:layout_marginTop="20sp"
+        android:textSize="25sp"
+        android:layout_marginTop="50sp"
         android:layout_marginStart="10sp"
-        android:layout_marginEnd="5sp"
-        android:textColor="@color/colorAccent"
+        android:layout_marginEnd="10sp"
+        android:textColor="#696969"
         android:textStyle="bold"
         />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_marginTop="10dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:paddingBottom="15dp"
+        android:background="@drawable/borda"
         >
         <ListView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
             android:id="@+id/listaContas"
-            app:layout_constraintTop_toBottomOf="@id/button_criarconta"
+            android:divider="#D3D3D3"
+            android:dividerHeight="1dp"
             />
     </LinearLayout>
 </LinearLayout>

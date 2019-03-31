@@ -27,41 +27,50 @@
         >
     </ProgressBar>
 
-        <Button
-            android:id="@+id/button_menu"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="5dp"
-            android:background="@color/colorPrimary"
-            android:onClick="contralMostrarMenu"
-            android:text="@string/activityCentral_buttonMenu"
-            android:textColor="#FFF" />
-
     <Button
         android:id="@+id/button_subtracaoSaldo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="5dp"
-        android:background="@color/colorPrimary"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="80dp"
+        android:background="@color/colorPrimaryDark"
         android:onClick="subtracaoSaldoTrocarTela"
         android:text="@string/activitySubtracaodeSaldoIncluirSubtracaoSaldo"
         android:textColor="#FFF" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView_tituloSubtracaoSaldo"
+        android:text="Não há subtração de saldo referente ao mês atual"
+        android:textSize="25sp"
+        android:layout_marginStart="10sp"
+        android:layout_marginEnd="10sp"
+        android:layout_marginTop="50sp"
+        android:textColor="#696969"
+        />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/layout_lista_subtracao_saldo"
         android:layout_marginTop="10dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:paddingBottom="15dp"
+        android:background="@drawable/borda"
         android:orientation="vertical"
         >
         <ListView
             android:id="@+id/listaSaldoConta"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:divider="#D3D3D3"
+            android:dividerHeight="1dp"
             />
     </LinearLayout>
 
@@ -90,9 +99,9 @@
             style="@style/StyledTilEditTextTheme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
+            android:layout_marginStart="70dp"
             android:layout_marginTop="20dp"
-            android:layout_marginEnd="5dp"
+            android:layout_marginEnd="70dp"
             android:hint="@string/activitySubtracaodeSaldo_editText_DescricaoMovimentacao"
             android:textColor="@color/colorPrimary" />
 
@@ -100,8 +109,8 @@
             android:id="@+id/textView_RE28"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5sp"
-            android:layout_marginEnd="5sp"
+            android:layout_marginStart="70sp"
+            android:layout_marginEnd="70sp"
             android:text=""
             android:textColor="#FF0000"
             android:textSize="10sp"
@@ -111,8 +120,9 @@
             android:id="@+id/activityPerfilConta_textViewValorFormatado"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5sp"
-            android:layout_marginTop="15sp"
+            android:layout_marginStart="70sp"
+            android:layout_marginTop="10sp"
+            android:layout_marginEnd="70sp"
             android:text="@string/activitySomadeSaldo_textValorFormatado"
             android:textColor="@color/colorPrimary"
             android:textSize="20sp" />
@@ -122,9 +132,9 @@
             style="@style/StyledTilEditTextTheme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
+            android:layout_marginStart="70dp"
             android:layout_marginTop="15dp"
-            android:layout_marginEnd="5dp"
+            android:layout_marginEnd="70dp"
             android:hint="@string/activitySubtracaodeSaldo_editText_ValorDaMovimentacao"
             android:inputType="number"
             android:textColor="@color/colorPrimary" />
@@ -133,8 +143,8 @@
             android:id="@+id/textView_RE29"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5sp"
-            android:layout_marginEnd="5sp"
+            android:layout_marginStart="70sp"
+            android:layout_marginEnd="70sp"
             android:text=""
             android:textColor="#FF0000"
             android:textSize="10sp"
@@ -144,16 +154,13 @@
             android:id="@+id/textView_Prioridade"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5sp"
+            android:layout_marginStart="70sp"
             android:layout_marginTop="10sp"
-            android:layout_marginEnd="5sp"
+            android:layout_marginEnd="70sp"
             android:text="@string/activitySubtracaodeSaldo_textView_Prioridade"
             android:textColor="@color/colorAccent"
-            android:textSize="15sp" />
-
-        <android.support.constraint.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:textSize="15sp"
+            />
 
             <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/radioGroup_prioridade"
@@ -167,7 +174,10 @@
                     android:layout_height="wrap_content"
                     android:onClick="onRadioButtonClicked"
                     android:text="Alta"
-                    android:textColor="#8B8989" />
+                    android:textColor="#8B8989"
+                    android:layout_marginStart="70dp"
+                    android:layout_marginEnd="70dp"
+                    />
 
                 <RadioButton
                     android:id="@+id/button_Baixa"
@@ -175,21 +185,23 @@
                     android:layout_height="wrap_content"
                     android:onClick="onRadioButtonClicked"
                     android:text="Baixa"
-                    android:textColor="#8B8989" />
+                    android:textColor="#8B8989"
+                    android:layout_marginStart="70dp"
+                    android:layout_marginEnd="70dp"
+                    />
             </RadioGroup>
 
-            <Button
-                android:id="@+id/button_InserirMovimentacao"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="100dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="5dp"
-                android:background="@color/colorPrimary"
-                android:onClick="buttonInserirMovimentacao"
-                android:text="@string/activitySubtracaodeSaldo_button"
-                android:textColor="#FFF"
-                app:layout_constraintTop_toTopOf="@+id/radioGroup_prioridade" />
-        </android.support.constraint.ConstraintLayout>
+        <Button
+            android:id="@+id/button_InserirMovimentacao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="80dp"
+            android:background="@color/colorPrimary"
+            android:onClick="buttonInserirMovimentacao"
+            android:text="@string/activitySubtracaodeSaldo_button"
+            android:textColor="#FFF"
+        />
         </LinearLayout>
 </LinearLayout>

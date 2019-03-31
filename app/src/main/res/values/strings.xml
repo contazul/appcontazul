@@ -5,8 +5,8 @@
     <string name="activityLogin_editTextUsuario">Usuário</string>
     <string name="activityLogin_editTextSenha">Senha</string>
     <string name="activityLogin_buttonAcessar">Acessar</string>
-    <string name="activityLogin_textViewOu">Ou acesse:</string>
-    <string name="activityLogin_buttonCadastrar">Cadastrar</string>
+    <string name="activityLogin_textViewOu">Ou</string>
+    <string name="activityLogin_buttonCadastrar">Cadastre-se</string>
     <string name="activityLogin_RE09">Usuário e/ou senha inválido(s)</string>
     <string name="activityLogin_RE07">O campo senha é obrigatório</string>
     <string name="activityLogin_RE06">O campo usuário é obrigatório</string>
@@ -135,6 +135,12 @@
 
     <string name="activityCentral_status">Status da conta:</string>
     <string name="activityCentral_aviso01">Acesse perfil da conta para definir o valor ideal para economizar por mês</string>
+    <string name="title_activity_menu_principal">MenuPrincipal</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
 </resources>
 
 

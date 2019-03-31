@@ -40,8 +40,8 @@
         android:id="@+id/editText_usuario"
         android:hint="@string/activityLogin_editTextUsuario"
         android:layout_marginTop="100dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginEnd="70dp"
         android:textColor="@color/colorPrimary"
         style="@style/StyledTilEditTextTheme"
         />
@@ -55,8 +55,8 @@
         android:layout_marginTop="5dp"
         android:textColor="#FF0000"
         android:textSize="10sp"
-        android:layout_marginStart="5sp"
-        android:layout_marginEnd="5sp"
+        android:layout_marginStart="70sp"
+        android:layout_marginEnd="70sp"
         />
 
     <EditText
@@ -68,8 +68,8 @@
         android:textColor="@color/colorPrimary"
         android:layout_marginTop="10dp"
         android:inputType="textPassword"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginEnd="70dp"
         />
 
 
@@ -81,10 +81,9 @@
         android:layout_marginTop="5sp"
         app:layout_constraintLeft_toLeftOf="@+id/editText_senha"
         android:textColor="#FF0000"
-        android:text=""
         android:textSize="10sp"
-        android:layout_marginStart="5sp"
-        android:layout_marginEnd="5sp"
+        android:layout_marginStart="70sp"
+        android:layout_marginEnd="70sp"
         />
 
     <Button
@@ -99,8 +98,9 @@
         android:background="@color/colorPrimary"
         android:textColor="#FFF"
         android:onClick="acessar"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginEnd="80dp"
+        android:textAlignment="center"
         />
 
     <TextView
@@ -112,8 +112,7 @@
         app:layout_constraintLeft_toLeftOf="@+id/button_acessar"
         android:text="@string/activityLogin_textViewOu"
         android:textColor="#696969"
-        android:layout_marginStart="5sp"
-        android:layout_marginEnd="5sp"
+        android:layout_gravity="center"
         />
 
     <Button
@@ -125,12 +124,13 @@
         android:layout_marginTop="10dp"
         android:width="150dp"
         android:text="@string/activityLogin_buttonCadastrar"
-        android:background="@color/colorPrimary"
-        android:textColor="#FFF"
+        android:textAlignment="center"
+        android:background="@color/colorPrimaryDark"
+        android:textColor="#FFFFFF"
         android:onClick="cadastrar"
         android:layout_marginBottom="50dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginEnd="80dp"
         />
 
 </LinearLayout>

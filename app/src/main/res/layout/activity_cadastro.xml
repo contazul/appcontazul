@@ -40,8 +40,8 @@
         style="@style/StyledTilEditTextTheme"
         android:hint="@string/activityCadastro_editTextNomeDoUsuario"
         android:layout_marginTop="100dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginEnd="70dp"
         android:textColor="@color/colorPrimary"
         />
 
@@ -51,7 +51,8 @@
         android:id="@+id/textView_RE03_RE02_RE06"
         android:layout_marginTop="5sp"
         android:textColor="#FF0000"
-        android:layout_marginStart="5sp"
+        android:layout_marginStart="70sp"
+        android:layout_marginEnd="70sp"
         android:textSize="12sp"/>
 
 
@@ -63,8 +64,8 @@
         android:hint="@string/activityCadastro_editTextSenha"
         android:textColor="@color/colorPrimary"
         android:inputType="textPassword"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginEnd="70dp"
         />
 
     <TextView
@@ -74,8 +75,8 @@
         android:textColor="#FF0000"
         android:layout_marginTop="5sp"
         android:text=""
-        android:layout_marginStart="5sp"
-        android:layout_marginEnd="5sp"
+        android:layout_marginStart="70sp"
+        android:layout_marginEnd="70sp"
         android:textSize="12sp"
         />
 
@@ -87,8 +88,8 @@
         android:hint="@string/activityCadastro_editTextConfirmarSenha"
         android:inputType="textPassword"
         android:textColor="@color/colorPrimary"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginEnd="70dp"
          />
 
     <TextView
@@ -99,8 +100,8 @@
         android:textColor="#FF0000"
         android:text=""
         android:textSize="12sp"
-        android:layout_marginStart="5sp"
-        android:layout_marginEnd="5sp"
+        android:layout_marginStart="70sp"
+        android:layout_marginEnd="70sp"
         />
 
 
@@ -112,8 +113,9 @@
         android:background="@color/colorPrimary"
         android:textColor="#FFF"
         android:onClick="mostrarSucesso"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginTop="10dp"
         />
 
 

@@ -43,8 +43,9 @@ dependencies {
     // https://mvnrepository.com/artifact/org.springframework/spring-web
     // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.8'
+    compile group: 'org.springframework.android', name: 'spring-android-rest-template', version: '2.0.0.M3'
     compile 'com.android.support:appcompat-v7:26.+'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile group: 'org.springframework.android', name: 'spring-android-rest-template', version: '2.0.0.M3'
+    compile 'com.android.support:design:26.+'
     testCompile 'junit:junit:4.12'
 }

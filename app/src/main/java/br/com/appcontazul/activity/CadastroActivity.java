@@ -13,6 +13,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -27,20 +28,21 @@ import br.com.appcontazul.util.Validacao;
 
 public class CadastroActivity extends AppCompatActivity {
 
-   EditText editTextNomeUsu;
-   EditText editTextSenhaUsu;
-   EditText editTextConfSenha;
-   TextView textViewRE03RE02RE06;
-   TextView textViewRE05RE07;
-   TextView textViewRE08RE04;
-   ProgressBar pbHeaderProgress;
-   boolean campoUsuarioVazio;
-   boolean camporUsuarioCaracterEspecial;
-   boolean usuarioJaExiste;
-   boolean campoSenhaVazio;
-   boolean campoSenhaQtdCaracter;
-   boolean campoConfirmarSenhaObrigatorio;
-   boolean campoSenhasDiferentes;
+    EditText editTextNomeUsu;
+    EditText editTextSenhaUsu;
+    EditText editTextConfSenha;
+    TextView textViewRE03RE02RE06;
+    TextView textViewRE05RE07;
+    TextView textViewRE08RE04;
+    ProgressBar pbHeaderProgress;
+    Button buttonCadastrar;
+    boolean campoUsuarioVazio;
+    boolean camporUsuarioCaracterEspecial;
+    boolean usuarioJaExiste;
+    boolean campoSenhaVazio;
+    boolean campoSenhaQtdCaracter;
+    boolean campoConfirmarSenhaObrigatorio;
+    boolean campoSenhasDiferentes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +59,7 @@ public class CadastroActivity extends AppCompatActivity {
         textViewRE05RE07 = (TextView) findViewById(R.id.textViewRE05_RE07);
         textViewRE08RE04 = (TextView) findViewById(R.id.textViewRE08_RE04);
         pbHeaderProgress = (ProgressBar) findViewById(R.id.pbHeaderProgress);
+        buttonCadastrar = (Button) findViewById(R.id.bottom_Cadastrar1);
         campoUsuarioVazio = false;
         camporUsuarioCaracterEspecial = false;
         usuarioJaExiste = false;
@@ -246,11 +249,31 @@ public class CadastroActivity extends AppCompatActivity {
         return validar;
     }
 
+    public void desabilitarItens() {
+
+        editTextNomeUsu.setEnabled(false);
+        editTextConfSenha.setEnabled(false);
+        editTextSenhaUsu.setEnabled(false);
+    }
+
+    public void habilitarItens() {
+
+        editTextNomeUsu.setEnabled(true);
+        editTextConfSenha.setEnabled(true);
+        editTextSenhaUsu.setEnabled(true);
+    }
+
     private class LongOperation extends AsyncTask<Void, Void, Boolean> {
 
 
         @Override
         protected Boolean doInBackground(Void... voids) {
+
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
 
             if(!validarcampos()) {
 
@@ -264,6 +287,7 @@ public class CadastroActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
 
+            desabilitarItens();
             pbHeaderProgress.setVisibility(View.VISIBLE);
         }
 
@@ -278,6 +302,7 @@ public class CadastroActivity extends AppCompatActivity {
 
             pbHeaderProgress.setVisibility(View.GONE);
             checarValidacoes();
+            habilitarItens();
         }
     }
 }

@@ -30,7 +30,7 @@
         <activity android:name=".activity.MenuActivity" />
         <activity android:name=".activity.SomaDeSaldoActivity" />
         <activity android:name=".activity.SubtracaoDeSaldoActivity" />
-        <activity android:name=".activity.LucroMensalActivity"></activity>
+        <activity android:name=".activity.LucroMensalActivity" />
     </application>
 
 </manifest>

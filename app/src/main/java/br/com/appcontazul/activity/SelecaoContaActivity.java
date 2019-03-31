@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -27,6 +28,7 @@ public class SelecaoContaActivity extends AppCompatActivity {
     private TextView textViewRE20;
     private Adaptador adaptador;
     ProgressBar pbHeaderProgress;
+    private Button criarContazul;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +41,7 @@ public class SelecaoContaActivity extends AppCompatActivity {
         this.listaContas = (ListView) findViewById(R.id.listaContas);
         this.textViewRE20 = (TextView) findViewById(R.id.textView_RE20);
         this.pbHeaderProgress = (ProgressBar) findViewById(R.id.pbHeaderProgress);
+        this.criarContazul = (Button) findViewById(R.id.button_criarconta);
 
         Requisicao requisicao = new Requisicao();
 
@@ -94,12 +97,29 @@ public class SelecaoContaActivity extends AppCompatActivity {
         popup.show();
     }
 
+    public void desabilitarItens() {
+
+        this.listaContas.setEnabled(false);
+        this.criarContazul.setEnabled(false);
+    }
+
+    public void habilitarItens() {
+
+        this.listaContas.setEnabled(true);
+        this.criarContazul.setEnabled(true);
+    }
+
     private class LongOperation extends AsyncTask<Void, Void, Boolean> {
 
 
         @Override
         protected Boolean doInBackground(Void... voids) {
 
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             criarContazul();
             return true;
         }
@@ -107,6 +127,7 @@ public class SelecaoContaActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
 
+            desabilitarItens();
             pbHeaderProgress.setVisibility(View.VISIBLE);
         }
 
@@ -115,6 +136,7 @@ public class SelecaoContaActivity extends AppCompatActivity {
 
             pbHeaderProgress.setVisibility(View.GONE);
             mostrarPopup();
+            habilitarItens();
         }
     }
 }
