@@ -101,8 +101,6 @@
             style="@style/StyledTilEditTextTheme"
             android:textColor="@color/colorPrimary"
             android:layout_marginTop="40dp"
-            android:layout_marginStart="70dp"
-            android:layout_marginEnd="70dp"
             />
 
         <TextView
@@ -125,7 +123,7 @@
             android:id="@+id/activityPerfilConta_textViewValorFormatado"
             android:text="@string/activityPerfilConta_textViewValorValorFormatado"
             android:textColor="@color/colorPrimary"
-            android:layout_marginStart="70sp"
+            android:layout_marginStart="5sp"
             android:layout_marginTop="10sp"
             android:textSize="20sp"
             />
@@ -139,8 +137,6 @@
             android:inputType="numberDecimal"
             style="@style/StyledTilEditTextTheme"
             android:textColor="@color/colorPrimary"
-            android:layout_marginStart="70dp"
-            android:layout_marginEnd="70dp"
             android:layout_marginTop="10dp"
             />
 

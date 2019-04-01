@@ -96,6 +96,9 @@ public class LucroMensalActivity extends AppCompatActivity {
 
             this.listaVazia = false;
             // this.textViewTituloLucroMensal.setText("Lista de lucro mensal:");
+        } else {
+
+            this.listaVazia = true;
         }
         this.adaptador05 = new Adaptador05(lucroMensal, this);
     }
@@ -105,6 +108,9 @@ public class LucroMensalActivity extends AppCompatActivity {
         if(!listaVazia) {
 
             this.textViewTituloLucroMensal.setText("Lista de lucro mensal:");
+        } else {
+
+            this.textViewTituloLucroMensal.setText("Não há lucro mensal cadastrado");
         }
         this.listaLucroMensal.setAdapter(adaptador05);
     }
