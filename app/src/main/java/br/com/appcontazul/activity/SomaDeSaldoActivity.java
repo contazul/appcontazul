@@ -48,6 +48,7 @@ public class SomaDeSaldoActivity extends AppCompatActivity {
     private LinearLayout layoutListaSomaDeSaldo;
     private Button buttonSomadesaldo;
     private LinearLayout layoutIncluirSomaDeSaldo;
+    private boolean listaVazia;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +64,7 @@ public class SomaDeSaldoActivity extends AppCompatActivity {
         this.carregarListaSomaSaldo();
         this.inicializarComportamentoEditTextDescricaoDaMovimentacao();
         this.inicializarComportamentoEditTextValorDaMovimentacao();
+        this.setMensagem();
     }
 
     public void criarElementos() {
@@ -84,6 +86,7 @@ public class SomaDeSaldoActivity extends AppCompatActivity {
         this.layoutIncluirSomaDeSaldo = (LinearLayout) findViewById(R.id.layout_incluir_soma_de_saldo);
         this.textViewTituloSomaSaldo = (TextView) findViewById(R.id.textView_tituloSomaSaldo);
         this.buttonInserirMovimentacao = (Button) findViewById(R.id.button_InserirMovimentacao);
+        this.listaVazia = false;
     }
 
     public void carregarListaSomaSaldo() {
@@ -95,11 +98,14 @@ public class SomaDeSaldoActivity extends AppCompatActivity {
 
         Requisicao requisicao = new Requisicao();
         List<ListaSomaSaldo> somaSaldo = requisicao.requestListaSomaSaldo();
-        if(somaSaldo.size() != 0) {
-
-            this.textViewTituloSomaSaldo.setText("Soma de saldo do mês atual:");
-        }
+        this.listaVazia = somaSaldo.size() != 0;
         this.adaptador03 = new Adaptador03(somaSaldo,this);
+    }
+
+    public void setMensagem() {
+
+        if(!listaVazia)
+            this.textViewTituloSomaSaldo.setText("Soma de saldo do mês atual:");
     }
 
     public void formatarSaldo() {
@@ -379,7 +385,7 @@ public class SomaDeSaldoActivity extends AppCompatActivity {
 
                 pbHeaderProgress.setVisibility(View.GONE);
                 carregarListaSomaSaldo();
-                atualizarListaSomaSaldo();
+                setMensagem();
                 habilitarItens();
                 mostrarPopupSucesso();
             }

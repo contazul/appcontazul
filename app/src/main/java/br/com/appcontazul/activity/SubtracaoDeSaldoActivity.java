@@ -50,6 +50,7 @@ public class SubtracaoDeSaldoActivity extends AppCompatActivity {
     private boolean mostrandoLista;
     private TextView textViewTituloSubtracaoSaldo;
     private Button buttonInserirMovimentacao;
+    private boolean listaVazia;
 
 
     @Override
@@ -62,6 +63,7 @@ public class SubtracaoDeSaldoActivity extends AppCompatActivity {
         this.carregarListaSubtracaoSaldo();
         this.inicializarComportamentoEditTextDescricaoDaMovimentacao();
         this.inicializarComportamentoEditTextValorDaMovimentacao();
+        this.setMensagem();
     }
 
     public void criarElementos() {
@@ -86,6 +88,7 @@ public class SubtracaoDeSaldoActivity extends AppCompatActivity {
         this.mostrandoLista = true;
         this.textViewTituloSubtracaoSaldo = (TextView) findViewById(R.id.textView_tituloSubtracaoSaldo);
         this.buttonInserirMovimentacao = (Button) findViewById(R.id.button_InserirMovimentacao);
+        this.listaVazia = false;
     }
 
     public void formatarSaldo() {
@@ -102,12 +105,15 @@ public class SubtracaoDeSaldoActivity extends AppCompatActivity {
         this.listaSubtracaoSaldo = (ListView) findViewById(R.id.listaSaldoConta);
         this.listaSubtracaoSaldo.setScrollbarFadingEnabled(false);
         List<ListaSubtracaoSaldo> subtracaoSaldo = requisicao.requestListaSubtracaoSaldo();
-        if(subtracaoSaldo.size() != 0) {
-
-            this.textViewTituloSubtracaoSaldo.setText("Subtração de saldo do mês atual");
-        }
+        this.listaVazia = subtracaoSaldo.size() != 0;
         this.adaptador04 = new Adaptador04(subtracaoSaldo,this);
         this.listaSubtracaoSaldo.setAdapter(this.adaptador04);
+    }
+
+    public void setMensagem() {
+
+        if(!listaVazia)
+            this.textViewTituloSubtracaoSaldo.setText("Subtração de saldo do mês atual");
     }
 
     public void inicializarComportamentoEditTextDescricaoDaMovimentacao() {
@@ -397,6 +403,7 @@ public class SubtracaoDeSaldoActivity extends AppCompatActivity {
             if(aBoolean) {
 
                 pbHeaderProgress.setVisibility(View.GONE);
+                setMensagem();
                 habilitarItens();
                 mostrarSucesso();
             }
