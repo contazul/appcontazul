@@ -98,7 +98,7 @@ public class SomaDeSaldoActivity extends AppCompatActivity {
 
         Requisicao requisicao = new Requisicao();
         List<ListaSomaSaldo> somaSaldo = requisicao.requestListaSomaSaldo();
-        this.listaVazia = somaSaldo.size() != 0;
+        this.listaVazia = somaSaldo.size() == 0;
         this.adaptador03 = new Adaptador03(somaSaldo,this);
     }
 

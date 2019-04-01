@@ -61,6 +61,7 @@ public class SubtracaoDeSaldoActivity extends AppCompatActivity {
         this.criarElementos();
         this.formatarSaldo();
         this.carregarListaSubtracaoSaldo();
+        carregarLista();
         this.inicializarComportamentoEditTextDescricaoDaMovimentacao();
         this.inicializarComportamentoEditTextValorDaMovimentacao();
         this.setMensagem();
@@ -89,6 +90,7 @@ public class SubtracaoDeSaldoActivity extends AppCompatActivity {
         this.textViewTituloSubtracaoSaldo = (TextView) findViewById(R.id.textView_tituloSubtracaoSaldo);
         this.buttonInserirMovimentacao = (Button) findViewById(R.id.button_InserirMovimentacao);
         this.listaVazia = false;
+        this.listaSubtracaoSaldo = (ListView) findViewById(R.id.listaSaldoConta);
     }
 
     public void formatarSaldo() {
@@ -99,15 +101,17 @@ public class SubtracaoDeSaldoActivity extends AppCompatActivity {
         this.textViewSaldoConta.setText(getResources().getString(R.string.activitySubtracaodeSaldoSaldoAtual) + " " + formatacao.formatarValorMonetario("" + saldoAtual));
     }
 
+    public void carregarLista() {
+
+        this.listaSubtracaoSaldo.setAdapter(this.adaptador04);
+    }
+
     public void carregarListaSubtracaoSaldo() {
 
         Requisicao requisicao = new Requisicao();
-        this.listaSubtracaoSaldo = (ListView) findViewById(R.id.listaSaldoConta);
-        this.listaSubtracaoSaldo.setScrollbarFadingEnabled(false);
         List<ListaSubtracaoSaldo> subtracaoSaldo = requisicao.requestListaSubtracaoSaldo();
-        this.listaVazia = subtracaoSaldo.size() != 0;
         this.adaptador04 = new Adaptador04(subtracaoSaldo,this);
-        this.listaSubtracaoSaldo.setAdapter(this.adaptador04);
+        this.listaVazia = subtracaoSaldo.size() == 0;
     }
 
     public void setMensagem() {
@@ -228,6 +232,7 @@ public class SubtracaoDeSaldoActivity extends AppCompatActivity {
         Requisicao requisicao = new Requisicao();
         requisicao.requestInserirSubtracaoSaldo(editTextValorDaMovimentacao.getText().toString(),
                 editTextDescricaoDaMovimentacao.getText().toString(), prioridadeSelecionada);
+        carregarListaSubtracaoSaldo();
     }
 
     public void mostrarSucesso() {
@@ -403,6 +408,7 @@ public class SubtracaoDeSaldoActivity extends AppCompatActivity {
             if(aBoolean) {
 
                 pbHeaderProgress.setVisibility(View.GONE);
+                carregarLista();
                 setMensagem();
                 habilitarItens();
                 mostrarSucesso();

@@ -99,9 +99,7 @@
             style="@style/StyledTilEditTextTheme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="70dp"
             android:layout_marginTop="20dp"
-            android:layout_marginEnd="70dp"
             android:hint="@string/activitySubtracaodeSaldo_editText_DescricaoMovimentacao"
             android:textColor="@color/colorPrimary" />
 
@@ -109,8 +107,8 @@
             android:id="@+id/textView_RE28"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="70sp"
-            android:layout_marginEnd="70sp"
+            android:layout_marginStart="5sp"
+            android:layout_marginEnd="5sp"
             android:text=""
             android:textColor="#FF0000"
             android:textSize="10sp"
@@ -120,9 +118,9 @@
             android:id="@+id/activityPerfilConta_textViewValorFormatado"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="70sp"
+            android:layout_marginStart="5sp"
             android:layout_marginTop="10sp"
-            android:layout_marginEnd="70sp"
+            android:layout_marginEnd="5sp"
             android:text="@string/activitySomadeSaldo_textValorFormatado"
             android:textColor="@color/colorPrimary"
             android:textSize="20sp" />
@@ -132,9 +130,7 @@
             style="@style/StyledTilEditTextTheme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="70dp"
             android:layout_marginTop="15dp"
-            android:layout_marginEnd="70dp"
             android:hint="@string/activitySubtracaodeSaldo_editText_ValorDaMovimentacao"
             android:inputType="number"
             android:textColor="@color/colorPrimary" />
@@ -143,8 +139,8 @@
             android:id="@+id/textView_RE29"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="70sp"
-            android:layout_marginEnd="70sp"
+            android:layout_marginStart="5sp"
+            android:layout_marginEnd="5sp"
             android:text=""
             android:textColor="#FF0000"
             android:textSize="10sp"
@@ -154,9 +150,8 @@
             android:id="@+id/textView_Prioridade"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="70sp"
             android:layout_marginTop="10sp"
-            android:layout_marginEnd="70sp"
+            android:layout_marginStart="10sp"
             android:text="@string/activitySubtracaodeSaldo_textView_Prioridade"
             android:textColor="@color/colorAccent"
             android:textSize="15sp"
@@ -166,6 +161,7 @@
                 android:id="@+id/radioGroup_prioridade"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:orientation="vertical">
 
                 <RadioButton
@@ -175,8 +171,7 @@
                     android:onClick="onRadioButtonClicked"
                     android:text="Alta"
                     android:textColor="#8B8989"
-                    android:layout_marginStart="70dp"
-                    android:layout_marginEnd="70dp"
+                    android:layout_marginStart="10dp"
                     />
 
                 <RadioButton
@@ -186,8 +181,7 @@
                     android:onClick="onRadioButtonClicked"
                     android:text="Baixa"
                     android:textColor="#8B8989"
-                    android:layout_marginStart="70dp"
-                    android:layout_marginEnd="70dp"
+                    android:layout_marginStart="10dp"
                     />
             </RadioGroup>
 
@@ -195,8 +189,8 @@
             android:id="@+id/button_InserirMovimentacao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="80dp"
             android:layout_marginTop="10dp"
+            android:layout_marginStart="80dp"
             android:layout_marginEnd="80dp"
             android:background="@color/colorPrimary"
             android:onClick="buttonInserirMovimentacao"
