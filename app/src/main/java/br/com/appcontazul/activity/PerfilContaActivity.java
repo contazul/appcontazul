@@ -35,6 +35,7 @@ public class PerfilContaActivity extends AppCompatActivity {
     private Button buttonDefinir;
     boolean camposVazios;
     boolean campoValorZerado;
+    PerfilContazul perfilContazul;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +48,7 @@ public class PerfilContaActivity extends AppCompatActivity {
 
         this.criarElementos();
         this.carregarElementos();
+        this.popularElementos();
         this.inicializarComportamentoEditTextValorIdeal();
     }
 
@@ -68,7 +70,10 @@ public class PerfilContaActivity extends AppCompatActivity {
     public void carregarElementos() {
 
         Requisicao requisicao = new Requisicao();
-        PerfilContazul perfilContazul = requisicao.requestPerfilConta();
+        this.perfilContazul = requisicao.requestPerfilConta();
+    }
+
+    public void popularElementos() {
 
         this.textViewPerfilConta.setText(getResources().getString(R.string.activityPerfilConta_perfilDaConta)
                 + " " + perfilContazul.getPerfil());
@@ -280,6 +285,7 @@ public class PerfilContaActivity extends AppCompatActivity {
             }
 
             atualizarDadosPerfilConta();
+            carregarElementos();
             return true;
         }
 
@@ -296,6 +302,7 @@ public class PerfilContaActivity extends AppCompatActivity {
             if(aBoolean) {
 
                 pbHeaderProgress.setVisibility(View.GONE);
+                popularElementos();
                 habilitarItens();
                 apresentarPopupSucesso();
             }
