@@ -9,6 +9,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,8 +20,11 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import java.util.List;
+
 import br.com.appcontazul.R;
 import br.com.appcontazul.rest.Requisicao;
+import br.com.appcontazul.rest.model.ListaLucroMensal;
 import br.com.appcontazul.util.Adaptador05;
 import br.com.appcontazul.util.Formatacao;
 
@@ -40,6 +46,9 @@ public class LucroMensalActivity extends AppCompatActivity {
     private Button buttonLucroMensal;
     private LinearLayout layoutListarLucroMensal;
     private LinearLayout layoutIncluirLucroMensal;
+    private Button buttonIncluir;
+    private TextView textViewTituloLucroMensal;
+    private boolean listaVazia;
 
     public View v;
 
@@ -73,17 +82,36 @@ public class LucroMensalActivity extends AppCompatActivity {
         this.buttonLucroMensal = (Button) findViewById(R.id.button_lucroMensal);
         this.layoutListarLucroMensal = (LinearLayout) findViewById(R.id.layout_listaLucroMensal);
         this.layoutIncluirLucroMensal = (LinearLayout) findViewById(R.id.layout_InserirLucroMensal);
+        this.buttonIncluir = (Button) findViewById(R.id.button_Incluir);
+        this.textViewTituloLucroMensal = (TextView) findViewById(R.id.textView_tituloLucroMensal);
+        this.listaVazia = true;
     }
 
     public void carregarLista() {
 
         this.listaLucroMensal = (ListView) findViewById(R.id.listaLucroMensal);
         Requisicao requisicao = new Requisicao();
-        this.adaptador05 = new Adaptador05(requisicao.requestListaLucroMensal(), this);
+        List<ListaLucroMensal> lucroMensal = requisicao.requestListaLucroMensal();
+        if(lucroMensal.size() != 0) {
+
+            this.listaVazia = false;
+            // this.textViewTituloLucroMensal.setText("Lista de lucro mensal:");
+        } else {
+
+            this.listaVazia = true;
+        }
+        this.adaptador05 = new Adaptador05(lucroMensal, this);
     }
 
     public void setLista() {
 
+        if(!listaVazia) {
+
+            this.textViewTituloLucroMensal.setText("Lista de lucro mensal:");
+        } else {
+
+            this.textViewTituloLucroMensal.setText("Não há lucro mensal cadastrado");
+        }
         this.listaLucroMensal.setAdapter(adaptador05);
     }
 
@@ -148,6 +176,7 @@ public class LucroMensalActivity extends AppCompatActivity {
             this.buttonLucroMensal.setText(getResources().getString(R.string.activityLucroMensal_ListarLucroMensal));
             this.layoutListarLucroMensal.setVisibility(View.GONE);
             this.layoutIncluirLucroMensal.setVisibility(View.VISIBLE);
+            this.textViewTituloLucroMensal.setVisibility(View.GONE);
         } else {
 
             this.mostrandoLista = true;
@@ -156,13 +185,8 @@ public class LucroMensalActivity extends AppCompatActivity {
             this.buttonLucroMensal.setText(getResources().getString(R.string.activityLucroMensal_IncluirLucroMensal));
             this.layoutIncluirLucroMensal.setVisibility(View.GONE);
             this.layoutListarLucroMensal.setVisibility(View.VISIBLE);
+            this.textViewTituloLucroMensal.setVisibility(View.VISIBLE);
         }
-    }
-
-    public void contralMostrarMenu(View v) {
-
-        Intent menuActivity = new Intent(LucroMensalActivity.this, MenuActivity.class);
-        startActivity(menuActivity);
     }
 
     public void buttonIncluirLucro(View v) {
@@ -309,11 +333,92 @@ public class LucroMensalActivity extends AppCompatActivity {
         popup.show();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_central:
+
+                Intent activityCentral = new Intent(LucroMensalActivity.this, CentralActivity.class);
+                startActivity(activityCentral);
+                return true;
+
+            case R.id.action_perfilDaConta:
+
+                Intent activityPerfilDaConta = new Intent(LucroMensalActivity.this, PerfilContaActivity.class);
+                startActivity(activityPerfilDaConta);
+                return true;
+
+            case R.id.action_somaSaldo:
+
+                Intent activitySomaDeSaldo = new Intent(LucroMensalActivity.this, SomaDeSaldoActivity.class);
+                startActivity(activitySomaDeSaldo);
+                return true;
+
+            case R.id.action_subtracaoSaldo:
+
+                Intent activitySubtracaoDeSaldo = new Intent(LucroMensalActivity.this, SubtracaoDeSaldoActivity.class);
+                startActivity(activitySubtracaoDeSaldo);
+                return true;
+
+            case R.id.action_lucroMensal:
+
+                Intent activityLucroMensal = new Intent(LucroMensalActivity.this, LucroMensalActivity.class);
+                startActivity(activityLucroMensal);
+                return true;
+
+            case R.id.action_selecaoConta:
+
+                Intent activitySelecaoConta = new Intent(LucroMensalActivity.this, SelecaoContaActivity.class);
+                startActivity(activitySelecaoConta);
+                return true;
+
+            case R.id.action_sair:
+
+                Intent activityLogin = new Intent(LucroMensalActivity.this, LoginActivity.class);
+                startActivity(activityLogin);
+                return true;
+
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+
+        }
+    }
+
+    public void desabilitarItens() {
+
+        this.editTextDescricaoDoBeneficio.setEnabled(false);
+        this.editTextValorDoLucro.setEnabled(false);
+        this.buttonIncluir.setEnabled(false);
+    }
+
+    public void habilitarItens() {
+
+        this.editTextDescricaoDoBeneficio.setEnabled(true);
+        this.editTextValorDoLucro.setEnabled(true);
+        this.buttonIncluir.setEnabled(true);
+    }
+
     private class LongOperation extends AsyncTask<Void, Void, Boolean> {
+
 
 
         @Override
         protected Boolean doInBackground(Void... voids) {
+
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
 
             if(!validarCampos()) {
 
@@ -328,6 +433,7 @@ public class LucroMensalActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
 
+            desabilitarItens();
             pbHeaderProgress.setVisibility(View.VISIBLE);
         }
 
@@ -338,10 +444,12 @@ public class LucroMensalActivity extends AppCompatActivity {
 
                 pbHeaderProgress.setVisibility(View.GONE);
                 setLista();
+                habilitarItens();
                 mostrarSucesso();
             }
 
             pbHeaderProgress.setVisibility(View.GONE);
+            habilitarItens();
             checarValidacoes();
         }
     }

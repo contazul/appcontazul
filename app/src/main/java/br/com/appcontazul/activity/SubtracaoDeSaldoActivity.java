@@ -7,6 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,8 +19,11 @@ import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
+import java.util.List;
+
 import br.com.appcontazul.R;
 import br.com.appcontazul.rest.Requisicao;
+import br.com.appcontazul.rest.model.ListaSubtracaoSaldo;
 import br.com.appcontazul.util.Adaptador04;
 import br.com.appcontazul.util.Formatacao;
 
@@ -42,6 +48,9 @@ public class SubtracaoDeSaldoActivity extends AppCompatActivity {
     private LinearLayout layoutListaSubtracaoSaldo;
     private LinearLayout layoutIncluirSubtracaoDeSaldo;
     private boolean mostrandoLista;
+    private TextView textViewTituloSubtracaoSaldo;
+    private Button buttonInserirMovimentacao;
+    private boolean listaVazia;
 
 
     @Override
@@ -52,8 +61,10 @@ public class SubtracaoDeSaldoActivity extends AppCompatActivity {
         this.criarElementos();
         this.formatarSaldo();
         this.carregarListaSubtracaoSaldo();
+        carregarLista();
         this.inicializarComportamentoEditTextDescricaoDaMovimentacao();
         this.inicializarComportamentoEditTextValorDaMovimentacao();
+        this.setMensagem();
     }
 
     public void criarElementos() {
@@ -76,6 +87,10 @@ public class SubtracaoDeSaldoActivity extends AppCompatActivity {
         this.layoutListaSubtracaoSaldo = (LinearLayout) findViewById(R.id.layout_lista_subtracao_saldo);
         this.layoutIncluirSubtracaoDeSaldo = (LinearLayout) findViewById(R.id.layout_incluir_subtracao_de_saldo);
         this.mostrandoLista = true;
+        this.textViewTituloSubtracaoSaldo = (TextView) findViewById(R.id.textView_tituloSubtracaoSaldo);
+        this.buttonInserirMovimentacao = (Button) findViewById(R.id.button_InserirMovimentacao);
+        this.listaVazia = false;
+        this.listaSubtracaoSaldo = (ListView) findViewById(R.id.listaSaldoConta);
     }
 
     public void formatarSaldo() {
@@ -86,13 +101,23 @@ public class SubtracaoDeSaldoActivity extends AppCompatActivity {
         this.textViewSaldoConta.setText(getResources().getString(R.string.activitySubtracaodeSaldoSaldoAtual) + " " + formatacao.formatarValorMonetario("" + saldoAtual));
     }
 
+    public void carregarLista() {
+
+        this.listaSubtracaoSaldo.setAdapter(this.adaptador04);
+    }
+
     public void carregarListaSubtracaoSaldo() {
 
         Requisicao requisicao = new Requisicao();
-        this.listaSubtracaoSaldo = (ListView) findViewById(R.id.listaSaldoConta);
-        this.listaSubtracaoSaldo.setScrollbarFadingEnabled(false);
-        this.adaptador04 = new Adaptador04(requisicao.requestListaSubtracaoSaldo(),this);
-        this.listaSubtracaoSaldo.setAdapter(this.adaptador04);
+        List<ListaSubtracaoSaldo> subtracaoSaldo = requisicao.requestListaSubtracaoSaldo();
+        this.adaptador04 = new Adaptador04(subtracaoSaldo,this);
+        this.listaVazia = subtracaoSaldo.size() == 0;
+    }
+
+    public void setMensagem() {
+
+        if(!listaVazia)
+            this.textViewTituloSubtracaoSaldo.setText("Subtração de saldo do mês atual");
     }
 
     public void inicializarComportamentoEditTextDescricaoDaMovimentacao() {
@@ -175,12 +200,6 @@ public class SubtracaoDeSaldoActivity extends AppCompatActivity {
         }
     }
 
-    public void contralMostrarMenu(View v) {
-
-        Intent menuActivity = new Intent(SubtracaoDeSaldoActivity.this, MenuActivity.class);
-        startActivity(menuActivity);
-    }
-
     public void subtracaoSaldoTrocarTela(View v) {
 
         if(mostrandoLista) {
@@ -189,6 +208,7 @@ public class SubtracaoDeSaldoActivity extends AppCompatActivity {
             this.buttonSubtracaoSaldo.setText(getResources().getString(R.string.activitySubtracaodeSaldoListarSubtracaoSaldo));
             this.layoutListaSubtracaoSaldo.setVisibility(View.GONE);
             this.layoutIncluirSubtracaoDeSaldo.setVisibility(View.VISIBLE);
+            this.textViewTituloSubtracaoSaldo.setVisibility(View.GONE);
         } else {
 
             this.mostrandoLista = true;
@@ -197,6 +217,7 @@ public class SubtracaoDeSaldoActivity extends AppCompatActivity {
             this.buttonSubtracaoSaldo.setText(getResources().getString(R.string.activitySubtracaodeSaldoIncluirSubtracaoSaldo));
             this.layoutIncluirSubtracaoDeSaldo.setVisibility(View.GONE);
             this.layoutListaSubtracaoSaldo.setVisibility(View.VISIBLE);
+            this.textViewTituloSubtracaoSaldo.setVisibility(View.VISIBLE);
         }
     }
 
@@ -211,6 +232,7 @@ public class SubtracaoDeSaldoActivity extends AppCompatActivity {
         Requisicao requisicao = new Requisicao();
         requisicao.requestInserirSubtracaoSaldo(editTextValorDaMovimentacao.getText().toString(),
                 editTextDescricaoDaMovimentacao.getText().toString(), prioridadeSelecionada);
+        carregarListaSubtracaoSaldo();
     }
 
     public void mostrarSucesso() {
@@ -279,12 +301,91 @@ public class SubtracaoDeSaldoActivity extends AppCompatActivity {
         this.valorZero = false;
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_central:
+
+                Intent activityCentral = new Intent(SubtracaoDeSaldoActivity.this, CentralActivity.class);
+                startActivity(activityCentral);
+                return true;
+
+            case R.id.action_perfilDaConta:
+
+                Intent activityPerfilDaConta = new Intent(SubtracaoDeSaldoActivity.this, PerfilContaActivity.class);
+                startActivity(activityPerfilDaConta);
+                return true;
+
+            case R.id.action_somaSaldo:
+
+                Intent activitySomaDeSaldo = new Intent(SubtracaoDeSaldoActivity.this, SomaDeSaldoActivity.class);
+                startActivity(activitySomaDeSaldo);
+                return true;
+
+            case R.id.action_subtracaoSaldo:
+
+                Intent activitySubtracaoDeSaldo = new Intent(SubtracaoDeSaldoActivity.this, SubtracaoDeSaldoActivity.class);
+                startActivity(activitySubtracaoDeSaldo);
+                return true;
+
+            case R.id.action_lucroMensal:
+
+                Intent activityLucroMensal = new Intent(SubtracaoDeSaldoActivity.this, LucroMensalActivity.class);
+                startActivity(activityLucroMensal);
+                return true;
+
+            case R.id.action_selecaoConta:
+
+                Intent activitySelecaoConta = new Intent(SubtracaoDeSaldoActivity.this, SelecaoContaActivity.class);
+                startActivity(activitySelecaoConta);
+                return true;
+
+            case R.id.action_sair:
+
+                Intent activityLogin = new Intent(SubtracaoDeSaldoActivity.this, LoginActivity.class);
+                startActivity(activityLogin);
+                return true;
+
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+
+        }
+    }
+
+    public void desabilitarItens() {
+
+        this.editTextDescricaoDaMovimentacao.setEnabled(false);
+        this.editTextValorDaMovimentacao.setEnabled(false);
+        this.buttonInserirMovimentacao.setEnabled(false);
+    }
+
+    public void habilitarItens() {
+
+        this.editTextDescricaoDaMovimentacao.setEnabled(true);
+        this.editTextValorDaMovimentacao.setEnabled(true);
+        this.buttonInserirMovimentacao.setEnabled(true);
+    }
+
     private class LongOperation extends AsyncTask<Void, Void, Boolean> {
 
 
         @Override
         protected Boolean doInBackground(Void... voids) {
 
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             if(!validarCampo()) {
 
                 return false;
@@ -297,6 +398,7 @@ public class SubtracaoDeSaldoActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
 
+            desabilitarItens();
             pbHeaderProgress.setVisibility(View.VISIBLE);
         }
 
@@ -306,10 +408,14 @@ public class SubtracaoDeSaldoActivity extends AppCompatActivity {
             if(aBoolean) {
 
                 pbHeaderProgress.setVisibility(View.GONE);
+                carregarLista();
+                setMensagem();
+                habilitarItens();
                 mostrarSucesso();
             }
 
             pbHeaderProgress.setVisibility(View.GONE);
+            habilitarItens();
             checarValidacoes();
         }
     }

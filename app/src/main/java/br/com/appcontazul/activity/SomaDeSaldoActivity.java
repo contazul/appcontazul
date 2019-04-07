@@ -8,6 +8,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,8 +19,11 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import java.util.List;
+
 import br.com.appcontazul.R;
 import br.com.appcontazul.rest.Requisicao;
+import br.com.appcontazul.rest.model.ListaSomaSaldo;
 import br.com.appcontazul.util.Adaptador03;
 import br.com.appcontazul.util.Formatacao;
 
@@ -32,6 +38,8 @@ public class SomaDeSaldoActivity extends AppCompatActivity {
     private EditText editTextDescricaoDaMovimentacao;
     private TextView textViewRE28;
     private TextView textViewRE29;
+    private TextView textViewTituloSomaSaldo;
+    private Button buttonInserirMovimentacao;
     ProgressBar pbHeaderProgress;
     boolean campoDescricaoObrigatorio;
     boolean campoValorObrigatorio;
@@ -40,6 +48,7 @@ public class SomaDeSaldoActivity extends AppCompatActivity {
     private LinearLayout layoutListaSomaDeSaldo;
     private Button buttonSomadesaldo;
     private LinearLayout layoutIncluirSomaDeSaldo;
+    private boolean listaVazia;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +64,7 @@ public class SomaDeSaldoActivity extends AppCompatActivity {
         this.carregarListaSomaSaldo();
         this.inicializarComportamentoEditTextDescricaoDaMovimentacao();
         this.inicializarComportamentoEditTextValorDaMovimentacao();
+        this.setMensagem();
     }
 
     public void criarElementos() {
@@ -74,6 +84,9 @@ public class SomaDeSaldoActivity extends AppCompatActivity {
         this.layoutListaSomaDeSaldo = (LinearLayout) findViewById(R.id.layout_lista_soma_de_saldo);
         this.buttonSomadesaldo = (Button) findViewById(R.id.button_somadesaldo);
         this.layoutIncluirSomaDeSaldo = (LinearLayout) findViewById(R.id.layout_incluir_soma_de_saldo);
+        this.textViewTituloSomaSaldo = (TextView) findViewById(R.id.textView_tituloSomaSaldo);
+        this.buttonInserirMovimentacao = (Button) findViewById(R.id.button_InserirMovimentacao);
+        this.listaVazia = false;
     }
 
     public void carregarListaSomaSaldo() {
@@ -84,7 +97,15 @@ public class SomaDeSaldoActivity extends AppCompatActivity {
     public void atualizarListaSomaSaldo() {
 
         Requisicao requisicao = new Requisicao();
-        this.adaptador03 = new Adaptador03(requisicao.requestListaSomaSaldo(),this);
+        List<ListaSomaSaldo> somaSaldo = requisicao.requestListaSomaSaldo();
+        this.listaVazia = somaSaldo.size() == 0;
+        this.adaptador03 = new Adaptador03(somaSaldo,this);
+    }
+
+    public void setMensagem() {
+
+        if(!listaVazia)
+            this.textViewTituloSomaSaldo.setText("Soma de saldo do mês atual:");
     }
 
     public void formatarSaldo() {
@@ -163,6 +184,7 @@ public class SomaDeSaldoActivity extends AppCompatActivity {
             this.buttonSomadesaldo.setText(getResources().getString(R.string.activitySomaSaldoOpcaoListarSomaDeSaldo));
             this.layoutListaSomaDeSaldo.setVisibility(View.GONE);
             this.layoutIncluirSomaDeSaldo.setVisibility(View.VISIBLE);
+            this.textViewTituloSomaSaldo.setVisibility(View.GONE);
         } else {
 
             layoutListaSomaSaldoMostrando = true;
@@ -171,6 +193,7 @@ public class SomaDeSaldoActivity extends AppCompatActivity {
             this.textViewRE29.setText("");
             this.layoutIncluirSomaDeSaldo.setVisibility(View.GONE);
             this.layoutListaSomaDeSaldo.setVisibility(View.VISIBLE);
+            this.textViewTituloSomaSaldo.setVisibility(View.VISIBLE);
         }
     }
 
@@ -254,10 +277,78 @@ public class SomaDeSaldoActivity extends AppCompatActivity {
         this.campoValorZerado = false;
     }
 
-    public void contralMostrarMenu(View v) {
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return true;
+    }
 
-        Intent menuActivity = new Intent(SomaDeSaldoActivity.this, MenuActivity.class);
-        startActivity(menuActivity);
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_central:
+
+                Intent activityCentral = new Intent(SomaDeSaldoActivity.this, CentralActivity.class);
+                startActivity(activityCentral);
+                return true;
+
+            case R.id.action_perfilDaConta:
+
+                Intent activityPerfilDaConta = new Intent(SomaDeSaldoActivity.this, PerfilContaActivity.class);
+                startActivity(activityPerfilDaConta);
+                return true;
+
+            case R.id.action_somaSaldo:
+
+                Intent activitySomaDeSaldo = new Intent(SomaDeSaldoActivity.this, SomaDeSaldoActivity.class);
+                startActivity(activitySomaDeSaldo);
+                return true;
+
+            case R.id.action_subtracaoSaldo:
+
+                Intent activitySubtracaoDeSaldo = new Intent(SomaDeSaldoActivity.this, SubtracaoDeSaldoActivity.class);
+                startActivity(activitySubtracaoDeSaldo);
+                return true;
+
+            case R.id.action_lucroMensal:
+
+                Intent activityLucroMensal = new Intent(SomaDeSaldoActivity.this, LucroMensalActivity.class);
+                startActivity(activityLucroMensal);
+                return true;
+
+            case R.id.action_selecaoConta:
+
+                Intent activitySelecaoConta = new Intent(SomaDeSaldoActivity.this, SelecaoContaActivity.class);
+                startActivity(activitySelecaoConta);
+                return true;
+
+            case R.id.action_sair:
+
+                Intent activityLogin = new Intent(SomaDeSaldoActivity.this, LoginActivity.class);
+                startActivity(activityLogin);
+                return true;
+
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+
+        }
+    }
+
+    public void desabilitarItens() {
+
+        this.editTextDescricaoDaMovimentacao.setEnabled(false);
+        this.editTextValorDaMovimentacao.setEnabled(false);
+        this.buttonInserirMovimentacao.setEnabled(false);
+    }
+
+    public void habilitarItens() {
+
+        this.editTextDescricaoDaMovimentacao.setEnabled(true);
+        this.editTextValorDaMovimentacao.setEnabled(true);
+        this.buttonInserirMovimentacao.setEnabled(true);
     }
 
     private class LongOperation extends AsyncTask<Void, Void, Boolean> {
@@ -266,6 +357,11 @@ public class SomaDeSaldoActivity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(Void... voids) {
 
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             if(!validarCampos()) {
 
                 return false;
@@ -278,6 +374,7 @@ public class SomaDeSaldoActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
 
+            desabilitarItens();
             pbHeaderProgress.setVisibility(View.VISIBLE);
         }
 
@@ -288,10 +385,13 @@ public class SomaDeSaldoActivity extends AppCompatActivity {
 
                 pbHeaderProgress.setVisibility(View.GONE);
                 carregarListaSomaSaldo();
+                setMensagem();
+                habilitarItens();
                 mostrarPopupSucesso();
             }
 
             pbHeaderProgress.setVisibility(View.GONE);
+            habilitarItens();
             checarValidacoes();
         }
     }

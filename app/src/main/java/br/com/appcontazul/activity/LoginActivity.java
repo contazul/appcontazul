@@ -1,13 +1,18 @@
 package br.com.appcontazul.activity;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.os.StrictMode;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -24,6 +29,8 @@ public class LoginActivity extends AppCompatActivity {
     EditText editTextSenha;
     TextView textViewRE09RE07;
     ProgressBar pbHeaderProgress;
+    Button buttonAcessar;
+    Button buttonCadastrar;
     boolean campoUsuarioVazio;
     boolean campoSenhaObrigatorio;
     boolean nomeUsuarioExiste;
@@ -37,55 +44,55 @@ public class LoginActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_login);
 
-        editTextUsuario = (EditText) findViewById(R.id.editText_usuario);
-        textViewRE06 = (TextView) findViewById(R.id.textView_RE06);
-        editTextSenha = (EditText) findViewById(R.id.editText_senha);
-        textViewRE09RE07 = (TextView)  findViewById(R.id.textView_RE09_RE07);
-        pbHeaderProgress = (ProgressBar) findViewById(R.id.pbHeaderProgress);
-        campoUsuarioVazio = false;
-        campoSenhaObrigatorio = false;
-        nomeUsuarioExiste = false;
+            editTextUsuario = (EditText) findViewById(R.id.editText_usuario);
+            textViewRE06 = (TextView) findViewById(R.id.textView_RE06);
+            editTextSenha = (EditText) findViewById(R.id.editText_senha);
+            textViewRE09RE07 = (TextView) findViewById(R.id.textView_RE09_RE07);
+            buttonAcessar = (Button) findViewById(R.id.button_acessar);
+            buttonCadastrar = (Button) findViewById(R.id.button_cadastrar);
+            pbHeaderProgress = (ProgressBar) findViewById(R.id.pbHeaderProgress);
+            campoUsuarioVazio = false;
+            campoSenhaObrigatorio = false;
+            nomeUsuarioExiste = false;
 
-        editTextUsuario.addTextChangedListener(new TextWatcher() {
+            editTextUsuario.addTextChangedListener(new TextWatcher() {
 
-            public void afterTextChanged(Editable s) {
+                public void afterTextChanged(Editable s) {
 
-            }
+                }
 
-            public void beforeTextChanged(CharSequence s, int start, int count,
-                                          int after) {
+                public void beforeTextChanged(CharSequence s, int start, int count,
+                                              int after) {
 
-            }
+                }
 
-            public void onTextChanged(CharSequence s, int start, int before,
-                                      int count) {
+                public void onTextChanged(CharSequence s, int start, int before,
+                                          int count) {
 
-                textViewRE06.setText("");
-            }
-
-
-
-
-        });
-        editTextSenha.addTextChangedListener(new TextWatcher() {
-
-            public void afterTextChanged(Editable s) {
+                    textViewRE06.setText("");
+                }
 
 
-            }
+            });
+            editTextSenha.addTextChangedListener(new TextWatcher() {
 
-            public void beforeTextChanged(CharSequence s, int start, int count,
-                                          int after) {
+                public void afterTextChanged(Editable s) {
 
-            }
 
-            public void onTextChanged(CharSequence s, int start, int before,
-                                      int count) {
+                }
 
-                textViewRE09RE07.setText("");
-            }
+                public void beforeTextChanged(CharSequence s, int start, int count,
+                                              int after) {
 
-        });
+                }
+
+                public void onTextChanged(CharSequence s, int start, int before,
+                                          int count) {
+
+                    textViewRE09RE07.setText("");
+                }
+
+            });
     }
 
     public void cadastrar(View v) {
@@ -149,18 +156,47 @@ public class LoginActivity extends AppCompatActivity {
         return validado;
     }
 
+    public void desabilitarItens() {
+
+        editTextSenha.setEnabled(false);
+        editTextUsuario.setEnabled(false);
+        buttonAcessar.setEnabled(false);
+        buttonCadastrar.setEnabled(false);
+    }
+
+    public void habilitarItens() {
+
+        editTextSenha.setEnabled(true);
+        editTextUsuario.setEnabled(true);
+        buttonAcessar.setEnabled(true);
+        buttonCadastrar.setEnabled(true);
+    }
+
+    private boolean isNetworkConnected() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        return cm.getActiveNetworkInfo() != null;
+    }
+
     private class LongOperation extends AsyncTask<Void, Void, Boolean> {
 
 
         @Override
         protected Boolean doInBackground(Void... voids) {
 
-            return validarCampos();
+            boolean resultado =  validarCampos();
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return resultado;
         }
 
         @Override
         protected void onPreExecute() {
 
+            desabilitarItens();
             pbHeaderProgress.setVisibility(View.VISIBLE);
         }
 
@@ -175,6 +211,7 @@ public class LoginActivity extends AppCompatActivity {
 
             pbHeaderProgress.setVisibility(View.GONE);
             checarValidacoes();
+            habilitarItens();
         }
     }
 }

@@ -34,19 +34,27 @@
             >
         </ProgressBar>
 
-        <Button
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/button_menu"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginTop="10dp"
-            android:text="@string/activityCentral_buttonMenu"
-            android:background="@color/colorPrimary"
-            android:textColor="#FFF"
-            android:onClick="perfilDaContaMostrarMenu"
+            android:id="@+id/textView_infoConta"
+            android:text="Informações da conta:"
+            android:textSize="25sp"
+            android:layout_marginStart="15sp"
+            android:layout_marginEnd="5sp"
+            android:layout_marginTop="30sp"
+            android:textColor="#696969"
             />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:paddingBottom="15dp"
+            android:background="@drawable/borda">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -55,8 +63,8 @@
             android:textSize="15sp"
             android:layout_marginStart="15sp"
             android:layout_marginEnd="5sp"
-            android:layout_marginTop="30sp"
-            android:textColor="#696969"
+            android:layout_marginTop="15sp"
+            android:textColor="@color/colorPrimary"
             />
 
         <TextView
@@ -68,7 +76,7 @@
             android:layout_marginStart="15sp"
             android:layout_marginEnd="5sp"
             android:layout_marginTop="10sp"
-            android:textColor="#696969"
+            android:textColor="@color/colorPrimary"
             />
 
         <TextView
@@ -80,7 +88,9 @@
             android:layout_marginStart="15sp"
             android:layout_marginEnd="5sp"
             android:layout_marginTop="10sp"
-            android:textColor="#696969" />
+            android:textColor="@color/colorPrimary" />
+
+        </LinearLayout>
 
         <EditText
             android:layout_width="match_parent"
@@ -91,8 +101,6 @@
             style="@style/StyledTilEditTextTheme"
             android:textColor="@color/colorPrimary"
             android:layout_marginTop="40dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="5dp"
             />
 
         <TextView
@@ -129,8 +137,6 @@
             android:inputType="numberDecimal"
             style="@style/StyledTilEditTextTheme"
             android:textColor="@color/colorPrimary"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="5dp"
             android:layout_marginTop="10dp"
             />
 
@@ -142,8 +148,8 @@
             android:textSize="10sp"
             android:textColor="#FF0000"
             android:layout_marginTop="5sp"
-            android:layout_marginStart="5sp"
-            android:layout_marginEnd="5sp"
+            android:layout_marginStart="70sp"
+            android:layout_marginEnd="70sp"
             android:visibility="invisible"
             />
 
@@ -156,8 +162,8 @@
             android:background="@color/colorPrimary"
             android:textColor="#FFF"
             android:onClick="definir"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="5dp"
+            android:layout_marginStart="80dp"
+            android:layout_marginEnd="80dp"
             />
 
     </LinearLayout>

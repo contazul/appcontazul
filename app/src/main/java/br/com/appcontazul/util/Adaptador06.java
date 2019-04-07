@@ -56,7 +56,15 @@ public class Adaptador06 extends BaseAdapter {
         Formatacao formatacao = new Formatacao();
         textView_valorDaConta.setText("Valor:" + " " + formatacao.formatarValorMonetario("" + listaContasAPagar.getValor()));
         // 1/12
-        textView_parcela.setText("Número de parcelas:" + listaContasAPagar.getQuantidadePagas()+"/"+listaContasAPagar.getQuantidadeParcelas());
+        textView_prioridade.setText("Prioridade:" + " " + listaContasAPagar.getPrioridade());
+
+
+
+
+        if (listaContasAPagar.getQuantidadeParcelas() !=0){
+            textView_parcela.setText("Número de parcelas pagas:" + listaContasAPagar.getQuantidadePagas()+"/"+listaContasAPagar.getQuantidadeParcelas());
+            textView_parcela.setVisibility(View.VISIBLE);
+        }
 
         if (listaContasAPagar.getQuantidadeParcelas() != 0){
             buttonQuitar.setVisibility(View.VISIBLE);

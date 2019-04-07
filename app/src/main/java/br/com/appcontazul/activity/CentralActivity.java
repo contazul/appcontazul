@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -58,9 +61,69 @@ public class CentralActivity extends AppCompatActivity {
         this.textViewCentralTotalSomaSaldo.setText(formatacao.formatarValorMonetario("" + central.getTotalSomaSaldo()));
     }
 
-    public void contralMostrarMenu(View v) {
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return true;
+    }
 
-        Intent menuActivity = new Intent(CentralActivity.this, MenuActivity.class);
-        startActivity(menuActivity);
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_central:
+
+                Intent activityCentral = new Intent(CentralActivity.this, CentralActivity.class);
+                startActivity(activityCentral);
+                return true;
+
+            case R.id.action_perfilDaConta:
+
+                Intent activityPerfilDaConta = new Intent(CentralActivity.this, PerfilContaActivity.class);
+                startActivity(activityPerfilDaConta);
+                return true;
+
+            case R.id.action_somaSaldo:
+
+                Intent activitySomaDeSaldo = new Intent(CentralActivity.this, SomaDeSaldoActivity.class);
+                startActivity(activitySomaDeSaldo);
+                return true;
+
+            case R.id.action_subtracaoSaldo:
+
+                Intent activitySubtracaoDeSaldo = new Intent(CentralActivity.this, SubtracaoDeSaldoActivity.class);
+                startActivity(activitySubtracaoDeSaldo);
+                return true;
+
+            case R.id.action_lucroMensal:
+
+                Intent activityLucroMensal = new Intent(CentralActivity.this, LucroMensalActivity.class);
+                startActivity(activityLucroMensal);
+                return true;
+
+            case R.id.action_contasPagar:
+
+                Intent activityContasAPagar = new Intent(CentralActivity.this, ContasAPagarActivity.class);
+                startActivity(activityContasAPagar);
+                return true;
+
+            case R.id.action_selecaoConta:
+
+                Intent activitySelecaoConta = new Intent(CentralActivity.this, SelecaoContaActivity.class);
+                startActivity(activitySelecaoConta);
+                return true;
+
+            case R.id.action_sair:
+
+                Intent activityLogin = new Intent(CentralActivity.this, LoginActivity.class);
+                startActivity(activityLogin);
+                return true;
+
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+
+        }
     }
 }

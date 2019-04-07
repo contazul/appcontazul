@@ -8,7 +8,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -28,8 +32,10 @@ public class PerfilContaActivity extends AppCompatActivity {
     private TextView textViewValidacaoValor0;
     private TextView activityPerfilContaTextViewValorFormatado;
     ProgressBar pbHeaderProgress;
+    private Button buttonDefinir;
     boolean camposVazios;
     boolean campoValorZerado;
+    PerfilContazul perfilContazul;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +48,7 @@ public class PerfilContaActivity extends AppCompatActivity {
 
         this.criarElementos();
         this.carregarElementos();
+        this.popularElementos();
         this.inicializarComportamentoEditTextValorIdeal();
     }
 
@@ -54,6 +61,7 @@ public class PerfilContaActivity extends AppCompatActivity {
         this.editTextValorIdeal = (EditText) findViewById(R.id.editText_ValorIdeal);
         this.textViewValidacaoValor0 = (TextView) findViewById(R.id.textView_validacaoValor0);
         this.activityPerfilContaTextViewValorFormatado = (TextView) findViewById(R.id.activityPerfilConta_textViewValorFormatado);
+        this.buttonDefinir = (Button) findViewById(R.id.button_definir);
         this.pbHeaderProgress = (ProgressBar) findViewById(R.id.pbHeaderProgress);
         this.camposVazios = false;
         this.campoValorZerado = false;
@@ -62,7 +70,10 @@ public class PerfilContaActivity extends AppCompatActivity {
     public void carregarElementos() {
 
         Requisicao requisicao = new Requisicao();
-        PerfilContazul perfilContazul = requisicao.requestPerfilConta();
+        this.perfilContazul = requisicao.requestPerfilConta();
+    }
+
+    public void popularElementos() {
 
         this.textViewPerfilConta.setText(getResources().getString(R.string.activityPerfilConta_perfilDaConta)
                 + " " + perfilContazul.getPerfil());
@@ -182,10 +193,78 @@ public class PerfilContaActivity extends AppCompatActivity {
                 valorIdeal);
     }
 
-    public void perfilDaContaMostrarMenu(View v) {
+    public void desabilitarItens() {
 
-        Intent menuActivity = new Intent(PerfilContaActivity.this, MenuActivity.class);
-        startActivity(menuActivity);
+        editTextDescricaoConta.setEnabled(false);
+        editTextValorIdeal.setEnabled(false);
+        buttonDefinir.setEnabled(false);
+    }
+
+    public void habilitarItens() {
+
+        editTextDescricaoConta.setEnabled(true);
+        editTextValorIdeal.setEnabled(true);
+        buttonDefinir.setEnabled(true);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_central:
+
+                Intent activityCentral = new Intent(PerfilContaActivity.this, CentralActivity.class);
+                startActivity(activityCentral);
+                return true;
+
+            case R.id.action_perfilDaConta:
+
+                Intent activityPerfilDaConta = new Intent(PerfilContaActivity.this, PerfilContaActivity.class);
+                startActivity(activityPerfilDaConta);
+                return true;
+
+            case R.id.action_somaSaldo:
+
+                Intent activitySomaDeSaldo = new Intent(PerfilContaActivity.this, SomaDeSaldoActivity.class);
+                startActivity(activitySomaDeSaldo);
+                return true;
+
+            case R.id.action_subtracaoSaldo:
+
+                Intent activitySubtracaoDeSaldo = new Intent(PerfilContaActivity.this, SubtracaoDeSaldoActivity.class);
+                startActivity(activitySubtracaoDeSaldo);
+                return true;
+
+            case R.id.action_lucroMensal:
+
+                Intent activityLucroMensal = new Intent(PerfilContaActivity.this, LucroMensalActivity.class);
+                startActivity(activityLucroMensal);
+                return true;
+
+            case R.id.action_selecaoConta:
+
+                Intent activitySelecaoConta = new Intent(PerfilContaActivity.this, SelecaoContaActivity.class);
+                startActivity(activitySelecaoConta);
+                return true;
+
+            case R.id.action_sair:
+
+                Intent activityLogin = new Intent(PerfilContaActivity.this, LoginActivity.class);
+                startActivity(activityLogin);
+                return true;
+
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+
+        }
     }
 
     private class LongOperation extends AsyncTask<Void, Void, Boolean> {
@@ -194,18 +273,26 @@ public class PerfilContaActivity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(Void... voids) {
 
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
             if(!validar()) {
 
                 return false;
             }
 
             atualizarDadosPerfilConta();
+            carregarElementos();
             return true;
         }
 
         @Override
         protected void onPreExecute() {
 
+            desabilitarItens();
             pbHeaderProgress.setVisibility(View.VISIBLE);
         }
 
@@ -215,10 +302,13 @@ public class PerfilContaActivity extends AppCompatActivity {
             if(aBoolean) {
 
                 pbHeaderProgress.setVisibility(View.GONE);
+                popularElementos();
+                habilitarItens();
                 apresentarPopupSucesso();
             }
 
             pbHeaderProgress.setVisibility(View.GONE);
+            habilitarItens();
             checarValidacoes();
         }
     }
