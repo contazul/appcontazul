@@ -81,6 +81,12 @@ public class MenuActivity extends AppCompatActivity {
                         startActivity(activityLucroMensal);
                         break;
 
+                    case "Contas a pagar":
+
+                        Intent activityContasAPagar = new Intent(MenuActivity.this, ContasAPagarActivity.class);
+                        startActivity(activityContasAPagar);
+                        break;
+
                     case "Seleção de conta":
 
                         Intent activitySelecaoConta = new Intent(MenuActivity.this, SelecaoContaActivity.class);

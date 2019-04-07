@@ -13,7 +13,7 @@ import br.com.appcontazul.rest.model.ListaLucroMensal;
 import br.com.appcontazul.rest.model.ListaSubtracaoSaldo;
 
 
-public class Adaptador05 extends BaseAdapter {
+public class    Adaptador05 extends BaseAdapter {
 
     private final List<ListaLucroMensal> listaLucroMensal;
     private final Activity act01;

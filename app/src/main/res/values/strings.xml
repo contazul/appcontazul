@@ -135,6 +135,39 @@
 
     <string name="activityCentral_status">Status da conta:</string>
     <string name="activityCentral_aviso01">Acesse perfil da conta para definir o valor ideal para economizar por mês</string>
+
+    <string name="activityContasAPagar_TextViewFuncionalidade5">Contas a Pagar</string>
+    <string name="activityContasAPagar_IncluirContaAPagar">INCLUIR CONTAS A PAGAR</string>
+    <string name="activityContasAPagar_ListasDeContasAPagar">LISTA DE CONTAS A PAGAR</string>
+    <string name="activityContasAPagar_EditTextDescricaoDaConta">Descrição</string>
+    <string name="activityContasAPagar_textViewValorFormatado">R$0,00</string>
+    <string name="activityContasAPagar_EditTextValor">Valor Total</string>
+    <string name="activityContasAPagar_EditTextValorParcelado">Valor Parcelado</string>
+    <string name="activityContasAPagar_TextViewPrioridade">Prioridade:</string>
+    <string name="activityContasAPagar_TextViewTipo">Tipo:</string>
+    <string name="activityContasAPagar_EditTextParcelas">Quantidade de parcelas</string>
+    <string name="activityContasAPagar_TextViewRE37">Dívida incluída com sucesso</string>
+    <string name="activityContasAPagar_TextViewRE38">Descrição é obrigatória</string>
+    <string name="activityContasAPagar_TextViewRE39">Valor é obrigatório</string>
+    <string name="activityContasAPagar_TextViewRE40">Quantidade de parcelas é obrigatória</string>
+    <string name="activityContasAPagar_TextViewRE41">Informe um valor maior que zero</string>
+    <string name="activityContasAPagar_RE42">Confirma quitação desta dívida?</string>
+    <string name="activityContasAPagar_RE43">Divida quitada e saldo atualizado com sucesso</string>
+    <string name="activityContasAPagar_RE44">Confirmar pagamento desta dívida?</string>
+    <string name="activityContasAPagar_RE45">Dívida paga e saldo atualizado com sucesso</string>
+    <string name="activityContasAPagar_RE46">Confirmar exclusão desta dívida?</string>
+    <string name="activityContasAPagar_RE47">Dívida excluída com sucesso</string>
+    <string name="activityContasAPagar_ButtonQuitar">Quitar</string>
+    <string name="activityContasAPagar_ButtonPagar">Pagar</string>
+    <string name="activityContasAPagar_ButtonExcluir">Excluir</string>
+    <string name="activityContasAPagar_MsgSucesso">Sucesso</string>
+    <string name="activityContasAPagar_ok">OK</string>
+    <string name="activityContasAPagar_Atencao">Atenção</string>
+    <string name="activityContasAPagar_ButtonSim">Sim</string>
+    <string name="activityContasAPagar_ButtonNao">Não</string>
+
+
+
 </resources>
 
 
