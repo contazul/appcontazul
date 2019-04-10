@@ -55,7 +55,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             android:layout_marginLeft="10sp"
             android:textColor="@color/colorAccent"
-            android:visibility="gone"
+            android:visibility="visible"
             />
 
         <TextView
@@ -74,8 +74,8 @@
             android:layout_height="wrap_content">
 
             <Button
-                android:layout_width="80dp"
-                android:layout_height="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:id="@+id/button_Pagar"
                 android:background="@color/colorPrimary"
                 android:text="@string/activityContasAPagar_ButtonPagar"
@@ -85,11 +85,13 @@
                 android:layout_marginTop="10dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 android:onClick="buttonPagar"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
                 />
 
             <Button
-                android:layout_width="80dp"
-                android:layout_height="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:id="@+id/button_Excluir"
                 android:text="@string/activityContasAPagar_ButtonExcluir"
                 android:background="@color/colorAccent"
@@ -99,13 +101,15 @@
                 android:layout_marginStart="100dp"
                 android:layout_marginTop="10dp"
                 android:onClick="buttonExcluir"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
                 />
 
             <Button
-                android:layout_width="80dp"
-                android:layout_height="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:id="@+id/button_Quitar"
-                android:background="@color/colorPrimary"
+                android:background="@color/colorPrimaryDark"
                 android:text="@string/activityContasAPagar_ButtonQuitar"
                 android:textColor="#FFF"
                 android:layout_marginStart="190dp"
@@ -114,6 +118,8 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 android:onClick="buttonQuitar"
                 android:visibility="gone"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
                 />
 
 

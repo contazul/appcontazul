@@ -28,44 +28,59 @@
         android:visibility="gone"></ProgressBar>
 
     <Button
-        android:id="@+id/button_menu"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="5dp"
-        android:background="@color/colorPrimary"
-        android:onClick="contralMostrarMenu"
-        android:text="@string/activityCentral_buttonMenu"
-        android:textColor="#FFF" />
-
-    <Button
         android:id="@+id/button_contasapagar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="5dp"
-        android:background="@color/colorPrimary"
+        android:layout_marginStart="80dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginTop="30dp"
+        android:background="@color/colorPrimaryDark"
         android:onClick="contasAPagarTrocarTela"
-        android:text="@string/activityContasAPagar_IncluirContaAPagar"
-        android:textColor="#FFF" />
+        android:text="Incluir"
+        android:textColor="#FFF"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView_tituloContasAPagar"
+        android:text="Não há contas á pagar cadastrada"
+        android:textSize="25sp"
+        android:layout_marginStart="10sp"
+        android:layout_marginEnd="10sp"
+        android:layout_marginTop="50sp"
+        android:textColor="#696969"
+        />
 
     <LinearLayout
         android:id="@+id/layout_listaContasAPagar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="10dp"
-        android:orientation="vertical">
-
+        android:orientation="vertical"
+        android:background="@drawable/borda"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        >
 
         <ListView
             android:id="@+id/listaContasAPagar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:divider="#D3D3D3"
+            android:dividerHeight="1dp"
+            />
 
     </LinearLayout>
 
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
     <LinearLayout
         android:id="@+id/layout_InserirContasAPagar"
         android:layout_width="match_parent"
@@ -73,6 +88,7 @@
         android:layout_marginTop="10dp"
         android:orientation="vertical"
         android:visibility="gone"
+        android:paddingBottom="20dp"
         >
 
         <EditText
@@ -250,6 +266,6 @@
 
 
     </LinearLayout>
-
+    </ScrollView>
 
 </LinearLayout>

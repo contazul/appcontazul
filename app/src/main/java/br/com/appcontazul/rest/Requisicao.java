@@ -13,6 +13,7 @@ import java.util.List;
 
 import br.com.appcontazul.contentstatic.ReferenciaUsuario;
 import br.com.appcontazul.rest.model.Central;
+import br.com.appcontazul.rest.model.ListaContasAPagar;
 import br.com.appcontazul.rest.model.ListaContazul;
 import br.com.appcontazul.rest.model.ListaLucroMensal;
 import br.com.appcontazul.rest.model.ListaSomaSaldo;
@@ -236,6 +237,75 @@ public class Requisicao {
         restTemplate.getMessageConverters().add(new StringHttpMessageConverter());
         String url = credenciaisWsContazul.getPathEpInformacoesCentral();
         return restTemplate.getForObject(url, Central.class, ReferenciaUsuario.numeroContazul);
+    }
+
+    public void requestIncluirConta(String descricao, double valor, String prioridade,
+                                    int quantidadeParcela) {
+
+        RestTemplate restTemplate = new RestTemplate();
+        MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
+        converter.setSupportedMediaTypes(Arrays.asList(MediaType.APPLICATION_FORM_URLENCODED));
+        restTemplate.getMessageConverters().add(converter);
+        CredenciaisWsContazul credenciaisWsContazul = new CredenciaisWsContazul();
+        String url = credenciaisWsContazul.getPathEpIncluirConta();
+        url = url.replace("{descricao}", descricao);
+        url = url.replace("{valor}", "" + valor);
+        url = url.replace("{prioridade}", prioridade);
+        url = url.replace("{quantidadeParcela}", "" + quantidadeParcela);
+        url = url.replace("{numeroContazul}", "" + ReferenciaUsuario.numeroContazul);
+        restTemplate.postForObject(url, null, Void.class);
+    }
+
+    public List<ListaContasAPagar> requestListaDeDividaMensal() {
+
+        RestTemplate restTemplate = new RestTemplate();
+        CredenciaisWsContazul credenciaisWsContazul = new CredenciaisWsContazul();
+        String url = credenciaisWsContazul.getPathEpListaDeDividaMensal();
+        ResponseEntity<List<ListaContasAPagar>> response = restTemplate.exchange(
+                url,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<ListaContasAPagar>>() {},
+                ReferenciaUsuario.numeroContazul);
+
+        List<ListaContasAPagar> listaContasAPagar = response.getBody();
+        return listaContasAPagar;
+    }
+
+    public void requestPagarDivida(long id) {
+
+        RestTemplate restTemplate = new RestTemplate();
+        MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
+        converter.setSupportedMediaTypes(Arrays.asList(MediaType.APPLICATION_FORM_URLENCODED));
+        restTemplate.getMessageConverters().add(converter);
+        CredenciaisWsContazul credenciaisWsContazul = new CredenciaisWsContazul();
+        String url = credenciaisWsContazul.getPathEpPagarDivida();
+        url = url.replace("{id_divida_mensal}", "" + id);
+        restTemplate.postForObject(url, null, Void.class);
+    }
+
+    public void requestExcluirDivida(long id) {
+
+        RestTemplate restTemplate = new RestTemplate();
+        MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
+        converter.setSupportedMediaTypes(Arrays.asList(MediaType.APPLICATION_FORM_URLENCODED));
+        restTemplate.getMessageConverters().add(converter);
+        CredenciaisWsContazul credenciaisWsContazul = new CredenciaisWsContazul();
+        String url = credenciaisWsContazul.getPathEpExcluirDivida();
+        url = url.replace("{id_divida_mensal}", "" + id);
+        restTemplate.delete(url, null, Void.class);
+    }
+
+    public void requestQuitarDivida(long id) {
+
+        RestTemplate restTemplate = new RestTemplate();
+        MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
+        converter.setSupportedMediaTypes(Arrays.asList(MediaType.APPLICATION_FORM_URLENCODED));
+        restTemplate.getMessageConverters().add(converter);
+        CredenciaisWsContazul credenciaisWsContazul = new CredenciaisWsContazul();
+        String url = credenciaisWsContazul.getPathEpQuitarDivida();
+        url = url.replace("{id_divida_mensal}", "" + id);
+        restTemplate.postForObject(url, null, Void.class);
     }
 }
 

@@ -49,8 +49,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
         <Button
-            android:layout_width="80dp"
-            android:layout_height="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:id="@+id/button_receber"
             android:background="@color/colorPrimary"
             android:text="@string/activityLucroMensal_buttonReceber"
@@ -60,10 +60,12 @@
             android:layout_marginTop="10dp"
             app:layout_constraintLeft_toLeftOf="parent"
             android:onClick="buttonReceber"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
             />
         <Button
-            android:layout_width="80dp"
-            android:layout_height="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:id="@+id/button_Excluir"
             android:text="@string/activityLucroMensal_buttonExcluir"
             android:background="@color/colorAccent"
@@ -73,6 +75,8 @@
             android:layout_marginStart="100dp"
             android:layout_marginTop="10dp"
             android:onClick="buttonExcluir"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
             />
         </android.support.constraint.ConstraintLayout>
     </LinearLayout>

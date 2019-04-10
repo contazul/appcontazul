@@ -347,6 +347,12 @@ public class SubtracaoDeSaldoActivity extends AppCompatActivity {
                 startActivity(activitySelecaoConta);
                 return true;
 
+            case R.id.action_contasPagar:
+
+                Intent activityContasAPagar = new Intent(SubtracaoDeSaldoActivity.this, ContasAPagarActivity.class);
+                startActivity(activityContasAPagar);
+                return true;
+
             case R.id.action_sair:
 
                 Intent activityLogin = new Intent(SubtracaoDeSaldoActivity.this, LoginActivity.class);

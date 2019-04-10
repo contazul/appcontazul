@@ -2,6 +2,7 @@ package br.com.appcontazul.activity;
 
 import br.com.appcontazul.R;
 import br.com.appcontazul.rest.Requisicao;
+import br.com.appcontazul.rest.model.ListaContasAPagar;
 import br.com.appcontazul.rest.teste.ListaContasAPagarRepository;
 import br.com.appcontazul.util.Adaptador;
 import br.com.appcontazul.util.Adaptador06;
@@ -16,6 +17,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,6 +28,8 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.TextView;
+
+import java.util.List;
 
 public class ContasAPagarActivity extends AppCompatActivity {
 
@@ -53,6 +59,8 @@ public class ContasAPagarActivity extends AppCompatActivity {
     private Button buttonContasAPagar;
     private String prestacaoSelecionada;
     private boolean aPrazo;
+    private TextView textViewTituloContasAPagar;
+    private boolean listaVazia;
 
     public View v;
 
@@ -71,7 +79,6 @@ public class ContasAPagarActivity extends AppCompatActivity {
         this.inicializarComportamentoEditTextDescricaoDaConta();
         this.inicializarComportamentoEditTextValorDaConta();
         this.inicializarComportamentoEditTextQuantidadeDeParcelas();
-
     }
 
     public void criarElementos() {
@@ -103,23 +110,29 @@ public class ContasAPagarActivity extends AppCompatActivity {
         this.prioridadeSelecionada = "Alta";
         this.prestacaoSelecionada = "Fixa";
         this.aPrazo = false;
-
+        this.textViewTituloContasAPagar = (TextView) findViewById(R.id.textView_tituloContasAPagar);
+        this.listaVazia = false;
+        this.listaContaAPagar = (ListView) findViewById(R.id.listaContasAPagar);
     }
 
 
     public void carregarLista() {
 
-        this.listaContaAPagar = (ListView) findViewById(R.id.listaContasAPagar);
-        ListaContasAPagarRepository listaContasAPagarRepository = new ListaContasAPagarRepository();
-        this.adaptador06 = new Adaptador06(listaContasAPagarRepository.getListaContasAPagar(), this);
+        Requisicao requisicao = new Requisicao();
+        List<ListaContasAPagar> listaContasAPagar = requisicao.requestListaDeDividaMensal();
+        this.listaVazia = listaContasAPagar.size() == 0;
+        this.adaptador06 = new Adaptador06(listaContasAPagar, this);
 
     }
 
     public void setLista() {
 
+        if(listaVazia)
+            this.textViewTituloContasAPagar.setText("Não há contas á pagar cadastrada");
+        else
+            this.textViewTituloContasAPagar.setText("Lista de contas á pagar:");
+
         this.listaContaAPagar.setAdapter(adaptador06);
-
-
     }
 
     public void inicializarComportamentoEditTextValorDaConta() {
@@ -176,6 +189,72 @@ public class ContasAPagarActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_central:
+
+                Intent activityCentral = new Intent(ContasAPagarActivity.this, CentralActivity.class);
+                startActivity(activityCentral);
+                return true;
+
+            case R.id.action_perfilDaConta:
+
+                Intent activityPerfilDaConta = new Intent(ContasAPagarActivity.this, PerfilContaActivity.class);
+                startActivity(activityPerfilDaConta);
+                return true;
+
+            case R.id.action_somaSaldo:
+
+                Intent activitySomaDeSaldo = new Intent(ContasAPagarActivity.this, SomaDeSaldoActivity.class);
+                startActivity(activitySomaDeSaldo);
+                return true;
+
+            case R.id.action_subtracaoSaldo:
+
+                Intent activitySubtracaoDeSaldo = new Intent(ContasAPagarActivity.this, SubtracaoDeSaldoActivity.class);
+                startActivity(activitySubtracaoDeSaldo);
+                return true;
+
+            case R.id.action_lucroMensal:
+
+                Intent activityLucroMensal = new Intent(ContasAPagarActivity.this, LucroMensalActivity.class);
+                startActivity(activityLucroMensal);
+                return true;
+
+            case R.id.action_contasPagar:
+
+                Intent activityContasAPagar = new Intent(ContasAPagarActivity.this, ContasAPagarActivity.class);
+                startActivity(activityContasAPagar);
+                return true;
+
+            case R.id.action_selecaoConta:
+
+                Intent activitySelecaoConta = new Intent(ContasAPagarActivity.this, SelecaoContaActivity.class);
+                startActivity(activitySelecaoConta);
+                return true;
+
+            case R.id.action_sair:
+
+                Intent activityLogin = new Intent(ContasAPagarActivity.this, LoginActivity.class);
+                startActivity(activityLogin);
+                return true;
+
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+
+        }
+    }
+
     public void inicializarComportamentoEditTextQuantidadeDeParcelas() {
 
         this.editTextParcelas.addTextChangedListener(new TextWatcher() {
@@ -203,32 +282,40 @@ public class ContasAPagarActivity extends AppCompatActivity {
         if (mostrandoLista) {
 
             this.mostrandoLista = false;
-            this.buttonContasAPagar.setText(getResources().getString(R.string.activityContasAPagar_ListasDeContasAPagar));
+            this.buttonContasAPagar.setText("Listar");
             this.layoutListaContasAPagar.setVisibility(View.GONE);
             this.layoutInserirContasAPagar.setVisibility(View.VISIBLE);
+            this.textViewTituloContasAPagar.setVisibility(View.GONE);
         } else {
 
             this.mostrandoLista = true;
             this.textViewRE39RE41.setText("");
             this.textViewRE38.setText("");
             this.textViewRE40.setText("");
-            this.buttonContasAPagar.setText(getResources().getString(R.string.activityContasAPagar_IncluirContaAPagar));
+            this.buttonContasAPagar.setText("Incluir");
             this.layoutInserirContasAPagar.setVisibility(View.GONE);
-            this.layoutListaContasAPagar.setVisibility(View.GONE);
+            this.layoutListaContasAPagar.setVisibility(View.VISIBLE);
+            this.textViewTituloContasAPagar.setVisibility(View.VISIBLE);
         }
-    }
-
-    public void contralMostrarMenu(View v) {
-
-        Intent menuActivity = new Intent(ContasAPagarActivity.this, MenuActivity.class);
-        startActivity(menuActivity);
     }
 
     public void buttonIncluirContasAPagar (View v){
 
         LongOperation longOperation = new LongOperation();
         longOperation.execute();
+    }
 
+    public void interfaceIncluirContasAPagar() {
+
+        int quantidadeParcela = 0;
+        if(!this.editTextParcelas.getText().toString().isEmpty()) {
+
+            quantidadeParcela = Integer.parseInt(this.editTextParcelas.getText().toString());
+        }
+        Requisicao requisicao = new Requisicao();
+        requisicao.requestIncluirConta(this.editTextDescricaoDaConta.getText().toString(),
+                Double.parseDouble(this.editTextValorDaconta.getText().toString()),
+                this.prioridadeSelecionada, quantidadeParcela);
     }
 
     public void mostrarSucesso(){
@@ -245,8 +332,6 @@ public class ContasAPagarActivity extends AppCompatActivity {
 
 
     }
-
-
 
     public void onRadioButtonClicked (View v) {
 
@@ -395,7 +480,8 @@ public class ContasAPagarActivity extends AppCompatActivity {
 
     public void quitar() {
 
-
+        Requisicao requisicao = new Requisicao();
+        requisicao.requestQuitarDivida(this.adaptador06.getItem(this.v.getId()).getId());
     }
 
     public void mostrarSucessoQuitar() {
@@ -429,6 +515,8 @@ public class ContasAPagarActivity extends AppCompatActivity {
 
     public void pagar() {
 
+        Requisicao requisicao = new Requisicao();
+        requisicao.requestPagarDivida(adaptador06.getItem(v.getId()).getId());
     }
 
     public void mostrarSucessoPagar() {
@@ -462,6 +550,8 @@ public class ContasAPagarActivity extends AppCompatActivity {
     }
     public void excluir() {
 
+        Requisicao requisicao = new Requisicao();
+        requisicao.requestExcluirDivida(this.adaptador06.getItem(this.v.getId()).getId());
     }
 
     public void mostrarSucessoExclusao() {
@@ -491,7 +581,8 @@ public class ContasAPagarActivity extends AppCompatActivity {
                 return false;
             }
 
-           // buttonIncluirContasAPagar();
+            interfaceIncluirContasAPagar();
+            carregarLista();
             return true;
         }
 
@@ -507,6 +598,7 @@ public class ContasAPagarActivity extends AppCompatActivity {
             if(aBoolean) {
 
                 pbHeaderProgress.setVisibility(View.GONE);
+                setLista();
                 mostrarSucesso();
             }
 
@@ -522,6 +614,7 @@ public class ContasAPagarActivity extends AppCompatActivity {
         protected Boolean doInBackground(Void... voids) {
 
             excluir();
+            carregarLista();
             return true;
         }
 
@@ -547,6 +640,7 @@ public class ContasAPagarActivity extends AppCompatActivity {
         protected Boolean doInBackground(Void... voids) {
 
             quitar();
+            carregarLista();
             return true;
         }
 
@@ -572,6 +666,7 @@ public class ContasAPagarActivity extends AppCompatActivity {
         protected Boolean doInBackground(Void... voids) {
 
             pagar();
+            carregarLista();
             return true;
         }
 

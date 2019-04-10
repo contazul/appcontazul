@@ -6,6 +6,7 @@ public class CredenciaisWsContazul {
     private final String URL2 = "https://wscontazul.herokuapp.com/wscontazul/subtracaoDeSaldo";
     private final String URL3 = "https://wscontazul.herokuapp.com/wscontazul/lucroMensal";
     private final String URL4 = "https://wscontazul.herokuapp.com/wscontazul/central";
+    private final String URL5 = "https://wscontazul.herokuapp.com/wscontazul/dividamensal";
 
     // ENDPOINT /ex01
     private final String EP_EX01 = "/ex01";
@@ -86,6 +87,30 @@ public class CredenciaisWsContazul {
     // ENDPOINT /informacoesCentral
     private final String EP_INFORMACOESCENTRAL = "/informacoesCentral";
     private final String PARAMETRO01_INFORMACOESCENTRAL = "numeroContazul";
+
+    // ENDPOINT /incluirconta
+    private final String EP_INCLUIRCONTA = "/incluirconta";
+    private final String PARAMETRO01_EP_INCLUIRCONTA = "descricao";
+    private final String PARAMETRO02_EP_INCLUIRCONTA = "valor";
+    private final String PARAMETRO03_EP_INCLUIRCONTA = "prioridade";
+    private final String PARAMETRO04_EP_INCLUIRCONTA = "quantidadeParcela";
+    private final String PARAMETRO05_EP_INCLUIRCONTA = "numeroContazul";
+
+    // ENDPOINT /listaDeDividaMensal
+    private final String EP_LISTADEDIVIDAMENSAL = "/listaDeDividaMensal";
+    private final String PARAMETRO01_EP_LISTADEDIVIDAMENSAL = "numeroContazul";
+
+    // ENDPOINT /pagarDivida
+    private final String EP_PAGARDIVIDA = "/pagarDivida";
+    private final String PARAMETRO01_EP_PAGARDIVIDA = "id_divida_mensal";
+
+    // ENDPOINT /excluirDivida
+    private final String EP_EXCLUIRDIVIDA = "/excluirDivida";
+    private final String PARAMETRO01_EP_EXCLUIRDIVIDA = "id_divida_mensal";
+
+    // ENDPOINT /quitarDivida
+    private String EP_QUITARDIVIDA = "/quitarDivida";
+    private final String PARAMETRO01_EP_QUITARDIVIDA = "id_divida_mensal";
 
     public CredenciaisWsContazul() {
 
@@ -215,6 +240,39 @@ public class CredenciaisWsContazul {
 
         String url = this.URL4 + this.EP_INFORMACOESCENTRAL + "?"
                 + this.PARAMETRO01_INFORMACOESCENTRAL + "={numeroContazul}";
+        return url;
+    }
+
+    public String getPathEpIncluirConta() {
+
+        String url = this.URL5 + this.EP_INCLUIRCONTA + "?" + this.PARAMETRO01_EP_INCLUIRCONTA + "={descricao}"
+                + "&" + this.PARAMETRO02_EP_INCLUIRCONTA + "={valor}" + "&" + this.PARAMETRO03_EP_INCLUIRCONTA + "={prioridade}"
+                + "&" + this.PARAMETRO04_EP_INCLUIRCONTA + "={quantidadeParcela}" + "&" + this.PARAMETRO05_EP_INCLUIRCONTA + "={numeroContazul}"
+                ;
+        return url;
+    }
+
+    public String getPathEpListaDeDividaMensal() {
+
+        String url = this.URL5 + this.EP_LISTADEDIVIDAMENSAL + "?" + this.PARAMETRO01_EP_LISTADEDIVIDAMENSAL + "={numeroContazul}";
+        return url;
+    }
+
+    public String getPathEpPagarDivida() {
+
+        String url = this.URL5 + this.EP_PAGARDIVIDA + "?" + this.PARAMETRO01_EP_PAGARDIVIDA + "={id_divida_mensal}";
+        return url;
+    }
+
+    public String getPathEpExcluirDivida() {
+
+        String url = this.URL5 + this.EP_EXCLUIRDIVIDA + "?" + this.PARAMETRO01_EP_EXCLUIRDIVIDA + "={id_divida_mensal}";
+        return url;
+    }
+
+    public String getPathEpQuitarDivida() {
+
+        String url = this.URL5 + this.EP_QUITARDIVIDA + "?" + this.PARAMETRO01_EP_QUITARDIVIDA + "={id_divida_mensal}";
         return url;
     }
 }

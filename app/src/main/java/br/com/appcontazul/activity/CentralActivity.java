@@ -10,6 +10,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import br.com.appcontazul.R;
 import br.com.appcontazul.contentstatic.ReferenciaUsuario;
 import br.com.appcontazul.rest.Requisicao;
@@ -24,6 +26,10 @@ public class CentralActivity extends AppCompatActivity {
     private TextView textViewCentralTotalSubtracaoSaldoGeral;
     private TextView textViewCentralTotalBeneficioMensal;
     private TextView textViewCentralTotalSomaSaldo;
+    private TextView textViewValorEconomizado;
+    private TextView textViewPercentualEconomizado;
+    private TextView textViewCentralTotalDividasBaixaPrioridade;
+    private TextView textViewCentralTotalDividasGeral;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +52,10 @@ public class CentralActivity extends AppCompatActivity {
         this.textViewCentralTotalSubtracaoSaldoGeral = (TextView) findViewById(R.id.textView_central_totalSubtracaoSaldoGeral);
         this.textViewCentralTotalBeneficioMensal = (TextView) findViewById(R.id.textView_central_totalBeneficioMensal);
         this.textViewCentralTotalSomaSaldo = (TextView) findViewById(R.id.textView_central_totalSomaSaldo);
+        this.textViewValorEconomizado = (TextView) findViewById(R.id.textView_valorEconomizado);
+        this.textViewPercentualEconomizado = (TextView) findViewById(R.id.textView_percentualEconomizado);
+        this.textViewCentralTotalDividasBaixaPrioridade = (TextView) findViewById(R.id.textView_central_totalDividasBaixaPrioridade);
+        this.textViewCentralTotalDividasGeral = (TextView) findViewById(R.id.textView_central_totalDividasGeral);
     }
 
     public void carregarElementos() {
@@ -59,6 +69,11 @@ public class CentralActivity extends AppCompatActivity {
         this.textViewCentralTotalSubtracaoSaldoGeral.setText(formatacao.formatarValorMonetario("" + central.getTotalSubtracaoSaldoGeral()));
         this.textViewCentralTotalBeneficioMensal.setText(formatacao.formatarValorMonetario("" + central.getTotalBeneficioMensal()));
         this.textViewCentralTotalSomaSaldo.setText(formatacao.formatarValorMonetario("" + central.getTotalSomaSaldo()));
+        this.textViewValorEconomizado.setText(formatacao.formatarValorMonetario((""
+                + (central.getTotalBeneficioMensal() - central.getTotalDividaMensal()))));
+        this.textViewPercentualEconomizado.setText(formatacao.formatarValorPercentual(central.getPercentualEconomizado()));
+        this.textViewCentralTotalDividasBaixaPrioridade.setText(formatacao.formatarValorMonetario("" + central.getTotalDividaMensalBaixaPrioridade()));
+        this.textViewCentralTotalDividasGeral.setText(formatacao.formatarValorMonetario("" + central.getTotalDividaMensal()));
     }
 
     @Override

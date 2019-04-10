@@ -1,26 +1,38 @@
 package br.com.appcontazul.rest.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ListaContasAPagar {
 
+    private long id;
     private String descricao;
     private double valor;
-    private String ultimaDataPagamento;
+    private String strUltimaDataPagamento;
     private String prioridade;
-    private int quantidadeParcelas;
-    private int quantidadePagas;
+    private int quantidadeParcela;
+    private int quantidadePaga;
 
     public ListaContasAPagar(){
 
     }
 
 
-    public ListaContasAPagar(String descricao, double valor, String ultimaDataPagamento, String prioridade, int quantidadeParcelas, int quantidadePagas) {
+    public ListaContasAPagar(long id, String descricao, double valor, String strUltimaDataPagamento, String prioridade, int quantidadeParcela, int quantidadePaga) {
         this.descricao = descricao;
         this.valor = valor;
-        this.ultimaDataPagamento = ultimaDataPagamento;
+        this.strUltimaDataPagamento = strUltimaDataPagamento;
         this.prioridade = prioridade;
-        this.quantidadeParcelas = quantidadeParcelas;
-        this.quantidadePagas = quantidadePagas;
+        this.quantidadeParcela = quantidadeParcela;
+        this.quantidadePaga = quantidadePaga;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getDescricao() {
@@ -39,12 +51,12 @@ public class ListaContasAPagar {
         this.valor = valor;
     }
 
-    public String getUltimaDataPagamento() {
-        return ultimaDataPagamento;
+    public String getStrUltimaDataPagamento() {
+        return strUltimaDataPagamento;
     }
 
-    public void setUltimaDataPagamento(String ultimaDataPagamento) {
-        this.ultimaDataPagamento = ultimaDataPagamento;
+    public void setStrUltimaDataPagamento(String strUltimaDataPagamento) {
+        this.strUltimaDataPagamento = strUltimaDataPagamento;
     }
 
     public String getPrioridade() {
@@ -55,21 +67,19 @@ public class ListaContasAPagar {
         this.prioridade = prioridade;
     }
 
-    public int getQuantidadeParcelas() {
-        return quantidadeParcelas;
+    public int getQuantidadeParcela() {
+        return quantidadeParcela;
     }
 
-    public void setQuantidadeParcelas(int quantidadeParcelas) {
-        this.quantidadeParcelas = quantidadeParcelas;
+    public void setQuantidadeParcela(int quantidadeParcela) {
+        this.quantidadeParcela = quantidadeParcela;
     }
 
-    public int getQuantidadePagas() {
-        return quantidadePagas;
+    public int getQuantidadePaga() {
+        return quantidadePaga;
     }
 
-    public void setQuantidadePagas(int quantidadePagas) {
-        this.quantidadePagas = quantidadePagas;
+    public void setQuantidadePaga(int quantidadePaga) {
+        this.quantidadePaga = quantidadePaga;
     }
-
-
 }

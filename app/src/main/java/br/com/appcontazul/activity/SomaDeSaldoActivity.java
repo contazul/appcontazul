@@ -323,6 +323,12 @@ public class SomaDeSaldoActivity extends AppCompatActivity {
                 startActivity(activitySelecaoConta);
                 return true;
 
+            case R.id.action_contasPagar:
+
+                Intent activityContasAPagar = new Intent(SomaDeSaldoActivity.this, ContasAPagarActivity.class);
+                startActivity(activityContasAPagar);
+                return true;
+
             case R.id.action_sair:
 
                 Intent activityLogin = new Intent(SomaDeSaldoActivity.this, LoginActivity.class);

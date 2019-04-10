@@ -58,15 +58,17 @@ public class Adaptador06 extends BaseAdapter {
         // 1/12
         textView_prioridade.setText("Prioridade:" + " " + listaContasAPagar.getPrioridade());
 
+        if(listaContasAPagar.getStrUltimaDataPagamento() == null || listaContasAPagar.getStrUltimaDataPagamento().isEmpty())
+            textView_data.setText("Não há data de pagamento registrada");
+        else
+            textView_data.setText("Ultimo pagamento realizado:" + listaContasAPagar.getStrUltimaDataPagamento());
 
-
-
-        if (listaContasAPagar.getQuantidadeParcelas() !=0){
-            textView_parcela.setText("Número de parcelas pagas:" + listaContasAPagar.getQuantidadePagas()+"/"+listaContasAPagar.getQuantidadeParcelas());
+        if (listaContasAPagar.getQuantidadeParcela() !=0){
+            textView_parcela.setText("Número de parcelas pagas:" + listaContasAPagar.getQuantidadePaga()+"/"+listaContasAPagar.getQuantidadeParcela());
             textView_parcela.setVisibility(View.VISIBLE);
         }
 
-        if (listaContasAPagar.getQuantidadeParcelas() != 0){
+        if (listaContasAPagar.getQuantidadeParcela() != 0){
             buttonQuitar.setVisibility(View.VISIBLE);
 
         }

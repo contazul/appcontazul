@@ -373,6 +373,12 @@ public class LucroMensalActivity extends AppCompatActivity {
                 startActivity(activityLucroMensal);
                 return true;
 
+            case R.id.action_contasPagar:
+
+                Intent activityContasAPagar = new Intent(LucroMensalActivity.this, ContasAPagarActivity.class);
+                startActivity(activityContasAPagar);
+                return true;
+
             case R.id.action_selecaoConta:
 
                 Intent activitySelecaoConta = new Intent(LucroMensalActivity.this, SelecaoContaActivity.class);

@@ -14,7 +14,7 @@ public class ListaContasAPagarRepository {
     }
 
 
-    public List<ListaContasAPagar> getListaContasAPagar (){
+    /*public List<ListaContasAPagar> getListaContasAPagar (){
         this.listaContasAPagar.add(new ListaContasAPagar("Bruno",1,"01/12","Alta",12,01));
         this.listaContasAPagar.add(new ListaContasAPagar("Igor",5,"05/12","Baixa",0,05));
         this.listaContasAPagar.add(new ListaContasAPagar("Bruno",1,"01/12","Alta",12,01));
@@ -36,7 +36,7 @@ public class ListaContasAPagarRepository {
 
 
         return listaContasAPagar;
-    }
+    }*/
 
 
 }

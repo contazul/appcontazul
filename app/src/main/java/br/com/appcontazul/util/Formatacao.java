@@ -1,5 +1,6 @@
 package br.com.appcontazul.util;
 
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
 public class Formatacao {
@@ -13,5 +14,13 @@ public class Formatacao {
 
             return "R$0,00";
         }
+    }
+
+    public String formatarValorPercentual(double valor) {
+
+        DecimalFormat fmt = new DecimalFormat("0.00");
+        String strValor = fmt.format(valor);
+        strValor = strValor.replace(".",",");
+        return strValor + "%";
     }
 }

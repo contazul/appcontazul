@@ -112,6 +112,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/textView_valorEconomizado"
             android:text="EM DES"
             android:textStyle="bold"
             android:layout_gravity="center"
@@ -136,6 +137,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/textView_percentualEconomizado"
             android:text="EM DES"
             android:textStyle="bold"
             android:layout_gravity="center"
