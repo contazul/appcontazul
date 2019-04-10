@@ -370,7 +370,6 @@ public class ContasAPagarActivity extends AppCompatActivity {
             case R.id.button_APrazo:
                 if (checked) {
 
-                    this.prioridadeSelecionada = "A prazo";
                     this.aPrazo = true;
                 }
                     this.editTextParcelas.setVisibility(View.VISIBLE);
