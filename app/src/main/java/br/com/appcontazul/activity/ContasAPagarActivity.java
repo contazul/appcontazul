@@ -241,6 +241,12 @@ public class ContasAPagarActivity extends AppCompatActivity {
                 startActivity(activitySelecaoConta);
                 return true;
 
+            case R.id.action_meta:
+
+                Intent activityMeta = new Intent(ContasAPagarActivity.this, MetaActivity.class);
+                startActivity(activityMeta);
+                return true;
+
             case R.id.action_sair:
 
                 Intent activityLogin = new Intent(ContasAPagarActivity.this, LoginActivity.class);

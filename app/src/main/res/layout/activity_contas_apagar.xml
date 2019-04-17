@@ -50,6 +50,7 @@
         android:layout_marginEnd="10sp"
         android:layout_marginTop="50sp"
         android:textColor="#696969"
+        
         />
 
     <LinearLayout
@@ -61,6 +62,7 @@
         android:background="@drawable/borda"
         android:layout_marginStart="5dp"
         android:layout_marginEnd="5dp"
+        android:visibility="visible"
         >
 
         <ListView
@@ -200,7 +202,6 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="5dp"
             android:visibility="gone"
-
             />
 
         <TextView

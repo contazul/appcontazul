@@ -168,6 +168,41 @@
     <string name="activityContasAPagar_ButtonNao">Não</string>
 
 
+    <string name="activityMeta_Funcionalidade">Meta</string>
+    <string name="activityMeta_IncluirMeta">Incluir Meta</string>
+    <string name="activityMeta_ListarMetas">Listar Metas</string>
+    <string name="activityMeta_NenhumaMeta">Não há meta incluída</string>
+    <string name="activityMeta_EditTextDescricaoDaMeta">Descrição</string>
+    <string name="activityMeta_TextViewRE50">Descrição é obrigatória</string>
+    <string name="activityMeta_TextViewRE51">Valor é obrigatório</string>
+    <string name="activityMeta_TextViewRE52">Quantidade de parcelas é obrigatória</string>
+    <string name="activituMeta_TextViewRE53">Valor mínimo economizado é obrigatório</string>
+    <string name="activityMeta_TextViewTipo">Tipo:</string>
+    <string name="activityMeta_EditTextParcelas">Quantidade de parcelas</string>
+    
+    <string name="activityMeta_TextViewValorFormatado">R$0,00</string>
+    <string name="activityMeta_EditTextValor">Valor total</string>
+    <string name="activityMeta_EditTextValorMinimo">Valor mínimo economizado</string>
+    <string name="activityMeta_TextViewRE53">Valor mínimo economizado é obrigatório</string>
+    <string name="activityMeta_ButtonInserirMeta">Incluir</string>
+    <string name="activityMeta_ButtonAplicar">Aplicar</string>
+    <string name="activityMeta_ButtonExcluir">Excluir</string>
+    <string name="activityMeta_MsgSucesso">Sucesso</string>
+    <string name="activityMeta_MsgMostrarSucesso">Meta incluída com sucesso</string>
+    <string name="activityMeta_ApicadaComSucesso">Meta aplicada e saldo atualizado com sucesso</string>
+    <string name="activityMeta_MsgConfirmacaoexclusao">Confirma exclusão da meta?</string>
+    <string name="activityMeta_MsgSucessoExclusao">Meta excluída com sucesso</string>
+    <string name="activityMeta_MsgAtencao">Atenção</string>
+    <string name="activityMeta_MsgConfirmacao">Confirma aplicação da meta?</string>
+    <string name="activityMeta_MsgSim">Sim</string>
+    <string name="activityMeta_MsgNao">Não</string>
+    <string name="activityMeta_MsgOk">OK</string>
+
+
+   
+    
+
+
 
 
     <string name="title_activity_menu_principal">MenuPrincipal</string>

@@ -122,6 +122,13 @@ public class CentralActivity extends AppCompatActivity {
                 startActivity(activityContasAPagar);
                 return true;
 
+            case R.id.action_meta:
+
+                Intent activityMeta = new Intent(CentralActivity.this, MetaActivity.class);
+                startActivity(activityMeta);
+                return true;
+
+
             case R.id.action_selecaoConta:
 
                 Intent activitySelecaoConta = new Intent(CentralActivity.this, SelecaoContaActivity.class);

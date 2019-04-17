@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.MetaActivity">
+
+
+
+    <TextView
+        android:id="@+id/textView_funcionalidade6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10sp"
+        android:text="@string/activityMeta_Funcionalidade"
+        android:textColor="@color/colorPrimary"
+        android:textSize="15sp"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/pbHeaderProgress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:visibility="gone"></ProgressBar>
+
+    <Button
+        android:id="@+id/button_meta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginTop="30dp"
+        android:background="@color/colorPrimaryDark"
+        android:text="@string/activityMeta_IncluirMeta"
+        android:textColor="#FFF"
+        android:onClick="metaTrocarTela"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView_textViewTituloMeta"
+        android:text="@string/activityMeta_NenhumaMeta"
+        android:textSize="25sp"
+        android:layout_marginStart="10sp"
+        android:layout_marginEnd="10sp"
+        android:layout_marginTop="50sp"
+        android:textColor="#696969"
+
+        />
+
+    <LinearLayout
+        android:id="@+id/layout_listaMeta"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        android:background="@drawable/borda"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+
+        >
+
+        <ListView
+            android:id="@+id/listaMeta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:divider="#D3D3D3"
+            android:dividerHeight="1dp"
+            />
+    </LinearLayout>
+
+        <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:id="@+id/layout_InserirMeta"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:visibility="gone"
+                android:paddingBottom="20dp"
+                >
+
+                <EditText
+                    android:id="@+id/editText_DescricaoDaMeta"
+                    style="@style/StyledTilEditTextTheme"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="5dp"
+                    android:hint="@string/activityMeta_EditTextDescricaoDaMeta"
+                    android:textColor="@color/colorPrimary" />
+
+                <TextView
+                    android:id="@+id/textView_RE50"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5sp"
+                    android:layout_marginTop="5sp"
+                    android:layout_marginEnd="5sp"
+                    android:text=""
+                    android:textColor="#FF0000"
+                    android:textSize="10sp" />
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:id="@+id/radioGroup_prestacao"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textView_Tipo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5sp"
+                            android:layout_marginTop="5sp"
+                            android:layout_marginEnd="5sp"
+                            android:text="@string/activityMeta_TextViewTipo"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="15sp"/>
+
+                        <RadioButton
+                            android:id="@+id/button_AVista"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Á Vista"
+                            android:onClick="onRadioButtonClicked2"
+                            android:textColor="#8B8989" />
+
+                        <RadioButton
+                            android:id="@+id/button_Fixa"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Fixa"
+                            android:onClick="onRadioButtonClicked2"
+                            android:textColor="#8B8989" />
+
+                        <RadioButton
+                            android:id="@+id/button_APrazo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Á Prazo"
+                            android:onClick="onRadioButtonClicked2"
+                            android:textColor="#8B8989" />
+                    </RadioGroup>
+
+                </android.support.constraint.ConstraintLayout>
+
+
+                <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/editText_Parcelas"
+                        style="@style/StyledTilEditTextTheme"
+                        android:hint="@string/activityMeta_EditTextParcelas"
+                        android:inputType="number"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="5dp"
+                        android:visibility="gone"
+                        />
+
+                <TextView
+                    android:id="@+id/textView_RE52"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5sp"
+                    android:layout_marginTop="5sp"
+                    android:layout_marginEnd="5sp"
+                    android:text=""
+                    android:textColor="#FF0000"
+                    android:textSize="10sp"
+                    android:visibility="gone"
+                    />
+
+                <TextView
+                    android:id="@+id/textView_ValorFormatado"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="10sp"
+                    android:text="@string/activityMeta_TextViewValorFormatado"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/editText_ValorDaMeta"
+                    style="@style/StyledTilEditTextTheme"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="5dp"
+                    android:hint="@string/activityMeta_EditTextValor"
+                    android:inputType="number"
+                    android:textColor="@color/colorPrimary" />
+
+                <TextView
+                    android:id="@+id/textView_RE51"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5sp"
+                    android:layout_marginTop="5sp"
+                    android:layout_marginEnd="5sp"
+                    android:text=""
+                    android:textColor="#FF0000"
+                    android:textSize="10sp" />
+
+
+                <TextView
+                    android:id="@+id/textView_ValorFormatado2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5sp"
+                    android:text="@string/activityMeta_TextViewValorFormatado"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/editText_ValorMinimoEco"
+                    style="@style/StyledTilEditTextTheme"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="5dp"
+                    android:hint="@string/activityMeta_EditTextValorMinimo"
+                    android:inputType="number"
+                    android:textColor="@color/colorPrimary" />
+
+                <TextView
+                    android:id="@+id/textView_RE53"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5sp"
+                    android:layout_marginTop="5sp"
+                    android:layout_marginEnd="5sp"
+                    android:text=""
+                    android:textColor="#FF0000"
+                    android:textSize="10sp" />
+
+                <Button
+                    android:id="@+id/button_InserirMeta"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginStart="5dp"
+                    android:background="@color/colorPrimary"
+                    android:text="@string/activityMeta_ButtonInserirMeta"
+                    android:onClick="buttonInserirMeta"
+                    android:textColor="#FFF"
+                    />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </LinearLayout>
+</ScrollView>
+
+</LinearLayout>

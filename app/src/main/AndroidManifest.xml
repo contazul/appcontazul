@@ -31,10 +31,8 @@
         <activity android:name=".activity.SomaDeSaldoActivity" />
         <activity android:name=".activity.SubtracaoDeSaldoActivity" />
         <activity android:name=".activity.LucroMensalActivity" />
-
         <activity android:name=".activity.ContasAPagarActivity" />
-
-
+        <activity android:name=".activity.MetaActivity"></activity>
     </application>
 
 </manifest>

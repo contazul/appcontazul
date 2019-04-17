@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/linearLayout01"
+        android:paddingBottom="5dp"
+        >
+
+        <TextView
+            android:id="@+id/textView_descricaoDaMeta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="15sp"
+            android:layout_marginLeft="10sp"
+            android:textColor="@color/colorPrimary"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView_valorDaMeta"
+            android:text=""
+            android:textSize="15sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginLeft="10sp"
+            android:textColor="@color/colorAccent"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView_valorMinimoEco"
+            android:text=""
+            android:textSize="15sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginLeft="10sp"
+            android:textColor="@color/colorPrimary"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView_valorParaAtingir"
+            android:text=""
+            android:textSize="15sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginLeft="10sp"
+            android:textColor="@color/colorAccent"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView_status"
+            android:text=""
+            android:textSize="15sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginLeft="10sp"
+            android:textColor="@color/colorPrimary"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView_Data"
+            android:text=""
+            android:textSize="15sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginLeft="10sp"
+            android:textColor="@color/colorAccent"
+            android:visibility="visible"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView_Parcela"
+            android:text=""
+            android:textSize="15sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginLeft="10sp"
+            android:textColor="@color/colorPrimary"
+            android:visibility="gone"
+            />
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/button_Aplicar"
+                android:background="@color/colorAccent"
+                android:text="@string/activityMeta_ButtonAplicar"
+                android:textColor="#FFF"
+                android:layout_marginStart="10dp"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="10dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:onClick="buttonAplicar"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/button_Excluir"
+                android:text="@string/activityMeta_ButtonExcluir"
+                android:background="@color/colorPrimary"
+                android:textColor="#FFF"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginStart="100dp"
+                android:layout_marginTop="10dp"
+                android:onClick="buttonExcluir"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                />
+
+
+
+
+
+        </android.support.constraint.ConstraintLayout>
+
+
+
+
+
+    </LinearLayout>
+</LinearLayout>

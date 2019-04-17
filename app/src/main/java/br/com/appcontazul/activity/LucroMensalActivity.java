@@ -385,6 +385,13 @@ public class LucroMensalActivity extends AppCompatActivity {
                 startActivity(activitySelecaoConta);
                 return true;
 
+
+            case R.id.action_meta:
+
+                Intent activityMeta = new Intent(LucroMensalActivity.this, MetaActivity.class);
+                startActivity(activityMeta);
+                return true;
+
             case R.id.action_sair:
 
                 Intent activityLogin = new Intent(LucroMensalActivity.this, LoginActivity.class);

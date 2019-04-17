@@ -87,6 +87,11 @@ public class MenuActivity extends AppCompatActivity {
                         startActivity(activityContasAPagar);
                         break;
 
+                    case "Meta":
+
+                        Intent activityMeta = new Intent(MenuActivity.this, MetaActivity.class);
+                        startActivity(activityMeta);
+
                     case "Seleção de conta":
 
                         Intent activitySelecaoConta = new Intent(MenuActivity.this, SelecaoContaActivity.class);
