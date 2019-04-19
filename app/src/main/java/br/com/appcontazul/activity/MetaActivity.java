@@ -24,6 +24,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import br.com.appcontazul.R;
+import br.com.appcontazul.rest.Requisicao;
 import br.com.appcontazul.rest.model.ListaMeta;
 import br.com.appcontazul.rest.teste.ListaMetaRepository;
 import br.com.appcontazul.util.Adaptador07;
@@ -50,6 +51,7 @@ public class MetaActivity extends AppCompatActivity {
     private LinearLayout layoutInserirMeta;
     private Button buttonMeta;
     private boolean aPrazo;
+    private boolean aVista;
     private TextView textViewtextViewTituloMeta;
     private boolean listaVazia;
     private boolean campoDescricaoVazio;
@@ -58,6 +60,7 @@ public class MetaActivity extends AppCompatActivity {
     private boolean campoQuantidadeVazio;
     private View v;
 
+    private boolean aplicarAVista;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,15 +106,18 @@ public class MetaActivity extends AppCompatActivity {
         buttonAVista.setChecked(true);
         buttonAVista.setSelected(true);
         this.aPrazo = false;
+        this.aVista = true;
         this.textViewtextViewTituloMeta = (TextView) findViewById(R.id.textView_textViewTituloMeta);
         this.listaVazia = false;
         this.listaMeta = (ListView) findViewById(R.id.listaMeta);
+
+        this.aplicarAVista = false;
     }
 
     public void carregarLista() {
 
-        ListaMetaRepository listaMetaRepository = new ListaMetaRepository();
-        List<ListaMeta> listaMeta = listaMetaRepository.getListaMeta();
+        Requisicao requisicao = new Requisicao();
+        List<ListaMeta> listaMeta = requisicao.requestListaMeta();
         this.listaVazia = listaMeta.size() == 0;
         this.adaptador07 = new Adaptador07(listaMeta, this);
 
@@ -122,9 +128,9 @@ public class MetaActivity extends AppCompatActivity {
     public void setLista() {
 
         if(listaVazia)
-            this.textViewtextViewTituloMeta.setText("Não há contas á pagar cadastrada");
+            this.textViewtextViewTituloMeta.setText("Não há meta cadastrada");
         else
-            this.textViewtextViewTituloMeta.setText("Lista de Meta:");
+            this.textViewtextViewTituloMeta.setText("Lista de meta:");
 
         this.listaMeta.setAdapter(adaptador07);
     }
@@ -338,6 +344,43 @@ public class MetaActivity extends AppCompatActivity {
         longOperation.execute();
     }
 
+    public void incluirMeta() {
+
+        Requisicao requisicao = new Requisicao();
+        requisicao.requestIncluirMeta(this.getDescricao(), this.getValor(), this.getAVista(),
+        this.getValorEconomizar(), this.getQuantidadeParcela());
+    }
+
+    public String getDescricao() {
+
+        return this.editTextDescricaoDaMeta.getText().toString();
+    }
+
+    public double getValor() {
+
+        return Double.valueOf(this.editTextValorDaMeta.getText().toString());
+    }
+
+    public int getAVista() {
+
+        if(aVista)
+            return 1;
+
+        return 0;
+    }
+
+    public double getValorEconomizar() {
+
+        return Double.valueOf(editTextValorMinimoEco.getText().toString());
+    }
+
+    public int getQuantidadeParcela() {
+
+        if(editTextParcelas.getText().toString().isEmpty())
+            return 0;
+
+        return Integer.valueOf(this.editTextParcelas.getText().toString());
+    }
 
     public void mostrarSucesso(){
 
@@ -361,15 +404,15 @@ public class MetaActivity extends AppCompatActivity {
             case R.id.button_AVista:
                 if (checked){
                     this.aPrazo = false;
+                    this.aVista = true;
                 }
                 this.editTextParcelas.setVisibility(View.GONE);
 
                 break;
             case R.id.button_Fixa:
                 if (checked) {
-
-                    ;
                     this.aPrazo = false;
+                    this.aVista = false;
                 }
                 this.editTextParcelas.setVisibility(View.GONE);
 
@@ -378,9 +421,9 @@ public class MetaActivity extends AppCompatActivity {
                 if (checked) {
 
                     this.aPrazo = true;
+                    this.aVista = false;
                 }
                 this.editTextParcelas.setVisibility(View.VISIBLE);
-
                 break;
         }
     }
@@ -453,6 +496,7 @@ public class MetaActivity extends AppCompatActivity {
     public void buttonAplicar(View v2) {
 
         this.v = v2;
+        this.aplicarAVista = this.adaptador07.getItem(v.getId()).getIsAvista() == 1;
         AlertDialog.Builder popup = new AlertDialog.Builder(MetaActivity.this);
         popup.setTitle(R.string.activityMeta_MsgAtencao);
         popup.setMessage(R.string.activityMeta_MsgConfirmacao);
@@ -470,19 +514,30 @@ public class MetaActivity extends AppCompatActivity {
 
     public void aplicar() {
 
-
+        Requisicao requisicao = new Requisicao();
+        requisicao.requestAplicarMeta(this.adaptador07.getItem(v.getId()).getId());
     }
 
     public void mostrarSucessoAplicar() {
 
-        AlertDialog.Builder popup = new AlertDialog.Builder(MetaActivity.this);
-        popup.setTitle(R.string.activityContasAPagar_MsgSucesso);
-        popup.setMessage(R.string.activityContasAPagar_RE43);
-        popup.setPositiveButton(R.string.activityContasAPagar_ok, null);
-        popup.create();
-        popup.show();
-    }
+        if(this.aplicarAVista) {
 
+            AlertDialog.Builder popup = new AlertDialog.Builder(MetaActivity.this);
+            popup.setTitle(R.string.activityContasAPagar_MsgSucesso);
+            popup.setMessage(R.string.activityContasAPagar_RE43);
+            popup.setPositiveButton(R.string.activityContasAPagar_ok, null);
+            popup.create();
+            popup.show();
+        } else {
+
+            AlertDialog.Builder popup = new AlertDialog.Builder(MetaActivity.this);
+            popup.setTitle(R.string.activityContasAPagar_MsgSucesso);
+            popup.setMessage("Meta realizada! você pode acessa-la em contas á pagar.");
+            popup.setPositiveButton(R.string.activityContasAPagar_ok, null);
+            popup.create();
+            popup.show();
+        }
+    }
 
     public void buttonExcluir(View v2) {
 
@@ -502,9 +557,11 @@ public class MetaActivity extends AppCompatActivity {
         popup.create();
         popup.show();
     }
+
     public void excluir() {
 
-
+        Requisicao requisicao = new Requisicao();
+        requisicao.requestExcluirMeta(this.adaptador07.getItem(this.v.getId()).getId());
     }
 
     public void mostrarSucessoExclusao() {
@@ -533,6 +590,7 @@ public class MetaActivity extends AppCompatActivity {
                 return false;
             }
 
+            incluirMeta();
             carregarLista();
             return true;
         }
@@ -609,10 +667,6 @@ public class MetaActivity extends AppCompatActivity {
             mostrarSucessoExclusao();
         }
     }
-
-
-
-
 }
 
 

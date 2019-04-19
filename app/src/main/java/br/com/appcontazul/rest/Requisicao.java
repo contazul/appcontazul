@@ -16,6 +16,7 @@ import br.com.appcontazul.rest.model.Central;
 import br.com.appcontazul.rest.model.ListaContasAPagar;
 import br.com.appcontazul.rest.model.ListaContazul;
 import br.com.appcontazul.rest.model.ListaLucroMensal;
+import br.com.appcontazul.rest.model.ListaMeta;
 import br.com.appcontazul.rest.model.ListaSomaSaldo;
 import br.com.appcontazul.rest.model.ListaSubtracaoSaldo;
 import br.com.appcontazul.rest.model.PerfilContazul;
@@ -305,6 +306,64 @@ public class Requisicao {
         CredenciaisWsContazul credenciaisWsContazul = new CredenciaisWsContazul();
         String url = credenciaisWsContazul.getPathEpQuitarDivida();
         url = url.replace("{id_divida_mensal}", "" + id);
+        restTemplate.postForObject(url, null, Void.class);
+    }
+
+    public void requestIncluirMeta(String descricao, double valor, int isAvista,
+                                   double valorEconomizar, int quantidadeParcela) {
+
+        RestTemplate restTemplate = new RestTemplate();
+        MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
+        converter.setSupportedMediaTypes(Arrays.asList(MediaType.APPLICATION_FORM_URLENCODED));
+        restTemplate.getMessageConverters().add(converter);
+        CredenciaisWsContazul credenciaisWsContazul = new CredenciaisWsContazul();
+        String url = credenciaisWsContazul.getPathEpIncluirMeta();
+        url = url.replace("{descricao}", descricao);
+        url = url.replace("{valor}", "" + valor);
+        url = url.replace("{isAvista}", "" + isAvista);
+        url = url.replace("{valorEconomizar}", "" + valorEconomizar);
+        url = url.replace("{quantidadeParcela}", "" + quantidadeParcela);
+        url = url.replace("{numeroContazul}", "" + ReferenciaUsuario.numeroContazul);
+        restTemplate.postForObject(url, null, Void.class);
+    }
+
+    public List<ListaMeta> requestListaMeta() {
+
+        RestTemplate restTemplate = new RestTemplate();
+        CredenciaisWsContazul credenciaisWsContazul = new CredenciaisWsContazul();
+        String url = credenciaisWsContazul.getPathEpListaMeta();
+        ResponseEntity<List<ListaMeta>> response = restTemplate.exchange(
+                url,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<ListaMeta>>() {},
+                ReferenciaUsuario.numeroContazul);
+
+        List<ListaMeta> listaMeta = response.getBody();
+        return listaMeta;
+    }
+
+    public void requestAplicarMeta(long id) {
+
+        RestTemplate restTemplate = new RestTemplate();
+        MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
+        converter.setSupportedMediaTypes(Arrays.asList(MediaType.APPLICATION_FORM_URLENCODED));
+        restTemplate.getMessageConverters().add(converter);
+        CredenciaisWsContazul credenciaisWsContazul = new CredenciaisWsContazul();
+        String url = credenciaisWsContazul.getPathEpAplicar();
+        url = url.replace("{id}", "" + id);
+        restTemplate.postForObject(url, null, Void.class);
+    }
+
+    public void requestExcluirMeta(long id) {
+
+        RestTemplate restTemplate = new RestTemplate();
+        MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
+        converter.setSupportedMediaTypes(Arrays.asList(MediaType.APPLICATION_FORM_URLENCODED));
+        restTemplate.getMessageConverters().add(converter);
+        CredenciaisWsContazul credenciaisWsContazul = new CredenciaisWsContazul();
+        String url = credenciaisWsContazul.getPathEpExcluir();
+        url = url.replace("{id}", "" + id);
         restTemplate.postForObject(url, null, Void.class);
     }
 }

@@ -1,36 +1,42 @@
 package br.com.appcontazul.rest.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ListaMeta {
 
-
+    private Long id;
     private String descricao;
-    private double valor;
-    private double valorMinimoEco;
-    private double valorParaAtingir;
-    private String strUltimaDataPagamento;
+    private Double valor;
+    private double valorRestante;
     private String status;
-    private int quantidadeParcela;
-    private int quantidadePaga;
-    private boolean pago;
+    private boolean isPodeAplicar;
+    private Double valorEconomizar;
+    private Integer isAvista;
 
-    public ListaMeta (){
+    public ListaMeta() {
 
     }
 
-    public ListaMeta(String descricao, double valor, double valorMinimoEco, double valorParaAtingir, String strUltimaDataPagamento, String status, int quantidadeParcela, int quantidadePaga) {
+    public ListaMeta(Long id, String descricao, Double valor, double valorRestante, String status,
+                     boolean isPodeAplicar, Double valorEconomizar, Integer isAvista) {
+        this.id = id;
         this.descricao = descricao;
         this.valor = valor;
-        this.valorMinimoEco = valorMinimoEco;
-        this.valorParaAtingir = valorParaAtingir;
-        this.strUltimaDataPagamento = strUltimaDataPagamento;
+        this.valorRestante = valorRestante;
         this.status = status;
-        this.quantidadeParcela = quantidadeParcela;
-        this.quantidadePaga = quantidadePaga;
-
+        this.isPodeAplicar = isPodeAplicar;
+        this.valorEconomizar = valorEconomizar;
+        this.isAvista = isAvista;
     }
 
+    public Long getId() {
+        return id;
+    }
 
-
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getDescricao() {
         return descricao;
@@ -40,36 +46,20 @@ public class ListaMeta {
         this.descricao = descricao;
     }
 
-    public double getValor() {
+    public Double getValor() {
         return valor;
     }
 
-    public void setValor(double valor) {
+    public void setValor(Double valor) {
         this.valor = valor;
     }
 
-    public double getValorMinimoEco() {
-        return valorMinimoEco;
+    public double getValorRestante() {
+        return valorRestante;
     }
 
-    public void setValorMinimoEco(double valorMinimoEco) {
-        this.valorMinimoEco = valorMinimoEco;
-    }
-
-    public double getValorParaAtingir() {
-        return valorParaAtingir;
-    }
-
-    public void setValorParaAtingir(double valorParaAtingir) {
-        this.valorParaAtingir = valorParaAtingir;
-    }
-
-    public String getStrUltimaDataPagamento() {
-        return strUltimaDataPagamento;
-    }
-
-    public void setStrUltimaDataPagamento(String strUltimaDataPagamento) {
-        this.strUltimaDataPagamento = strUltimaDataPagamento;
+    public void setValorRestante(double valorRestante) {
+        this.valorRestante = valorRestante;
     }
 
     public String getStatus() {
@@ -80,27 +70,27 @@ public class ListaMeta {
         this.status = status;
     }
 
-    public int getQuantidadeParcela() {
-        return quantidadeParcela;
+    public boolean isPodeAplicar() {
+        return isPodeAplicar;
     }
 
-    public void setQuantidadeParcela(int quantidadeParcela) {
-        this.quantidadeParcela = quantidadeParcela;
+    public void setPodeAplicar(boolean podeAplicar) {
+        isPodeAplicar = podeAplicar;
     }
 
-    public int getQuantidadePaga() {
-        return quantidadePaga;
+    public Double getValorEconomizar() {
+        return valorEconomizar;
     }
 
-    public void setQuantidadePaga(int quantidadePaga) {
-        this.quantidadePaga = quantidadePaga;
+    public void setValorEconomizar(Double valorEconomizar) {
+        this.valorEconomizar = valorEconomizar;
     }
 
-    public boolean isPago() {
-        return pago;
+    public Integer getIsAvista() {
+        return isAvista;
     }
 
-    public void setPago(boolean pago) {
-        this.pago = pago;
+    public void setIsAvista(Integer isAvista) {
+        this.isAvista = isAvista;
     }
 }

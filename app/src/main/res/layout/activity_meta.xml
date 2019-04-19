@@ -7,8 +7,6 @@
     android:orientation="vertical"
     tools:context=".activity.MetaActivity">
 
-
-
     <TextView
         android:id="@+id/textView_funcionalidade6"
         android:layout_width="wrap_content"
@@ -57,13 +55,13 @@
     <LinearLayout
         android:id="@+id/layout_listaMeta"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:orientation="vertical"
-        android:background="@drawable/borda"
         android:layout_marginStart="5dp"
         android:layout_marginEnd="5dp"
-
+        android:paddingBottom="15dp"
+        android:background="@drawable/borda"
+        android:orientation="vertical"
         >
 
         <ListView
@@ -262,35 +260,14 @@
                     android:id="@+id/button_InserirMeta"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="80dp"
+                    android:layout_marginEnd="80dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_marginStart="5dp"
                     android:background="@color/colorPrimary"
                     android:text="@string/activityMeta_ButtonInserirMeta"
                     android:onClick="buttonInserirMeta"
                     android:textColor="#FFF"
                     />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             </LinearLayout>
 </ScrollView>

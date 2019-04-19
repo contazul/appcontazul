@@ -153,7 +153,7 @@
     <string name="activityContasAPagar_TextViewRE40">Quantidade de parcelas é obrigatória</string>
     <string name="activityContasAPagar_TextViewRE41">Informe um valor maior que zero</string>
     <string name="activityContasAPagar_RE42">Confirma quitação desta dívida?</string>
-    <string name="activityContasAPagar_RE43">Divida quitada e saldo atualizado com sucesso</string>
+    <string name="activityContasAPagar_RE43">Meta realizada! e saldo atualizado com sucesso</string>
     <string name="activityContasAPagar_RE44">Confirmar pagamento desta dívida?</string>
     <string name="activityContasAPagar_RE45">Dívida paga e saldo atualizado com sucesso</string>
     <string name="activityContasAPagar_RE46">Confirmar exclusão desta dívida?</string>
@@ -169,8 +169,8 @@
 
 
     <string name="activityMeta_Funcionalidade">Meta</string>
-    <string name="activityMeta_IncluirMeta">Incluir Meta</string>
-    <string name="activityMeta_ListarMetas">Listar Metas</string>
+    <string name="activityMeta_IncluirMeta">Incluir</string>
+    <string name="activityMeta_ListarMetas">Listar</string>
     <string name="activityMeta_NenhumaMeta">Não há meta incluída</string>
     <string name="activityMeta_EditTextDescricaoDaMeta">Descrição</string>
     <string name="activityMeta_TextViewRE50">Descrição é obrigatória</string>

@@ -48,9 +48,7 @@ public class Adaptador07  extends BaseAdapter {
         TextView textView_valorDaMeta = (TextView) view.findViewById(R.id.textView_valorDaMeta);
         TextView textView_valorMinimoEco = (TextView) view.findViewById(R.id.textView_valorMinimoEco);
         TextView textView_valorParaAtingir = (TextView) view.findViewById(R.id.textView_valorParaAtingir);
-        TextView textView_data = (TextView) view.findViewById(R.id.textView_Data);
         TextView textView_status = (TextView) view.findViewById(R.id.textView_status);
-        TextView textView_parcela = (TextView) view.findViewById(R.id.textView_Parcela);
         Button buttonAplicar = (Button) view.findViewById(R.id.button_Aplicar);
         buttonAplicar.setId(position);
         Button buttonExcluir = (Button) view.findViewById(R.id.button_Excluir);
@@ -61,22 +59,11 @@ public class Adaptador07  extends BaseAdapter {
 
         Formatacao formatacao = new Formatacao();
         textView_valorDaMeta.setText("Valor:" + " " + formatacao.formatarValorMonetario("" + listaMeta.getValor()));
-        textView_valorMinimoEco.setText("Valor mínimo a ser economizado:" + " " + formatacao.formatarValorMonetario("" + listaMeta.getValorMinimoEco()));
-        textView_valorParaAtingir.setText("Valor para atingir a meta:" + " " + formatacao.formatarValorMonetario("" + listaMeta.getValorParaAtingir()));
-
+        textView_valorMinimoEco.setText("Valor mínimo a ser economizado:" + " " + formatacao.formatarValorMonetario("" + listaMeta.getValorEconomizar()));
+        textView_valorParaAtingir.setText("Valor restante para atingir a meta:" + " " + formatacao.formatarValorMonetario("" + listaMeta.getValorRestante()));
         textView_status.setText("Status:" + " " + listaMeta.getStatus());
 
-        if(listaMeta.getStrUltimaDataPagamento() == null || listaMeta.getStrUltimaDataPagamento().isEmpty())
-            textView_data.setText("Não há data de pagamento registrada");
-        else
-            textView_data.setText("Ultimo Data de aplicação:" + listaMeta.getStrUltimaDataPagamento());
-
-        if (listaMeta.getQuantidadeParcela() !=0){
-            textView_parcela.setText("Número de parcelas pagas:" + listaMeta.getQuantidadePaga()+"/"+listaMeta.getQuantidadeParcela());
-            textView_parcela.setVisibility(View.VISIBLE);
-        }
-
-        if(!listaMeta.getStatus().equals("Alcançada")){
+        if(!listaMeta.isPodeAplicar()){
 
             buttonExcluir.setLayoutParams(buttonAplicar.getLayoutParams());
             buttonAplicar.setVisibility(View.GONE);

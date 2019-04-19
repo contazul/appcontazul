@@ -13,10 +13,10 @@ public class ListaMetaRepository {
     public List<ListaMeta> getListaMeta (){
 
         this.listaMeta = new ArrayList<>();
-        this.listaMeta.add(new ListaMeta("Bruno",1.0, 2.0,3.0,"02/04","Alcançada",12,5));
+/*        this.listaMeta.add(new ListaMeta("Bruno",1.0, 2.0,3.0,"02/04","Alcançada",12,5));
         this.listaMeta.add(new ListaMeta("Bruno",1.0, 2.0,3.0,"09/04","Não Alcançada",0,1));
         this.listaMeta.add(new ListaMeta("Bruno",1.0, 2.0,3.0,"01/03","Alcançada",12,2));
-        this.listaMeta.add(new ListaMeta("Bruno",1.0, 2.0,3.0,"02/04","Não Alcançada",0,5));
+        this.listaMeta.add(new ListaMeta("Bruno",1.0, 2.0,3.0,"02/04","Não Alcançada",0,5));*/
 
 
 

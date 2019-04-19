@@ -7,6 +7,7 @@ public class CredenciaisWsContazul {
     private final String URL3 = "https://wscontazul.herokuapp.com/wscontazul/lucroMensal";
     private final String URL4 = "https://wscontazul.herokuapp.com/wscontazul/central";
     private final String URL5 = "https://wscontazul.herokuapp.com/wscontazul/dividamensal";
+    private final String URL6 = "https://wscontazul.herokuapp.com/wscontazul/meta";
 
     // ENDPOINT /ex01
     private final String EP_EX01 = "/ex01";
@@ -111,6 +112,27 @@ public class CredenciaisWsContazul {
     // ENDPOINT /quitarDivida
     private String EP_QUITARDIVIDA = "/quitarDivida";
     private final String PARAMETRO01_EP_QUITARDIVIDA = "id_divida_mensal";
+
+    //ENDPOINT /incluirMeta
+    private String EP_INCLUIRMETA = "/incluirMeta";
+    private final String PARAMETRO01_EP_INCLUIRMETA = "descricao";
+    private final String PARAMETRO02_EP_INCLUIRMETA = "valor";
+    private final String PARAMETRO03_EP_INCLUIRMETA = "isAvista";
+    private final String PARAMETRO04_EP_INCLUIRMETA = "valorEconomizar";
+    private final String PARAMETRO05_EP_INCLUIRMETA = "quantidadeParcela";
+    private final String PARAMETRO06_EP_INCLUIRMETA = "numeroContazul";
+
+    //ENDPOINT /listaMeta
+    private String EP_LISTAMETA = "/listaMeta";
+    private final String PARAMETRO01_EP_LISTAMETA = "numeroContazul";
+
+    //ENDPOINT /aplicar
+    private String EP_APLICAR = "/aplicar";
+    private final String PARAMETRO01_EP_APLICAR = "id";
+
+    //ENDPOINT /excluir
+    private String EP_EXCLUIR = "/excluir";
+    private final String PARAMETRO01_EP_EXCLUIR = "id";
 
     public CredenciaisWsContazul() {
 
@@ -273,6 +295,36 @@ public class CredenciaisWsContazul {
     public String getPathEpQuitarDivida() {
 
         String url = this.URL5 + this.EP_QUITARDIVIDA + "?" + this.PARAMETRO01_EP_QUITARDIVIDA + "={id_divida_mensal}";
+        return url;
+    }
+
+    public String getPathEpIncluirMeta() {
+
+        String url = this.URL6 +
+                this.EP_INCLUIRMETA + "?" + this.PARAMETRO01_EP_INCLUIRMETA + "={descricao}"
+                + "&" + this.PARAMETRO02_EP_INCLUIRMETA + "={valor}"
+                + "&" + this.PARAMETRO03_EP_INCLUIRMETA + "={isAvista}"
+                + "&" + this.PARAMETRO04_EP_INCLUIRMETA + "={valorEconomizar}"
+                + "&" + this.PARAMETRO05_EP_INCLUIRMETA + "={quantidadeParcela}"
+                + "&" + this.PARAMETRO06_EP_INCLUIRMETA + "={numeroContazul}";
+        return url;
+    }
+
+    public String getPathEpListaMeta() {
+
+        String url = this.URL6 + this.EP_LISTAMETA + "?" + this.PARAMETRO01_EP_LISTAMETA + "={contazul}";
+        return url;
+    }
+
+    public String getPathEpAplicar() {
+
+        String url = this.URL6 + this.EP_APLICAR + "?" + this.PARAMETRO01_EP_APLICAR + "={id}";
+        return url;
+    }
+
+    public String getPathEpExcluir() {
+
+        String url = this.URL6 + this.EP_EXCLUIR + "?" + this.PARAMETRO01_EP_EXCLUIR + "={id}";
         return url;
     }
 }
