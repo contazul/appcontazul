@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.SimuladorActivity">
+
+    <TextView
+        android:id="@+id/textView_funcionalidade7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10sp"
+        android:text="@string/activitySimulador_Funcionalidade"
+        android:textColor="@color/colorPrimary"
+        android:textSize="15sp"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <ProgressBar
+        android:id="@+id/pbHeaderProgress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:visibility="gone"></ProgressBar>
+
+
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/scrollViewOpcoes"
+        android:fillViewport="true"
+        >
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/layout_menuDeOpcoes"
+
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/opcaoSimulador"
+                android:text="@string/activitySimulador_Opcoes"
+                android:textSize="18sp"
+                android:layout_marginTop="50sp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginStart="10sp"
+
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView_OpcaoSubtracao"
+                android:text="@string/activitySimulador_OpcaoSub"
+                android:textSize="19sp"
+                app:layout_constraintTop_toTopOf="@id/opcaoSimulador"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginTop="60sp"
+                android:layout_marginLeft="20sp"/>
+
+            <Switch
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/switchSubtracao"
+                app:layout_constraintTop_toTopOf="@+id/textView_OpcaoSubtracao"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginStart="200dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView_OpcaoNovaDiv"
+                android:textSize="19sp"
+                app:layout_constraintTop_toTopOf="@+id/textView_OpcaoSubtracao"
+                app:layout_constraintBottom_toBottomOf="@+id/textView_OpcaoSubtracao"
+                android:layout_marginTop="90sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginStart="20sp"
+                android:text="@string/activitySimulador_OpcaoNovaDiv"
+                />
+
+            <Switch
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/switchNovaDivi"
+                app:layout_constraintTop_toTopOf="@+id/textView_OpcaoNovaDiv"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginStart="200dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView_OpcaoRemoverDiv"
+                android:textSize="19sp"
+                app:layout_constraintTop_toTopOf="@+id/textView_OpcaoNovaDiv"
+                app:layout_constraintBottom_toBottomOf="@+id/textView_OpcaoNovaDiv"
+                android:layout_marginTop="90sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginStart="20sp"
+                android:text="@string/activitySimulador_OpcaoRemoverDiv"
+                />
+
+            <Switch
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/switchRemoverDiv"
+                app:layout_constraintTop_toTopOf="@+id/textView_OpcaoRemoverDiv"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginStart="200dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView_OpcaoNovoBen"
+                android:textSize="19sp"
+                app:layout_constraintTop_toTopOf="@+id/textView_OpcaoRemoverDiv"
+                app:layout_constraintBottom_toBottomOf="@+id/textView_OpcaoRemoverDiv"
+                android:layout_marginTop="90sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginStart="20sp"
+                android:text="@string/activitySimulador_OpcaoNovoBen"
+                />
+
+            <Switch
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/switchNovoBen"
+                app:layout_constraintTop_toTopOf="@+id/textView_OpcaoNovoBen"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginStart="200dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView_OpcaoRemoverBen"
+                android:textSize="19sp"
+                app:layout_constraintTop_toTopOf="@+id/textView_OpcaoNovoBen"
+                app:layout_constraintBottom_toBottomOf="@+id/textView_OpcaoNovoBen"
+                android:layout_marginTop="90sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginStart="20sp"
+                android:text="@string/activitySimulador_OpcaoRemoverBen"
+                />
+
+            <Switch
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/switchRemoverBen"
+                app:layout_constraintTop_toTopOf="@+id/textView_OpcaoRemoverBen"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginStart="200dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView_OpcaoComoAtingirMeta"
+                android:textSize="19sp"
+                app:layout_constraintTop_toTopOf="@+id/textView_OpcaoRemoverBen"
+                app:layout_constraintBottom_toBottomOf="@+id/textView_OpcaoRemoverBen"
+                android:layout_marginTop="90sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginStart="20sp"
+                android:text="@string/activitySimulador_OpcaoComoAtingirMeta"
+                />
+
+            <Switch
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/switchComoAtingirMeta"
+                app:layout_constraintTop_toTopOf="@+id/textView_OpcaoComoAtingirMeta"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginStart="200dp"
+                />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/buttonProsseguir"
+                android:text="@string/activitySimulador_ButtonProsseguir"
+                android:textColor="#FFF"
+                android:background="@color/colorPrimaryDark"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/switchComoAtingirMeta"
+                app:layout_constraintBottom_toBottomOf="@+id/switchComoAtingirMeta"
+                android:layout_marginTop="180dp"
+                />
+
+
+                />
+
+        </android.support.constraint.ConstraintLayout>
+    </ScrollView>
+
+
+</LinearLayout>

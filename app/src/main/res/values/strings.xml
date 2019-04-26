@@ -179,7 +179,7 @@
     <string name="activituMeta_TextViewRE53">Valor mínimo economizado é obrigatório</string>
     <string name="activityMeta_TextViewTipo">Tipo:</string>
     <string name="activityMeta_EditTextParcelas">Quantidade de parcelas</string>
-    
+
     <string name="activityMeta_TextViewValorFormatado">R$0,00</string>
     <string name="activityMeta_EditTextValor">Valor total</string>
     <string name="activityMeta_EditTextValorMinimo">Valor mínimo economizado</string>
@@ -199,11 +199,26 @@
     <string name="activityMeta_MsgOk">OK</string>
 
 
-   
-    
-
-
-
+    <string name="activitySimulador_Funcionalidade">Simulador</string>
+    <string name="activitySimulador_Opcoes">Opções de simulação:</string>
+    <string name="activitySimulador_OpcaoSub">Subtração de saldo</string>
+    <string name="activitySimulador_OpcaoNovaDiv">Nova dívida</string>
+    <string name="activitySimulador_OpcaoRemoverDiv">Remover dívida</string>
+    <string name="activitySimulador_OpcaoNovoBen">Novo benefício</string>
+    <string name="activitySimulador_OpcaoRemoverBen">Remover benefício</string>
+    <string name="activitySimulador_OpcaoComoAtingirMeta">Como atingir meta</string>
+    <string name="activitySimulador_ButtonProsseguir">Prosseguir</string>
+    <string name="activitySimulador_TextViewSaldoAtualSimulado">Saldo atual simulado:</string>
+    <string name="activitySimulador_TextViewValorFormatado">R$0,00</string>
+    <string name="activitySimulador_TextViewTotalAdicionadoALista">Total adicionado á lista:</string>
+    <string name="activitySimulador_EditTextDescricaoSubtracao">Descrição:</string>
+    <string name="activitySimulador_TextViewRE58">O campo descrição é obrigatório</string>
+    <string name="activitySimulador_EditTextValorDaSubtracao">Valor</string>
+    <string name="activitySimulador_TextViewRE59">O campo valor é obrigatório</string>
+    <string name="activitySimulador_TextViewPrioridade">Prioridade:</string>
+    <string name="activitySimulador_ButtonAdicionar">Adicionar</string>
+    <string name="activitySimulador_ButtonVisualizarLista">Visualizar lista</string>
+    <string name="activitySimulador_ButtonFinalizarSimulacao">Finalizar simulação</string>
 
     <string name="title_activity_menu_principal">MenuPrincipal</string>
 
@@ -211,7 +226,6 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
-
 </resources>
 
 

@@ -129,6 +129,12 @@ public class CentralActivity extends AppCompatActivity {
                 return true;
 
 
+            case R.id.action_simulador:
+
+                Intent activitySimulador = new Intent(CentralActivity.this, SimuladorActivity.class);
+                startActivity(activitySimulador);
+                return true;
+
             case R.id.action_selecaoConta:
 
                 Intent activitySelecaoConta = new Intent(CentralActivity.this, SelecaoContaActivity.class);
