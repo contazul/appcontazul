@@ -241,6 +241,12 @@ public class ContasAPagarActivity extends AppCompatActivity {
                 startActivity(activitySelecaoConta);
                 return true;
 
+            case R.id.action_simulador:
+
+                Intent activitySimulador = new Intent(ContasAPagarActivity.this, SimuladorActivity.class);
+                startActivity(activitySimulador);
+                return true;
+
             case R.id.action_meta:
 
                 Intent activityMeta = new Intent(ContasAPagarActivity.this, MetaActivity.class);

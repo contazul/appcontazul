@@ -179,7 +179,7 @@
     <string name="activituMeta_TextViewRE53">Valor mínimo economizado é obrigatório</string>
     <string name="activityMeta_TextViewTipo">Tipo:</string>
     <string name="activityMeta_EditTextParcelas">Quantidade de parcelas</string>
-    
+
     <string name="activityMeta_TextViewValorFormatado">R$0,00</string>
     <string name="activityMeta_EditTextValor">Valor total</string>
     <string name="activityMeta_EditTextValorMinimo">Valor mínimo economizado</string>
@@ -199,18 +199,56 @@
     <string name="activityMeta_MsgOk">OK</string>
 
 
-   
-    
-
-
-
-
     <string name="title_activity_menu_principal">MenuPrincipal</string>
-
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-
     <string name="action_settings">Settings</string>
+
+    <!--SIMULADOR-->
+    <string name="funcionalidade_simulador">Simulador</string>
+    <string name="simulador_subtitulo">Opções para simular:</string>
+    <string name="simulador_opcao_01">Compra á vista...</string>
+    <string name="simulador_opcao_02">Aderir dívida...</string>
+    <string name="simulador_opcao_03">Remover dívida...</string>
+    <string name="simulador_opcao_04">Novo benefício...</string>
+    <string name="simulador_opcao_05">Remover benefício...</string>
+    <string name="simulador_opcao_06">Atingir meta...</string>
+    <string name="simulador_prosseguir">prosseguir</string>
+    <string name="simulador_atencao">Atenção</string>
+    <string name="simulador_validacao01">Escolha ao menos uma opção</string>
+    <string name="simulador_ok">OK</string>
+
+    <!--GASTO Á VISTA-->
+    <string name="simulador_subtitulogastoavista">Simulando gasto á vista*</string>
+    <string name="simulador_saldosimulado">Saldo simulado</string>
+    <string name="simulador_saldoformatado">R$0,00</string>
+    <string name="simulador_descricao">Descrição</string>
+    <string name="simulador_valorformatado">R$0,00</string>
+    <string name="simulador_valor">Valor</string>
+    <string name="simulador_prioridade">Prioridade</string>
+    <string name="simulador_adicionar">Adicionar</string>
+    <string name="simulador_listar">Listar</string>
+    <string name="simulador_finalizar">Finalizar</string>
+    <string name="simulador_descricaovazia">Descrição é obrigatória</string>
+    <string name="simulador_valorvazio">Valor é obrigatório</string>
+    <string name="simulador_valorzero">Informe o valor sendo maior que zero</string>
+    <string name="simulador_voltar">Voltar</string>
+    <string name="simulador_avisoexcluir">Pressione por alguns segundos em um item da lista para remove-lo!</string>
+    <string name="simulador_adicionadosucesso">Item adicionado</string>
+    <string name="simulador_excluidosucesso">Item removido</string>
+    <string name="simulador_subtituloresultado">Resultado da simulação:</string>
+    <string name="simulador_subtitulototalbaixaprioridade">Total gasto em baixa prioridade</string>
+    <string name="simulador_subtitulototalgeral">Total geral</string>
+    <string name="simulador_subtituloaplicar">É possível aplicar a simulação em seus dados atuais</string>
+    <string name="simulador_aplicar">aplicar</string>
+    <string name="simulador_subtitulofinalizar">Ou</string>
+    <string name="simulador_finalizarResultado">Finalizar simulação</string>
+    <string name="simulador_confirmarAplicacao">Os dados simulados serão aplicados na contazul, confirma?</string>
+    <string name="simulador_sucessoAplicacao">Dados transferidos, e saldo atualizado com sucesso.</string>
+    <string name="simulador_sim">Sim</string>
+    <string name="simulador_nao">Nao</string>
+    <string name="simulador_sucesso">Sucesso</string>
+    <!---->
 
 </resources>
 

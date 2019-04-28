@@ -385,6 +385,12 @@ public class LucroMensalActivity extends AppCompatActivity {
                 startActivity(activitySelecaoConta);
                 return true;
 
+            case R.id.action_simulador:
+
+                Intent activitySimulador = new Intent(LucroMensalActivity.this, SimuladorActivity.class);
+                startActivity(activitySimulador);
+                return true;
+
 
             case R.id.action_meta:
 

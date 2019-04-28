@@ -259,6 +259,12 @@ public class PerfilContaActivity extends AppCompatActivity {
                 startActivity(activityContasAPagar);
                 return true;
 
+            case R.id.action_simulador:
+
+                Intent activitySimulador = new Intent(PerfilContaActivity.this, SimuladorActivity.class);
+                startActivity(activitySimulador);
+                return true;
+
             case R.id.action_meta:
 
                 Intent activityMeta = new Intent(PerfilContaActivity.this, MetaActivity.class);
