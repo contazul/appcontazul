@@ -35,7 +35,9 @@
         <activity android:name=".activity.MetaActivity" />
         <activity android:name=".activity.SimuladorActivity" />
         <activity android:name=".activity.SimuladorGastoAVistaActivity" />
-        <activity android:name=".activity.SimuladorGastoAVistaResultadoActivity"></activity>
+        <activity android:name=".activity.SimuladorGastoAVistaResultadoActivity" />
+        <activity android:name=".activity.SimuladorAdesaoDividaActivity" />
+        <activity android:name=".activity.SimuladorResultadoActivity"></activity>
     </application>
 
 </manifest>

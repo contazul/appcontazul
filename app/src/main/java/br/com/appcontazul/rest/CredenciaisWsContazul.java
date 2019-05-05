@@ -8,6 +8,7 @@ public class CredenciaisWsContazul {
     private final String URL4 = "https://wscontazul.herokuapp.com/wscontazul/central";
     private final String URL5 = "https://wscontazul.herokuapp.com/wscontazul/dividamensal";
     private final String URL6 = "https://wscontazul.herokuapp.com/wscontazul/meta";
+    private final String URL7 = "https://wscontazul.herokuapp.com/wscontazul/simulador";
 
     // ENDPOINT /ex01
     private final String EP_EX01 = "/ex01";
@@ -110,8 +111,19 @@ public class CredenciaisWsContazul {
     private final String PARAMETRO01_EP_EXCLUIRDIVIDA = "id_divida_mensal";
 
     // ENDPOINT /quitarDivida
-    private String EP_QUITARDIVIDA = "/quitarDivida";
+    private final String EP_QUITARDIVIDA = "/quitarDivida";
     private final String PARAMETRO01_EP_QUITARDIVIDA = "id_divida_mensal";
+
+    // ENPOINT /simular
+    private final String EP_SIMULAR = "/simular";
+    private String PARAMETRO01_EP_SIMULAR = "numeroContazul";
+    private String PARAMETRO02_EP_SIMULAR = "totalDivida";
+    private String PARAMETRO03_EP_SIMULAR = "totalDividaRemovida";
+    private String PARAMETRO04_EP_SIMULAR = "totalBeneficio";
+    private String PARAMETRO05_EP_SIMULAR = "totalBeneficioRemovido";
+    private String PARAMETRO06_EP_SIMULAR = "idMeta";
+    private String PARAMETRO07_EP_SIMULAR = "simulandoMeta";
+
 
     //ENDPOINT /incluirMeta
     private String EP_INCLUIRMETA = "/incluirMeta";
@@ -325,6 +337,20 @@ public class CredenciaisWsContazul {
     public String getPathEpExcluir() {
 
         String url = this.URL6 + this.EP_EXCLUIR + "?" + this.PARAMETRO01_EP_EXCLUIR + "={id}";
+        return url;
+    }
+
+    public String getPathEpSimular() {
+
+        String url = this.URL7 + this.EP_SIMULAR + "?" +
+                this.PARAMETRO01_EP_SIMULAR + "={numeroContazul}" + "&"
+                + this.PARAMETRO02_EP_SIMULAR + "={totalDivida}" + "&"
+                + this.PARAMETRO03_EP_SIMULAR + "={totalDividaRemovida}" + "&"
+                + this.PARAMETRO04_EP_SIMULAR + "={totalBeneficio}" + "&"
+                + this.PARAMETRO05_EP_SIMULAR + "={totalBeneficioRemovido}" + "&"
+                + this.PARAMETRO06_EP_SIMULAR + "={idMeta}" + "&"
+                + this.PARAMETRO07_EP_SIMULAR + "={simulandoMeta}" + "&";
+
         return url;
     }
 }

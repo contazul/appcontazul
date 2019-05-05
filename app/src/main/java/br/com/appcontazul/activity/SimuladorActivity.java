@@ -179,6 +179,9 @@ public class SimuladorActivity extends AppCompatActivity {
 
                 this.setarOpcoes();
                 // CHAMAR SIMULAÇÃO OUTRAS PASSANDO O ARRAY OPÇÕES
+                Intent activityAdesaoDivida = new Intent(SimuladorActivity.this, SimuladorAdesaoDividaActivity.class);
+                activityAdesaoDivida.putExtra("opcoes", this.opcoes);
+                startActivity(activityAdesaoDivida);
             }
         }
     }

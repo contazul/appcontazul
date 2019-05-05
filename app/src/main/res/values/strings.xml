@@ -214,6 +214,7 @@
     <string name="simulador_opcao_05">Remover benefício...</string>
     <string name="simulador_opcao_06">Atingir meta...</string>
     <string name="simulador_prosseguir">prosseguir</string>
+    <string name="simulador_proxima">próxima</string>
     <string name="simulador_atencao">Atenção</string>
     <string name="simulador_validacao01">Escolha ao menos uma opção</string>
     <string name="simulador_ok">OK</string>
@@ -250,7 +251,46 @@
     <string name="simulador_sucesso">Sucesso</string>
     <!---->
 
+    <!--ADESÃO DE DIVIDA-->
+    <string name="simulador_tituloadesaodivida">Simulando adesão de dívida*</string>
+    <string name="simulador_edittextdescricao">Descrição</string>
+    <string name="simulador_textviewdescricaovazia">Descrição é obrigatória</string>
+    <string name="simulador_textviewprioridade">Prioridade:</string>
+    <string name="simulador_switchprioridade">Baixa...</string>
+    <string name="simulador_textviewtipodivida">Tipo:</string>
+    <string name="simulador_switchtipodivida">Á prazo...</string>
+    <string name="simulador_edittextquantidadeparcela">Quantidade de parcela</string>
+    <string name="simulador_textviewparcelavazia">Quantidade de parcela é obrigatória</string>
+    <string name="simulador_textviewparcelazero">Quantidade de parcela tem que ser maior que zero</string>
+    <!--LISTA-->
+    <string name="simulador_lista_textviewdescricao">Descrição: %1$s</string>
+    <string name="simulador_lista_textviewvalor">Valor: %1$s</string>
+    <string name="simulador_lista_textviewprioridade">Prioridade: %1$s</string>
+    <string name="simulador_lista_textviewtipofixa">Fixa</string>
+    <string name="simulador_lista_textviewtipoaprazo">Quantidade parcela: %1$s</string>
+    <!---->
+    <!---->
+
+    <!--SIMULADOR RESULTADO-->
+    <string name="simulador_statussimulado">Status simulado: %1$s</string>
+    <string name="simulador_statusatual">Status atual: %1$s</string>
+    <string name="simulador_percentualeconomizadosimulado">Percentual economizado simulado: %1$s</string>
+    <string name="simulador_percentualeconomizadoatual">Percentual economizado atual: %1$s</string>
+    <string name="simulador_valoreconomizadosimulado">Valor economizado simulado: %1$s</string>
+    <string name="simulador_valoreconomizadoatual">Valor economizado atual: %1$s</string>
+    <string name="simulador_valorafetado">Economia %1$s no valor de: %2$s</string>
+    <string name="simulador_meta">Meta:</string>
+    <string name="simulador_statusmeta">Status simulado da meta: %1$s</string>
+    <string name="simulador_valorrestantemeta">Valor restante: %1$s</string>
+    <string name="simulador_aumentou">aumentou</string>
+    <string name="simulador_caiu">caiu</string>
+    <string name="simulador_resultadoaplicacao">Dados transferidos</string>
+    <!---->
+
 </resources>
+
+
+
 
 
 

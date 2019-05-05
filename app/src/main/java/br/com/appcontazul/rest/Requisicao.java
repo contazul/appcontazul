@@ -12,6 +12,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import br.com.appcontazul.contentstatic.ReferenciaUsuario;
+import br.com.appcontazul.contentstatic.Simulador;
 import br.com.appcontazul.rest.model.Central;
 import br.com.appcontazul.rest.model.ListaContasAPagar;
 import br.com.appcontazul.rest.model.ListaContazul;
@@ -21,6 +22,9 @@ import br.com.appcontazul.rest.model.ListaSomaSaldo;
 import br.com.appcontazul.rest.model.ListaSubtracaoSaldo;
 import br.com.appcontazul.rest.model.PerfilContazul;
 import br.com.appcontazul.rest.model.Saldo;
+import br.com.appcontazul.rest.model.SimuladorEntrada;
+import br.com.appcontazul.rest.model.SimuladorSaida;
+import br.com.appcontazul.util.model.ListaSimuladorAdesaoDivida;
 
 public class Requisicao {
 
@@ -365,6 +369,29 @@ public class Requisicao {
         String url = credenciaisWsContazul.getPathEpExcluir();
         url = url.replace("{id}", "" + id);
         restTemplate.postForObject(url, null, Void.class);
+    }
+
+    public SimuladorSaida requestSimular() {
+
+        RestTemplate restTemplate = new RestTemplate();
+        CredenciaisWsContazul credenciaisWsContazul = new CredenciaisWsContazul();
+        String url = credenciaisWsContazul.getPathEpSimular();
+        ResponseEntity<SimuladorSaida> response = restTemplate.exchange(
+                url,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<SimuladorSaida>() {},
+                ReferenciaUsuario.numeroContazul,
+                Simulador.simuladorEntrada.getTotalDivida(),
+                Simulador.simuladorEntrada.getTotalDividaRemovida(),
+                Simulador.simuladorEntrada.getTotalBeneficio(),
+                Simulador.simuladorEntrada.getTotalBeneficioRemovido(),
+                Simulador.simuladorEntrada.getIdMeta(),
+                Simulador.simuladorEntrada.isSimulandoMeta()
+        );
+
+        SimuladorSaida saida = response.getBody();
+        return saida;
     }
 }
 
