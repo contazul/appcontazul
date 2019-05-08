@@ -14,4 +14,6 @@ public class Simulador {
     public static SimuladorEntrada simuladorEntrada;
 
     public static List<InclusaoDivida> dividasSimuladas;
+
+    public static long[] dividas;
 }

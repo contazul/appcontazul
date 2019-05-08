@@ -16,6 +16,7 @@ import br.com.appcontazul.contentstatic.Simulador;
 import br.com.appcontazul.rest.model.Central;
 import br.com.appcontazul.rest.model.ListaContasAPagar;
 import br.com.appcontazul.rest.model.ListaContazul;
+import br.com.appcontazul.rest.model.ListaDividaFixa;
 import br.com.appcontazul.rest.model.ListaLucroMensal;
 import br.com.appcontazul.rest.model.ListaMeta;
 import br.com.appcontazul.rest.model.ListaSomaSaldo;
@@ -392,6 +393,22 @@ public class Requisicao {
 
         SimuladorSaida saida = response.getBody();
         return saida;
+    }
+
+    public List<ListaDividaFixa> requestListaDividaFixa() {
+
+        RestTemplate restTemplate = new RestTemplate();
+        CredenciaisWsContazul credenciaisWsContazul = new CredenciaisWsContazul();
+        String url = credenciaisWsContazul.getPathEpListarDividaFixa();
+        ResponseEntity<List<ListaDividaFixa>> response = restTemplate.exchange(
+                url,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<ListaDividaFixa>>() {},
+                ReferenciaUsuario.numeroContazul);
+
+        List<ListaDividaFixa> lista = response.getBody();
+        return lista;
     }
 }
 

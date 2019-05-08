@@ -146,6 +146,10 @@ public class CredenciaisWsContazul {
     private String EP_EXCLUIR = "/excluir";
     private final String PARAMETRO01_EP_EXCLUIR = "id";
 
+    // ENDPOINT /listarDividaFixa
+    private String EP_LISTARDIVIDAFIXA = "/listarDividaFixa";
+    private final String PARAMETRO01_EP_LISTARDIVIDAFIXA = "numeroContazul";
+
     public CredenciaisWsContazul() {
 
     }
@@ -351,6 +355,12 @@ public class CredenciaisWsContazul {
                 + this.PARAMETRO06_EP_SIMULAR + "={idMeta}" + "&"
                 + this.PARAMETRO07_EP_SIMULAR + "={simulandoMeta}" + "&";
 
+        return url;
+    }
+
+    public String getPathEpListarDividaFixa() {
+
+        String url = this.URL5 + this.EP_LISTARDIVIDAFIXA + "?" + this.PARAMETRO01_EP_LISTARDIVIDAFIXA + "={numeroContazul}";
         return url;
     }
 }

@@ -287,6 +287,10 @@
     <string name="simulador_resultadoaplicacao">Dados transferidos</string>
     <!---->
 
+    <!--SIMULADOR REMOVER DIVIDA-->
+    <string name="simulador_subtituloremoverdivida">Simulando exclusão de dívida*</string>
+    <!---->
+
 </resources>
 
 

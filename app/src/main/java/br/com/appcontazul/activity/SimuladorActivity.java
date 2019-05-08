@@ -75,7 +75,7 @@ public class SimuladorActivity extends AppCompatActivity {
         this.switch02.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
-                controlarSwitch01ParaTodos(!isChecked);
+                controlarSwitch01ParaTodos(habilitarSwitch01());
             }
         });
     }
@@ -85,7 +85,7 @@ public class SimuladorActivity extends AppCompatActivity {
         this.switch03.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
-                controlarSwitch01ParaTodos(!isChecked);
+                controlarSwitch01ParaTodos(habilitarSwitch01());
             }
         });
     }
@@ -95,7 +95,7 @@ public class SimuladorActivity extends AppCompatActivity {
         this.switch04.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
-                controlarSwitch01ParaTodos(!isChecked);
+                controlarSwitch01ParaTodos(habilitarSwitch01());
             }
         });
     }
@@ -105,7 +105,7 @@ public class SimuladorActivity extends AppCompatActivity {
         this.switch05.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
-                controlarSwitch01ParaTodos(!isChecked);
+                controlarSwitch01ParaTodos(habilitarSwitch01());
             }
         });
     }
@@ -115,7 +115,7 @@ public class SimuladorActivity extends AppCompatActivity {
         this.switch06.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
-                controlarSwitch01ParaTodos(!isChecked);
+                controlarSwitch01ParaTodos(habilitarSwitch01());
             }
         });
     }
@@ -148,6 +148,13 @@ public class SimuladorActivity extends AppCompatActivity {
         this.opcoes[2] = switch04.isChecked();
         this.opcoes[3] = switch05.isChecked();
         this.opcoes[4] = switch06.isChecked();
+    }
+
+    public boolean habilitarSwitch01() {
+
+        return !this.switch02.isChecked() && !this.switch03.isChecked() &&
+                !this.switch04.isChecked() && !this.switch04.isChecked() &&
+                !this.switch05.isChecked() && !this.switch06.isChecked();
     }
     // FIM MÉTODOS DE CONTROLE
 

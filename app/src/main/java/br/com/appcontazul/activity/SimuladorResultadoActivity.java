@@ -127,6 +127,19 @@ public class SimuladorResultadoActivity extends AppCompatActivity {
             }
         }
     }
+
+    public void aplicarExclusaoDivida() {
+
+        boolean[] opcoes = getIntent().getBooleanArrayExtra("opcoes");
+        if(opcoes[1]) {
+
+            for(int i = 0; i < Simulador.dividas.length; i++) {
+
+                Requisicao requisicao = new Requisicao();
+                requisicao.requestExcluirDivida(Simulador.dividas[i]);
+            }
+        }
+    }
     // FIM MÉTODOS DE REQUISIÇÃO
 
     // MENSAGENS
@@ -167,6 +180,11 @@ public class SimuladorResultadoActivity extends AppCompatActivity {
     public void aplicar(View v) {
 
         this.exibirConfirmacaoAplicacao();
+    }
+
+    public void finalizarSimulacao(View v) {
+
+        this.redirecionarSimulador();
     }
     // FIM ONCLICK
 
@@ -232,6 +250,7 @@ public class SimuladorResultadoActivity extends AppCompatActivity {
             }
 
             aplicarAdesaoDivida();
+            aplicarExclusaoDivida();
             return true;
         }
 

@@ -255,6 +255,11 @@ public class SimuladorAdesaoDividaActivity extends AppCompatActivity {
             Intent activityResultado = new Intent(SimuladorAdesaoDividaActivity.this, SimuladorResultadoActivity.class);
             activityResultado.putExtra("opcoes", getIntent().getBooleanArrayExtra("opcoes"));
             startActivity(activityResultado);
+        } else {
+
+            Intent activityResultado = new Intent(SimuladorAdesaoDividaActivity.this, SimuladorRemoverDividaActivity.class);
+            activityResultado.putExtra("opcoes", getIntent().getBooleanArrayExtra("opcoes"));
+            startActivity(activityResultado);
         }
     }
     // FIM ONCLICK
@@ -306,6 +311,9 @@ public class SimuladorAdesaoDividaActivity extends AppCompatActivity {
         } else {
 
             // PASSA PRO PŔOXIMO
+            Intent activity = new Intent(SimuladorAdesaoDividaActivity.this, SimuladorRemoverDividaActivity.class);
+            activity.putExtra("opcoes", opcoes);
+            startActivity(activity);
         }
     }
     // FIM MÉTODOS DE CONTROLE
