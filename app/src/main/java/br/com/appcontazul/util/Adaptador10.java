@@ -9,14 +9,14 @@ import android.widget.TextView;
 import java.util.List;
 
 import br.com.appcontazul.R;
-import br.com.appcontazul.rest.model.ListaDividaFixa;
+import br.com.appcontazul.util.model.ListaSimuladorNovoBeneficio;
 
-public class Adaptador09 extends BaseAdapter {
+public class Adaptador10 extends BaseAdapter {
 
-    private final List<ListaDividaFixa> lista;
+    private final List<ListaSimuladorNovoBeneficio> lista;
     private final Activity act01;
 
-    public Adaptador09(List<ListaDividaFixa> lista, Activity act01) {
+    public Adaptador10(List<ListaSimuladorNovoBeneficio> lista, Activity act01) {
 
         this.lista = lista;
         this.act01 = act01;
@@ -28,7 +28,7 @@ public class Adaptador09 extends BaseAdapter {
     }
 
     @Override
-    public ListaDividaFixa getItem(int posicao){
+    public ListaSimuladorNovoBeneficio getItem(int posicao){
         return this.lista.get(posicao);
     }
 
@@ -38,9 +38,9 @@ public class Adaptador09 extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent){
 
-        View view = act01.getLayoutInflater().inflate(R.layout.lista_simulador_adesao_divida,
+        View view = act01.getLayoutInflater().inflate(R.layout.lista_simulador_novo_beneficio,
                 parent, false);
-        ListaDividaFixa item = this.lista.get(position);
+        ListaSimuladorNovoBeneficio item = this.lista.get(position);
         TextView descricao = view.findViewById(R.id.textView_descricao);
         descricao.setText(view.getResources().getString(R.string.simulador_lista_textviewdescricao,
                 item.getDescricao()));
@@ -48,16 +48,9 @@ public class Adaptador09 extends BaseAdapter {
         TextView valor = view.findViewById(R.id.textView_valor);
         valor.setText(view.getResources().getString(R.string.simulador_lista_textviewvalor,
                 fmt.formatarValorMonetario("" + item.getValor())));
-        TextView prioridade = view.findViewById(R.id.textView_prioridade);
-        prioridade.setText(view.getResources().getString(R.string.simulador_lista_textviewprioridade,
-                item.getPrioridade()));
-        TextView tipo = view.findViewById(R.id.textView_tipo);
-        tipo.setVisibility(View.GONE);
         return view;
     }
 }
-
-
 
 
 

@@ -291,6 +291,9 @@
     <string name="simulador_subtituloremoverdivida">Simulando exclusão de dívida*</string>
     <!---->
 
+    <!--SIMULADOR NOVO BENEFÍCIO-->
+    <string name="simulador_subtitulonovobeneficio">Simulando inclusão de benefício*</string>
+    <!---->
 </resources>
 
 

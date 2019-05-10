@@ -109,9 +109,9 @@ public class SimuladorRemoverDividaActivity extends AppCompatActivity {
         } else {
 
             // PASSA PRO PŔOXIMO
-            // Intent activity = new Intent(SimuladorRemoverDividaActivity.this, SimuladorRemoverDividaActivity.class);
-            // activity.putExtra("opcoes", opcoes);
-            // startActivity(activity);
+            Intent activity = new Intent(SimuladorRemoverDividaActivity.this, SimuladorNovoBeneficioActivity.class);
+            activity.putExtra("opcoes", opcoes);
+            startActivity(activity);
         }
     }
 
@@ -145,6 +145,11 @@ public class SimuladorRemoverDividaActivity extends AppCompatActivity {
         if(!this.button_acao.getText().toString().equals(getResources().getString(R.string.simulador_proxima))) {
 
             Intent activity = new Intent(SimuladorRemoverDividaActivity.this, SimuladorResultadoActivity.class);
+            activity.putExtra("opcoes", getIntent().getBooleanArrayExtra("opcoes"));
+            startActivity(activity);
+        } else {
+
+            Intent activity = new Intent(SimuladorRemoverDividaActivity.this, SimuladorNovoBeneficioActivity.class);
             activity.putExtra("opcoes", getIntent().getBooleanArrayExtra("opcoes"));
             startActivity(activity);
         }

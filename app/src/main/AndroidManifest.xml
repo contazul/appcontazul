@@ -38,7 +38,8 @@
         <activity android:name=".activity.SimuladorGastoAVistaResultadoActivity" />
         <activity android:name=".activity.SimuladorAdesaoDividaActivity" />
         <activity android:name=".activity.SimuladorResultadoActivity" />
-        <activity android:name=".activity.SimuladorRemoverDividaActivity"></activity>
+        <activity android:name=".activity.SimuladorRemoverDividaActivity" />
+        <activity android:name=".activity.SimuladorNovoBeneficioActivity"></activity>
     </application>
 
 </manifest>

@@ -18,6 +18,7 @@ import br.com.appcontazul.rest.Requisicao;
 import br.com.appcontazul.rest.model.InclusaoDivida;
 import br.com.appcontazul.rest.model.SimuladorSaida;
 import br.com.appcontazul.util.Formatacao;
+import br.com.appcontazul.util.model.ListaSimuladorNovoBeneficio;
 
 public class SimuladorResultadoActivity extends AppCompatActivity {
 
@@ -140,6 +141,19 @@ public class SimuladorResultadoActivity extends AppCompatActivity {
             }
         }
     }
+
+    public void aplicarNovoBeneficio() {
+
+        boolean[] opcoes = getIntent().getBooleanArrayExtra("opcoes");
+        if(opcoes[2]) {
+
+            for(ListaSimuladorNovoBeneficio item : Simulador.beneficiosNovos) {
+
+                Requisicao requisicao = new Requisicao();
+                requisicao.requestInserirLucroMensal(item.getDescricao(), "" + item.getValor());
+            }
+        }
+    }
     // FIM MÉTODOS DE REQUISIÇÃO
 
     // MENSAGENS
@@ -251,6 +265,7 @@ public class SimuladorResultadoActivity extends AppCompatActivity {
 
             aplicarAdesaoDivida();
             aplicarExclusaoDivida();
+            aplicarNovoBeneficio();
             return true;
         }
 
