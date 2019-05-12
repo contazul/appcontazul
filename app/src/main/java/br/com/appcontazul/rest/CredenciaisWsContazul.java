@@ -150,6 +150,10 @@ public class CredenciaisWsContazul {
     private String EP_LISTARDIVIDAFIXA = "/listarDividaFixa";
     private final String PARAMETRO01_EP_LISTARDIVIDAFIXA = "numeroContazul";
 
+    //ENDPOINT /listaMetaStatus01
+    private String EP_LISTAMETASTATUS01 = "/listaMetaStatus01";
+    private final String PARAMETRO01_EP_LISTAMETASTATUS01 = "numeroContazul";
+
     public CredenciaisWsContazul() {
 
     }
@@ -361,6 +365,12 @@ public class CredenciaisWsContazul {
     public String getPathEpListarDividaFixa() {
 
         String url = this.URL5 + this.EP_LISTARDIVIDAFIXA + "?" + this.PARAMETRO01_EP_LISTARDIVIDAFIXA + "={numeroContazul}";
+        return url;
+    }
+
+    public String getPathEpListaMetaStatus01() {
+
+        String url = this.URL6 + this.EP_LISTAMETASTATUS01 + "?" + this.PARAMETRO01_EP_LISTAMETASTATUS01 + "={contazul}";
         return url;
     }
 }

@@ -410,6 +410,22 @@ public class Requisicao {
         List<ListaDividaFixa> lista = response.getBody();
         return lista;
     }
+
+    public List<ListaMeta> requestListaMetaStatus01() {
+
+        RestTemplate restTemplate = new RestTemplate();
+        CredenciaisWsContazul credenciaisWsContazul = new CredenciaisWsContazul();
+        String url = credenciaisWsContazul.getPathEpListaMetaStatus01();
+        ResponseEntity<List<ListaMeta>> response = restTemplate.exchange(
+                url,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<ListaMeta>>() {},
+                ReferenciaUsuario.numeroContazul);
+
+        List<ListaMeta> listaMeta = response.getBody();
+        return listaMeta;
+    }
 }
 
 

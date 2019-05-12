@@ -18,6 +18,7 @@
             android:text="@string/listaSubtracaoSaldo_descricao"
             android:textSize="15sp"
             android:layout_marginLeft="10sp"
+            android:layout_marginTop="10sp"
             android:textColor="@color/colorPrimary"
             />
 
@@ -29,6 +30,7 @@
             android:textSize="15sp"
             app:layout_constraintLeft_toLeftOf="parent"
             android:layout_marginLeft="10sp"
+            android:layout_marginTop="5sp"
             android:textColor="@color/colorAccent"
             />
 
@@ -40,6 +42,7 @@
             android:textSize="15sp"
             app:layout_constraintLeft_toLeftOf="parent"
             android:layout_marginLeft="10sp"
+            android:layout_marginTop="5sp"
             android:textColor="@color/colorPrimary"
             />
     </LinearLayout>

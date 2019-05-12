@@ -19,4 +19,6 @@ public class Simulador {
     public static long[] dividas;
 
     public static List<ListaSimuladorNovoBeneficio> beneficiosNovos;
+
+    public static long[] beneficios;
 }

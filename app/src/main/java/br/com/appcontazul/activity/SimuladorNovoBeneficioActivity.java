@@ -5,6 +5,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -152,16 +155,16 @@ public class SimuladorNovoBeneficioActivity extends AppCompatActivity {
     public void verificarOpcao() {
 
         boolean[] opcoes = getIntent().getBooleanArrayExtra("opcoes");
-        if(opcoes[1]) {
+        if(opcoes[2]) {
 
             if(opcoes[3] || opcoes[4])
                 this.button_finalizar.setText(getResources().getString(R.string.simulador_proxima));
         } else {
 
             // PASSA PRO PŔOXIMO
-            // Intent activity = new Intent(SimuladorNovoBeneficioActivity.this, SimuladorNovoBeneficioActivity.class);
-            // activity.putExtra("opcoes", opcoes);
-            // startActivity(activity);
+            Intent activity = new Intent(SimuladorNovoBeneficioActivity.this, SimuladorRemoverBeneficioActivity.class);
+            activity.putExtra("opcoes", opcoes);
+            startActivity(activity);
         }
     }
 
@@ -213,9 +216,9 @@ public class SimuladorNovoBeneficioActivity extends AppCompatActivity {
             startActivity(activityResultado);
         } else {
 
-            // Intent activityResultado = new Intent(SimuladorAdesaoDividaActivity.this, SimuladorRemoverDividaActivity.class);
-            // activityResultado.putExtra("opcoes", getIntent().getBooleanArrayExtra("opcoes"));
-            // startActivity(activityResultado);
+            Intent activityResultado = new Intent(SimuladorNovoBeneficioActivity.this, SimuladorRemoverBeneficioActivity.class);
+            activityResultado.putExtra("opcoes", getIntent().getBooleanArrayExtra("opcoes"));
+            startActivity(activityResultado);
         }
     }
     // FIM ONCLICK
@@ -277,6 +280,87 @@ public class SimuladorNovoBeneficioActivity extends AppCompatActivity {
         Toast.makeText(this, getResources().getString(R.string.simulador_excluidosucesso), Toast.LENGTH_SHORT).show();
     }
     // FIM MENSAGEM
+
+    // MENU
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_central:
+
+                Intent activityCentral = new Intent(SimuladorNovoBeneficioActivity.this, CentralActivity.class);
+                startActivity(activityCentral);
+                return true;
+
+            case R.id.action_perfilDaConta:
+
+                Intent activityPerfilDaConta = new Intent(SimuladorNovoBeneficioActivity.this, PerfilContaActivity.class);
+                startActivity(activityPerfilDaConta);
+                return true;
+
+            case R.id.action_somaSaldo:
+
+                Intent activitySomaDeSaldo = new Intent(SimuladorNovoBeneficioActivity.this, SomaDeSaldoActivity.class);
+                startActivity(activitySomaDeSaldo);
+                return true;
+
+            case R.id.action_subtracaoSaldo:
+
+                Intent activitySubtracaoDeSaldo = new Intent(SimuladorNovoBeneficioActivity.this, SubtracaoDeSaldoActivity.class);
+                startActivity(activitySubtracaoDeSaldo);
+                return true;
+
+            case R.id.action_lucroMensal:
+
+                Intent activityLucroMensal = new Intent(SimuladorNovoBeneficioActivity.this, LucroMensalActivity.class);
+                startActivity(activityLucroMensal);
+                return true;
+
+            case R.id.action_contasPagar:
+
+                Intent activityContasAPagar = new Intent(SimuladorNovoBeneficioActivity.this, ContasAPagarActivity.class);
+                startActivity(activityContasAPagar);
+                return true;
+
+            case R.id.action_simulador:
+
+                Intent activitySimulador = new Intent(SimuladorNovoBeneficioActivity.this, SimuladorActivity.class);
+                startActivity(activitySimulador);
+                return true;
+
+            case R.id.action_meta:
+
+                Intent activityMeta = new Intent(SimuladorNovoBeneficioActivity.this, MetaActivity.class);
+                startActivity(activityMeta);
+                return true;
+
+
+            case R.id.action_selecaoConta:
+
+                Intent activitySelecaoConta = new Intent(SimuladorNovoBeneficioActivity.this, SelecaoContaActivity.class);
+                startActivity(activitySelecaoConta);
+                return true;
+
+            case R.id.action_sair:
+
+                Intent activityLogin = new Intent(SimuladorNovoBeneficioActivity.this, LoginActivity.class);
+                startActivity(activityLogin);
+                return true;
+
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+
+        }
+    }
+    // FIM MENU
 }
 
 

@@ -11,7 +11,11 @@ import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 
+import java.util.ArrayList;
+
 import br.com.appcontazul.R;
+import br.com.appcontazul.contentstatic.Simulador;
+import br.com.appcontazul.rest.model.SimuladorEntrada;
 
 public class SimuladorActivity extends AppCompatActivity {
 
@@ -58,6 +62,16 @@ public class SimuladorActivity extends AppCompatActivity {
         // INCIANDO ATRIBUTOS DE CONTROLE
         this.opcoes = new boolean[5];
         // FIM INICIANDO ATRIBUTOS DE CONTROLE
+
+        reinicializarSimulador();
+    }
+
+    public void reinicializarSimulador() {
+
+        Simulador.listaSimulacao = new ArrayList<>();
+        Simulador.simuladorEntrada = new SimuladorEntrada();
+        Simulador.dividasSimuladas = new ArrayList<>();
+        Simulador.beneficiosNovos = new ArrayList<>();
     }
 
     public void inicilizarSwitch01() {
@@ -85,6 +99,7 @@ public class SimuladorActivity extends AppCompatActivity {
         this.switch03.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
+                controlarSwitch06Para03e04();
                 controlarSwitch01ParaTodos(habilitarSwitch01());
             }
         });
@@ -95,6 +110,7 @@ public class SimuladorActivity extends AppCompatActivity {
         this.switch04.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
+                controlarSwitch06Para03e04();
                 controlarSwitch01ParaTodos(habilitarSwitch01());
             }
         });
@@ -139,6 +155,17 @@ public class SimuladorActivity extends AppCompatActivity {
 
         this.switch01.setChecked(false);
         this.switch01.setEnabled(desabilitar);
+    }
+
+    public void controlarSwitch06Para03e04() {
+
+        if(!switch03.isChecked() && !switch04.isChecked()) {
+            switch06.setEnabled(false);
+            switch06.setChecked(false);
+        }
+        else {
+            switch06.setEnabled(true);
+        }
     }
 
     public void setarOpcoes() {

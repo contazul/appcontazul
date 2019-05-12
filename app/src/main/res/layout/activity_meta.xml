@@ -62,6 +62,7 @@
         android:paddingBottom="15dp"
         android:background="@drawable/borda"
         android:orientation="vertical"
+        android:layout_marginBottom="10dp"
         >
 
         <ListView

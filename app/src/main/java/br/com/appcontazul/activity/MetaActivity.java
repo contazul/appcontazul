@@ -120,9 +120,6 @@ public class MetaActivity extends AppCompatActivity {
         List<ListaMeta> listaMeta = requisicao.requestListaMeta();
         this.listaVazia = listaMeta.size() == 0;
         this.adaptador07 = new Adaptador07(listaMeta, this);
-
-
-
     }
 
     public void setLista() {

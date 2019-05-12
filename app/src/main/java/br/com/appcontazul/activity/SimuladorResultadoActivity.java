@@ -6,6 +6,9 @@ import android.os.AsyncTask;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -154,6 +157,19 @@ public class SimuladorResultadoActivity extends AppCompatActivity {
             }
         }
     }
+
+    public void aplicarExclusaoBenefico() {
+
+        boolean[] opcoes = getIntent().getBooleanArrayExtra("opcoes");
+        if(opcoes[3]) {
+
+            for(int i = 0; i < Simulador.beneficios.length; i++) {
+
+                Requisicao requisicao = new Requisicao();
+                requisicao.requestExcluirLucroMensal("" + Simulador.beneficios[i]);
+            }
+        }
+    }
     // FIM MÉTODOS DE REQUISIÇÃO
 
     // MENSAGENS
@@ -216,6 +232,87 @@ public class SimuladorResultadoActivity extends AppCompatActivity {
     }
     // DESABILITAR ITENS
 
+    // MENU
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_central:
+
+                Intent activityCentral = new Intent(SimuladorResultadoActivity.this, CentralActivity.class);
+                startActivity(activityCentral);
+                return true;
+
+            case R.id.action_perfilDaConta:
+
+                Intent activityPerfilDaConta = new Intent(SimuladorResultadoActivity.this, PerfilContaActivity.class);
+                startActivity(activityPerfilDaConta);
+                return true;
+
+            case R.id.action_somaSaldo:
+
+                Intent activitySomaDeSaldo = new Intent(SimuladorResultadoActivity.this, SomaDeSaldoActivity.class);
+                startActivity(activitySomaDeSaldo);
+                return true;
+
+            case R.id.action_subtracaoSaldo:
+
+                Intent activitySubtracaoDeSaldo = new Intent(SimuladorResultadoActivity.this, SubtracaoDeSaldoActivity.class);
+                startActivity(activitySubtracaoDeSaldo);
+                return true;
+
+            case R.id.action_lucroMensal:
+
+                Intent activityLucroMensal = new Intent(SimuladorResultadoActivity.this, LucroMensalActivity.class);
+                startActivity(activityLucroMensal);
+                return true;
+
+            case R.id.action_contasPagar:
+
+                Intent activityContasAPagar = new Intent(SimuladorResultadoActivity.this, ContasAPagarActivity.class);
+                startActivity(activityContasAPagar);
+                return true;
+
+            case R.id.action_simulador:
+
+                Intent activitySimulador = new Intent(SimuladorResultadoActivity.this, SimuladorActivity.class);
+                startActivity(activitySimulador);
+                return true;
+
+            case R.id.action_meta:
+
+                Intent activityMeta = new Intent(SimuladorResultadoActivity.this, MetaActivity.class);
+                startActivity(activityMeta);
+                return true;
+
+
+            case R.id.action_selecaoConta:
+
+                Intent activitySelecaoConta = new Intent(SimuladorResultadoActivity.this, SelecaoContaActivity.class);
+                startActivity(activitySelecaoConta);
+                return true;
+
+            case R.id.action_sair:
+
+                Intent activityLogin = new Intent(SimuladorResultadoActivity.this, LoginActivity.class);
+                startActivity(activityLogin);
+                return true;
+
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+
+        }
+    }
+    // FIM MENU
+
     // CHAMADAS ASSINCRONAS
     private class LongOperation extends AsyncTask<Void, Void, Boolean> {
 
@@ -266,6 +363,7 @@ public class SimuladorResultadoActivity extends AppCompatActivity {
             aplicarAdesaoDivida();
             aplicarExclusaoDivida();
             aplicarNovoBeneficio();
+            aplicarExclusaoBenefico();
             return true;
         }
 

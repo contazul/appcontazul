@@ -1,5 +1,6 @@
 package br.com.appcontazul.activity;
 
+import android.app.DownloadManager;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -21,54 +22,54 @@ import java.util.List;
 import br.com.appcontazul.R;
 import br.com.appcontazul.contentstatic.Simulador;
 import br.com.appcontazul.rest.Requisicao;
-import br.com.appcontazul.rest.model.ListaDividaFixa;
-import br.com.appcontazul.util.Adaptador09;
+import br.com.appcontazul.rest.model.ListaLucroMensal;
+import br.com.appcontazul.rest.model.SimuladorEntrada;
+import br.com.appcontazul.util.Adaptador11;
+import br.com.appcontazul.util.model.ListaSimuladorRemoverBeneficio;
 
-public class SimuladorRemoverDividaActivity extends AppCompatActivity {
+public class SimuladorRemoverBeneficioActivity extends AppCompatActivity {
 
     // COMPONENTES
     private ProgressBar load;
-    private LinearLayout layout_simulacaoExclusaoDivida;
+    private LinearLayout layout_simulacao;
     private Button button_acao;
     private ListView listaSimulacao;
     // FIM COMPONENTES
 
-    // ATRIBUTOS DE CONTROLE
-    private List<ListaDividaFixa> lista;
-    private String dividas;
-    private int contadorDividas;
-    private double totalDivida;
-    // FIM ATRIBUTOS DE CONTROLE
+    // ATRIBUTOS
+    private List<ListaSimuladorRemoverBeneficio> lista;
+    private String beneficios;
+    private int contadorBeneficios;
+    // FIM ATRIBUTOS
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_simulador_remover_divida);
+        setContentView(R.layout.activity_simulador_remover_beneficio);
 
         this.criarElementos();
     }
 
     private void criarElementos() {
 
-        // INICIALIZANDO COMPONENTES
         this.load = (ProgressBar) findViewById(R.id.pbHeaderProgress);
-        this.layout_simulacaoExclusaoDivida = (LinearLayout) findViewById(R.id.layout_simulacaoExclusaoDivida);
+        this.layout_simulacao = (LinearLayout) findViewById(R.id.layout_simulacao);
         this.button_acao = (Button) findViewById(R.id.button_acao);
-        this.button_acao.setEnabled(false);
-        this.button_acao.setAlpha(0.2f);
         this.listaSimulacao = (ListView) findViewById(R.id.listaSimulacao);
         this.inicilizarCliqueLista();
-        // FIM INICIALIZANDO COMPONENTES
 
-        // INICIALIZANDO ATRIBUTOS DE CONTROLE
         this.lista = new ArrayList<>();
-        this.dividas = "";
-        this.contadorDividas = 0;
-        this.totalDivida = 0.0;
-        // FIM INICIALIZANDO ATRIBUTOS DE CONTROLE
+        this.beneficios = "";
+        this.contadorBeneficios = 0;
 
         this.verificarOpcao();
+    }
+
+    public void carregarLista() {
+
+        Adaptador11 adaptador = new Adaptador11(lista, this);
+        this.listaSimulacao.setAdapter(adaptador);
     }
 
     public void inicilizarCliqueLista() {
@@ -78,11 +79,11 @@ public class SimuladorRemoverDividaActivity extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View v, int pos, long id) {
 
-                totalDivida += lista.get(pos).getValor();
-                dividas += lista.get(pos).getId() + ";";
-                contadorDividas++;
+                Simulador.simuladorEntrada.setTotalBeneficioRemovido(Simulador.simuladorEntrada.getTotalBeneficioRemovido() + lista.get(pos).getValor());
+                beneficios += lista.get(pos).getId() + ";";
+                contadorBeneficios++;
                 lista.remove(pos);
-                montarLista();
+                carregarLista();
                 mostrarToastItemRemovido();
                 button_acao.setEnabled(true);
                 button_acao.setAlpha(1);
@@ -93,71 +94,37 @@ public class SimuladorRemoverDividaActivity extends AppCompatActivity {
         });
     }
 
-    public void montarLista() {
-
-        Adaptador09 adaptador = new Adaptador09(lista, this);
-        listaSimulacao.setAdapter(adaptador);
-    }
-
-    // MÉTODOS DE CONTROLE
+    // CONTROLE
     public void verificarOpcao() {
 
         boolean[] opcoes = getIntent().getBooleanArrayExtra("opcoes");
-        if(opcoes[1]) {
+        if(opcoes[3]) {
 
-            if(opcoes[2] || opcoes[3] || opcoes[4])
+            if(opcoes[4])
                 this.button_acao.setText(getResources().getString(R.string.simulador_proxima));
 
-            this.carregarLista();
+            LongOperation operation = new LongOperation();
+            operation.execute();
         } else {
 
-            // PASSA PRO PŔOXIMO
-            Intent activity = new Intent(SimuladorRemoverDividaActivity.this, SimuladorNovoBeneficioActivity.class);
+            Intent activity = new Intent(SimuladorRemoverBeneficioActivity.this, SimuladorMetaActivity.class);
             activity.putExtra("opcoes", opcoes);
             startActivity(activity);
         }
     }
+    // FIM CONTROLE
 
-    public void carregarLista() {
+    // REQUISIÇÃO
+    public void listar() {
 
-        LongOperation operation = new LongOperation();
-        operation.execute();
-    }
-    // FIM MÉTODOS DE CONTROLE
+        Requisicao r = new Requisicao();
+        List<ListaLucroMensal> beneficios = r.requestListaLucroMensal();
+        for(ListaLucroMensal item : beneficios) {
 
-    // MÉTODOS DE REQUISIÇÃO
-    public void listarDividaFixa() {
-
-        Requisicao requisicao = new Requisicao();
-        this.lista = requisicao.requestListaDividaFixa();
-    }
-    // FIM MÉTODOS DE REQUISIÇÃO
-
-    // ONCLICK
-    public void finalizar(View v) {
-
-        Simulador.dividas = new long[contadorDividas];
-        String[] strDividas = this.dividas.split(";");
-        for(int i = 0; i < contadorDividas; i++) {
-
-            Simulador.dividas[i] = Long.parseLong(strDividas[i]);
-        }
-
-        Simulador.simuladorEntrada.setTotalDividaRemovida(totalDivida);
-
-        if(!this.button_acao.getText().toString().equals(getResources().getString(R.string.simulador_proxima))) {
-
-            Intent activity = new Intent(SimuladorRemoverDividaActivity.this, SimuladorResultadoActivity.class);
-            activity.putExtra("opcoes", getIntent().getBooleanArrayExtra("opcoes"));
-            startActivity(activity);
-        } else {
-
-            Intent activity = new Intent(SimuladorRemoverDividaActivity.this, SimuladorNovoBeneficioActivity.class);
-            activity.putExtra("opcoes", getIntent().getBooleanArrayExtra("opcoes"));
-            startActivity(activity);
+            lista.add(new ListaSimuladorRemoverBeneficio(item.getId(),item.getDescricao(), item.getValor()));
         }
     }
-    // FIM ONCLICK
+    // FIM REQUISIÇÃO
 
     // MENSAGENS
     public void mostrarToastItemRemovido() {
@@ -165,6 +132,30 @@ public class SimuladorRemoverDividaActivity extends AppCompatActivity {
         Toast.makeText(this, getResources().getString(R.string.simulador_excluidosucesso), Toast.LENGTH_SHORT).show();
     }
     // FIM MENSAGENS
+
+    // ONCLICK
+    public void finalizar(View v) {
+
+        Simulador.beneficios = new long[this.contadorBeneficios];
+        String[] strDividas = this.beneficios.split(";");
+        for(int i = 0; i < contadorBeneficios; i++) {
+
+            Simulador.beneficios[i] = Long.parseLong(strDividas[i]);
+        }
+
+        if(!this.button_acao.getText().toString().equals(getResources().getString(R.string.simulador_proxima))) {
+
+            Intent activity = new Intent(SimuladorRemoverBeneficioActivity.this, SimuladorResultadoActivity.class);
+            activity.putExtra("opcoes", getIntent().getBooleanArrayExtra("opcoes"));
+            startActivity(activity);
+        } else {
+
+            Intent activity = new Intent(SimuladorRemoverBeneficioActivity.this, SimuladorMetaActivity.class);
+            activity.putExtra("opcoes", getIntent().getBooleanArrayExtra("opcoes"));
+            startActivity(activity);
+        }
+    }
+    // FIM ONCLICK
 
     // MENU
     @Override
@@ -179,62 +170,62 @@ public class SimuladorRemoverDividaActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_central:
 
-                Intent activityCentral = new Intent(SimuladorRemoverDividaActivity.this, CentralActivity.class);
+                Intent activityCentral = new Intent(SimuladorRemoverBeneficioActivity.this, CentralActivity.class);
                 startActivity(activityCentral);
                 return true;
 
             case R.id.action_perfilDaConta:
 
-                Intent activityPerfilDaConta = new Intent(SimuladorRemoverDividaActivity.this, PerfilContaActivity.class);
+                Intent activityPerfilDaConta = new Intent(SimuladorRemoverBeneficioActivity.this, PerfilContaActivity.class);
                 startActivity(activityPerfilDaConta);
                 return true;
 
             case R.id.action_somaSaldo:
 
-                Intent activitySomaDeSaldo = new Intent(SimuladorRemoverDividaActivity.this, SomaDeSaldoActivity.class);
+                Intent activitySomaDeSaldo = new Intent(SimuladorRemoverBeneficioActivity.this, SomaDeSaldoActivity.class);
                 startActivity(activitySomaDeSaldo);
                 return true;
 
             case R.id.action_subtracaoSaldo:
 
-                Intent activitySubtracaoDeSaldo = new Intent(SimuladorRemoverDividaActivity.this, SubtracaoDeSaldoActivity.class);
+                Intent activitySubtracaoDeSaldo = new Intent(SimuladorRemoverBeneficioActivity.this, SubtracaoDeSaldoActivity.class);
                 startActivity(activitySubtracaoDeSaldo);
                 return true;
 
             case R.id.action_lucroMensal:
 
-                Intent activityLucroMensal = new Intent(SimuladorRemoverDividaActivity.this, LucroMensalActivity.class);
+                Intent activityLucroMensal = new Intent(SimuladorRemoverBeneficioActivity.this, LucroMensalActivity.class);
                 startActivity(activityLucroMensal);
                 return true;
 
             case R.id.action_contasPagar:
 
-                Intent activityContasAPagar = new Intent(SimuladorRemoverDividaActivity.this, ContasAPagarActivity.class);
+                Intent activityContasAPagar = new Intent(SimuladorRemoverBeneficioActivity.this, ContasAPagarActivity.class);
                 startActivity(activityContasAPagar);
                 return true;
 
             case R.id.action_simulador:
 
-                Intent activitySimulador = new Intent(SimuladorRemoverDividaActivity.this, SimuladorActivity.class);
+                Intent activitySimulador = new Intent(SimuladorRemoverBeneficioActivity.this, SimuladorActivity.class);
                 startActivity(activitySimulador);
                 return true;
 
             case R.id.action_meta:
 
-                Intent activityMeta = new Intent(SimuladorRemoverDividaActivity.this, MetaActivity.class);
+                Intent activityMeta = new Intent(SimuladorRemoverBeneficioActivity.this, MetaActivity.class);
                 startActivity(activityMeta);
                 return true;
 
 
             case R.id.action_selecaoConta:
 
-                Intent activitySelecaoConta = new Intent(SimuladorRemoverDividaActivity.this, SelecaoContaActivity.class);
+                Intent activitySelecaoConta = new Intent(SimuladorRemoverBeneficioActivity.this, SelecaoContaActivity.class);
                 startActivity(activitySelecaoConta);
                 return true;
 
             case R.id.action_sair:
 
-                Intent activityLogin = new Intent(SimuladorRemoverDividaActivity.this, LoginActivity.class);
+                Intent activityLogin = new Intent(SimuladorRemoverBeneficioActivity.this, LoginActivity.class);
                 startActivity(activityLogin);
                 return true;
 
@@ -259,27 +250,29 @@ public class SimuladorRemoverDividaActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-            listarDividaFixa();
+            listar();
             return true;
         }
 
         @Override
         protected void onPreExecute() {
 
-            layout_simulacaoExclusaoDivida.setVisibility(View.GONE);
+            layout_simulacao.setVisibility(View.GONE);
             load.setVisibility(View.VISIBLE);
         }
 
         @Override
         protected void onPostExecute(Boolean aBoolean) {
 
-            layout_simulacaoExclusaoDivida.setVisibility(View.VISIBLE);
+            layout_simulacao.setVisibility(View.VISIBLE);
             load.setVisibility(View.GONE);
-            montarLista();
+            carregarLista();
         }
     }
     // FIM MÉTODOS ASCINCRONOS
 }
+
+
 
 
 

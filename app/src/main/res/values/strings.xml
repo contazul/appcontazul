@@ -294,23 +294,16 @@
     <!--SIMULADOR NOVO BENEFÍCIO-->
     <string name="simulador_subtitulonovobeneficio">Simulando inclusão de benefício*</string>
     <!---->
+
+    <!--SIMULADOR REMOVER BENEFÍCIO-->
+    <string name="simulador_subtituloremoverbeneficio">Simulando exclusão de benefício*</string>
+    <!---->
+
+    <!--SIMULADOR META-->
+    <string name="simulador_subtitulometa">Simulando meta*</string>
+    <string name="simulador_metalista">Pressione por alguns segundos na meta que deseja simular</string>
+    <!---->
 </resources>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
